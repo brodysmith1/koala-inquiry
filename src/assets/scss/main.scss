@@ -1,3 +1,16 @@
 @charset "UTF-8";
 @import "./core/generic_boxsizing";
+@import "./core/typography";
 @import "./vendors/tailwind";
+
+.bg-image {
+  @apply absolute duration-500 w-screen h-screen z-n1 top-0 left-0 bg-no-repeat;
+}
+
+.bg-image:not(.active) {
+  opacity: 0;
+}
+
+h1 {
+  @apply text-xl font-semibold uppercase mb-4;
+}

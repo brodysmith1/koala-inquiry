@@ -1,6 +1,7 @@
 doctype html
 //- Import mixins here to use globally
 include ../../_includes/mixins/mixins.pug
+
 html(lang='en-us' class='antialiased overflow-hidden')
 	head
 		//- Meta Tags
@@ -21,7 +22,7 @@ html(lang='en-us' class='antialiased overflow-hidden')
 			script(defer src=assets["sw.js"])
 
 	body
-		.slides.flex.min-h-screen.duration-500.ease-out
+		.slides.flex.min-h-screen.duration-500.ease-out.text-lg
 			block slides
 
 	script(src=assets["main.js"])
