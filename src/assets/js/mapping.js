@@ -3,6 +3,7 @@ import * as topojson from "topojson"
 
 let nsw = "../map-data/nsw-outline.json";
 console.log(nsw);
+
 let topojsonObject = topojson.feature(nsw, nsw.FeatureCollection.features);
 let topojsonDataSet = topojsonObject.features;
 
