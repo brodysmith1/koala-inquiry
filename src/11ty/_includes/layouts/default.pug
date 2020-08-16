@@ -1,7 +1,7 @@
 doctype html
 //- Import mixins here to use globally
 include ../../_includes/mixins/mixins.pug
-html(lang='en-us' class='antialiased overflow-y-scroll')
+html(lang='en-us' class='antialiased overflow-hidden')
 	head
 		//- Meta Tags
 		title=site.metaTitle
@@ -21,10 +21,7 @@ html(lang='en-us' class='antialiased overflow-y-scroll')
 			script(defer src=assets["sw.js"])
 
 	body
-		a(class="sr-only" href="#main") Skip to content
-		include ../partials/header.pug
-		div.flex.flex-col.min-h-screen
-			include ../partials/main.pug
-				block content
+		.slides.flex.min-h-screen.duration-500.ease-out
+			block slides
 
 	script(src=assets["main.js"])
