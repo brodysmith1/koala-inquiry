@@ -1,25 +1,13 @@
-# Pugsum: A 11ty starter kit using Pug Templates and TailwindCSS
+# NSW Koala Inquiry Interactive
 
-Features:
+## Data sources
+- NSW Suburbs Base Map - https://data.gov.au/dataset/ds-dga-91e70237-d9d1-4719-a82f-e71b811154c6/details
 
-- [11ty](https://www.11ty.io/) for templates and site generation
-- [TailwindCSS](https://tailwindcss.com/) for a utility first CSS workflow
-- [PurgeCSS](https://purgecss.com/) for optimizing CSS output
-- [PostCSS](https://postcss.org/) for processing Tailwind
-- [Sass/SCSS](https://github.com/sass/node-sass) for leveraging other vendor stylesheets with Tailwind
-- [Webpack](https://webpack.js.org/) for optimizing our JS and CSS files
-- [Webpack-dev-server](https://webpack.js.org/configuration/dev-server/) for HMR and live-reload
-- [Babel](https://babeljs.io/) for ES6 support
-- [HTML minifier](https://www.npmjs.com/package/html-minifier) to minify production HTML
+- SEPP (Koala Habitat Protection) Geo Data - https://www.planningportal.nsw.gov.au/opendata/dataset/state-environmental-planning-policy-koala-habitat-protection-2019
 
-## Disclaimers
+- NSW Koala Habitat Information Base - https://datasets.seed.nsw.gov.au/dataset/koala-habitat-information-base
 
-This is a starter project to demostrate how you can use Pug templates with 11ty. Not all 11ty features are supported on Pug templates, please read the
-[11ty](https://www.11ty.io/) docs to see what features are included.
-
-## Prerequisites
-
-- [Node and NPM](https://nodejs.org/)
+- NSW Koala Prioritisation Project - Areas of Regional Koala Significance (ARKS) - https://datasets.seed.nsw.gov.au/dataset/areas-of-regional-koala-significance-arks
 
 ## Running locally
 

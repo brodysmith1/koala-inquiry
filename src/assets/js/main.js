@@ -81,3 +81,6 @@ function checkX(fwd) {                        // Check for start or end position
   if (fwd) { i<n ? slide(fwd) : ""; }
   else { i==0 ? "" : slide(fwd); }
 }
+
+
+import "./mapping.js";

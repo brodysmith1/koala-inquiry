@@ -12,7 +12,8 @@
 		"pug"
 	],
 	"dependencies": {
-		"d3": "^5.16.0"
+		"d3": "^5.16.0",
+		"topojson": "^3.0.2"
 	},
 	"devDependencies": {
 		"@11ty/eleventy": "^0.10.0",
