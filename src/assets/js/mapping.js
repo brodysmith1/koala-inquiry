@@ -2,53 +2,33 @@ import * as d3 from "d3";
 import * as topojson from "topojson"
 
 
-let nsw = "../map-data/nsw-outline.json";
+// Svg defs
+let width = 800,
+    height = 420;
 
-console.log(d3);
+// Data defs
+let nsw = "./map-data/nsw-outline.json";
 
-// Map defs
-let projection = d3.geoEquirectangular();
-let path = d3.geoPath().projection(projection);
+d3.json(nsw).then( (data) => {
 
-// let topology = topojson.topology({foo: json})
-// let topojsonObject = topojson.feature(nsw, nsw.FeatureCollection.features);
-// let topojsonDataSet = topojsonObject.features;
+  // Map defs
+  let projection = d3.geoEquirectangular().fitSize([width, height], data),
+      path = d3.geoPath().projection(projection);
 
-let width = 1200,
-    height = 800;
+  var svg = d3.select("body #nsw-map")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("viewBox", [0, 0, width, height])
+      .attr("preserveAspectRatio", "xMinYMin");
 
-var svg = d3.select("body #nsw-map")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .attr("viewBox", [0, 0, width, height])
-    .attr("preserveAspectRatio", "xMinYMin");
+  svg.append('g')
+    .selectAll('path')
+    .data(data.features)
+    .join('path')
+    .attr('d', path)
+    .attr('fill','none')
+    .attr('stroke', 'black');
 
-
-// svg.append("g")
-//   .selectAll("path")
-//   .data(topojsonDataSet)
-//   .join("path")
-//   .attr("fill", d => color(data.get(d.id)))
-//   .attr("d", path);
-
-// d3.json(nsw, function(error, mapData) {
-//   var features = mapData.features;
-//
-//   // Update color scale domain based on data
-//   color.domain([0, d3.max(features, nameLength)]);
-//
-//   // Draw each province as a path
-//   mapLayer.selectAll('path')
-//       .data(features)
-//       .enter()
-//       .append('path')
-//       .attr('d', path)
-//       .attr('vector-effect', 'non-scaling-stroke')
-//       .style('fill', fillFn)
-//       .on('mouseover', mouseover)
-//       .on('mouseout', mouseout)
-//       .on('click', clicked);
-// });
-
-console.log(svg);
+    console.log(data.features);
+});
