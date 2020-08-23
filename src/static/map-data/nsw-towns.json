@@ -1,0 +1,161 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sydney"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.21307373046875,
+          -33.85216970140739
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Newcastle"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.754150390625,
+          -32.93723381397089
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Port Macquarie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          152.8912353515625,
+          -31.433350262414404
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coffs Harbour"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.11920166015625,
+          -30.294646395871705
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Byron Bay"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.61083984374997,
+          -28.649620345339752
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tamworth"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          150.9246826171875,
+          -31.09057409495418
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bathurst"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          148.60107421875,
+          -32.249974455863295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Broken Hill"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.48193359375,
+          -31.97080393043308
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mildura"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.1630859375,
+          -34.17999758688083
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Griffith"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          146.05224609375,
+          -34.28899186503752
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Canberra"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          149.11605834960938,
+          -35.29831467054512
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wollongong"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          150.88623046875,
+          -34.415973384481866
+        ]
+      }
+    }
+  ]
+}
