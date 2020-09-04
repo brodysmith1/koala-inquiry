@@ -8,7 +8,13 @@ let w = 900,
 // Data defs
 let ausmap = "./map-data/sa4-au-geo.json";
 let towns = "./map-data/nsw-towns.json";
-let arks = "./map-data/koala-arks-geo.json";
+let hubs = {};
+
+hubs.src = ["./map-data/wwf_all.json",
+             "./map-data/wwf_crown.json",
+             "./map-data/wwf_private.json",
+             "./map-data/wwf_state.json"];
+
 let extents = {
   "au": {
     "scale": 1050,
@@ -22,11 +28,13 @@ let extents = {
   }
 };
 
-
 Promise.all([
   d3.json(ausmap),
   d3.json(towns),
-  d3.json(arks)
+  d3.json(hubs.src[0]),
+  d3.json(hubs.src[1]),
+  d3.json(hubs.src[2]),
+  d3.json(hubs.src[3])
 ]).then( (data) => drawMap(data) );
 
 
@@ -34,7 +42,11 @@ function drawMap (data) {
 
   let map = data[0];
   let towns = data[1];
-  let arks = data[2];
+
+  hubs.all = data[2];
+  hubs.crown = data[3];
+  hubs.private = data[4];
+  hubs.state = data[5];
 
   // Map defs
   let target = extents.nsw;
@@ -69,15 +81,17 @@ function drawMap (data) {
     .data(map.features)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('fill','none')
+    .attr('fill','#002b4500')
     .attr('stroke', (d) => d.properties.state=="NSW" ? '#fffa' : "#fff3")
     .attr('stroke-width', '.5')
-    .attr('stroke-linejoin', 'round');
+    .attr('stroke-linejoin', 'round')
+    .on('mouseover', function() { d3.select(this).style('fill', "#002b45") } )
+    .on('mouseleave', function() { d3.select(this).style('fill', '#002b4500') } );
 
-  // ARKS
+  // HUBS
   svg.append('g')
     .selectAll('path')
-    .data(arks.features)
+    .data(hubs.all.features)
     .join('path')
     .attr('d', d3.geoPath(projection))
     // .attr('fill', 'url(#hatch)')
@@ -96,17 +110,17 @@ function drawMap (data) {
     .attr('fill','white');
 
   // Town names
-  svg.append('g')
-    .selectAll('text')
-    .data(towns.features)
-    .join('text')
-      .attr('fill', 'white' )
-      .attr('x', (d) => projection(d.geometry.coordinates)[0] )
-      .attr('y', (d) => projection(d.geometry.coordinates)[1] )
-      .attr('dx', 12)
-      .attr('dy', 6)
-      .attr("text-anchor", "start")
-      .text( (d) => d.properties.name );
+  // svg.append('g')
+  //   .selectAll('text')
+  //   .data(towns.features)
+  //   .join('text')
+  //     .attr('fill', 'white' )
+  //     .attr('x', (d) => projection(d.geometry.coordinates)[0] )
+  //     .attr('y', (d) => projection(d.geometry.coordinates)[1] )
+  //     .attr('dx', 12)
+  //     .attr('dy', 6)
+  //     .attr("text-anchor", "start")
+  //     .text( (d) => d.properties.name );
 
 
 }
