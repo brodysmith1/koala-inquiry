@@ -6,7 +6,7 @@ let w = 900,
     h = 1000;
 
 // Data defs
-let ausmap = "./map-data/sa4-au-geo.json";
+let ausmap = "./map-data/sa4-au-east.json";
 let towns = "./map-data/nsw-towns.json";
 let hubs = {};
 
@@ -57,10 +57,11 @@ function drawMap (data) {
   // Create svg canvas
   var svg = d3.select("body #nsw-map")
       .append("svg")
-      .attr("width", w)
+      .attr("width", "100%")
       .attr("height", h)
       .attr("viewBox", [0,0,w,h])
-      .attr("preserveAspectRatio", "xMinYMin");
+      .attr("preserveAspectRatio", "xMinYMin")
+      .attr("class", "bg-white");
 
   // Define hatching pattern
   var defs = svg.append('defs');
@@ -81,23 +82,53 @@ function drawMap (data) {
     .data(map.features)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('fill','#002b4500')
-    .attr('stroke', (d) => d.properties.state=="NSW" ? '#fffa' : "#fff3")
-    .attr('stroke-width', '.5')
-    .attr('stroke-linejoin', 'round')
-    .on('mouseover', function() { d3.select(this).style('fill', "#002b45") } )
-    .on('mouseleave', function() { d3.select(this).style('fill', '#002b4500') } );
+    .attr('class', 'fill-current text-green-400')
+    .attr('stroke', 'white')
+    .attr('stroke-width', 0.2)
+    .on('mouseover', function() { d3.select(this).attr('color', "#002b45") } )
+    .on('mouseleave', function() { d3.select(this).attr('fill', '#002b4500') } );
 
-  // HUBS
+  // ALL HUBS
   svg.append('g')
     .selectAll('path')
     .data(hubs.all.features)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    // .attr('fill', 'url(#hatch)')
-    .attr('fill', 'none')
-    .attr('stroke', '#0a0')
+    .attr('fill', '#0000')
+    .attr('class', 'stroke-current text-gray-100')
+    .attr('stroke-width', 1)
     .attr('stroke-linejoin', 'round');
+
+  // CROWN HUBS
+  svg.append('g')
+    .selectAll('path')
+    .data(hubs.crown.geometries)
+    .join('path')
+    .attr('d', d3.geoPath(projection))
+    .attr('fill', 'none')
+    .attr('class', 'stroke-current text-green-100')
+    .attr('stroke-width', 2);
+
+
+  // STATE HUBS
+  svg.append('g')
+    .selectAll('path')
+    .data(hubs.state.geometries)
+    .join('path')
+    .attr('d', d3.geoPath(projection))
+    .attr('fill', 'none')
+    .attr('class', 'stroke-current text-green-100')
+    .attr('stroke-width', 2);
+
+  // PRIVATE HUBS
+  svg.append('g')
+    .selectAll('path')
+    .data(hubs.private.geometries)
+    .join('path')
+    .attr('d', d3.geoPath(projection))
+    .attr('fill', 'none')
+    .attr('class', 'stroke-current text-green-100')
+    .attr('stroke-width', 2);
 
   // Town dots
   svg.append('g')
@@ -105,8 +136,8 @@ function drawMap (data) {
     .data(towns.features)
     .join('circle')
     .attr('r', 3)
-    .attr('cx', (d) => projection(d.geometry.coordinates)[0] )
-    .attr('cy', (d) => projection(d.geometry.coordinates)[1] )
+    .attr('cx', (d) => projection(  d.geometry.coordinates)[0] )
+    .attr('cy', (d) => projection(  d.geometry.coordinates)[1] )
     .attr('fill','white');
 
   // Town names
