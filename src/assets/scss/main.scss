@@ -3,6 +3,34 @@
 @import "./core/typography";
 @import "./vendors/tailwind";
 
+@keyframes flash {
+  0% { opacity: 0; stroke-width: 0 }
+  50% { opacity: 1; stroke-width: 2 }
+  100% { opacity: 0; stroke-width: 0 }
+}
+
+@-webkit-keyframes flash {
+  0% { opacity: 0; stroke-width: 0 }
+  50% { opacity: 1; stroke-width: 2 }
+  100% { opacity: 0; stroke-width: 0 }
+}
+
+.hubs-all,
+.hubs-crown,
+.hubs-state,
+.hubs-private {
+  opacity: 0;
+  animation: flash 6s ease;
+  -webkit-animation: flash 6s ease;
+}
+
+@for $i from 0 through 3 {
+  .delay-#{$i * 4 + 2} {
+    animation-delay: $i * 4 + 2s;
+    -webkit-animation-delay: $i * 4 + 2s;
+  }
+}
+
 .bg-image {
   @apply absolute duration-500 w-screen h-screen z-n1 top-0 left-0 bg-no-repeat;
 }

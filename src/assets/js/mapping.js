@@ -94,10 +94,8 @@ function drawMap (data) {
     .data(hubs.all.features)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('fill', '#0000')
-    .attr('class', 'stroke-current text-gray-100')
-    .attr('stroke-width', 1)
-    .attr('stroke-linejoin', 'round');
+    .attr('class', 'hubs-all delay-2 stroke-current fill-current text-yellow-300')
+    .attr('stroke-width', 2);
 
   // CROWN HUBS
   svg.append('g')
@@ -105,9 +103,9 @@ function drawMap (data) {
     .data(hubs.crown.geometries)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('fill', 'none')
-    .attr('class', 'stroke-current text-green-100')
-    .attr('stroke-width', 2);
+    .attr('class', 'hubs-crown delay-6 stroke-current text-green-100')
+    .attr('stroke-width', 2)
+    .attr('fill', 'none');
 
 
   // STATE HUBS
@@ -116,9 +114,9 @@ function drawMap (data) {
     .data(hubs.state.geometries)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('fill', 'none')
-    .attr('class', 'stroke-current text-green-100')
-    .attr('stroke-width', 2);
+    .attr('class', 'hubs-state delay-10 stroke-current text-green-100')
+    .attr('stroke-width', 2)
+    .attr('fill', 'none');
 
   // PRIVATE HUBS
   svg.append('g')
@@ -126,9 +124,9 @@ function drawMap (data) {
     .data(hubs.private.geometries)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('fill', 'none')
-    .attr('class', 'stroke-current text-green-100')
-    .attr('stroke-width', 2);
+    .attr('class', 'hubs-private delay-14 stroke-current text-green-100')
+    .attr('stroke-width', 2)
+    .attr('fill', 'none');
 
   // Town dots
   svg.append('g')
