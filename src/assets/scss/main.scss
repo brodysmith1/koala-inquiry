@@ -3,33 +3,7 @@
 @import "./core/typography";
 @import "./vendors/tailwind";
 
-@keyframes flash {
-  0% { opacity: 0; stroke-width: 0 }
-  50% { opacity: 1; stroke-width: 2 }
-  100% { opacity: 0; stroke-width: 0 }
-}
-
-@-webkit-keyframes flash {
-  0% { opacity: 0; stroke-width: 0 }
-  50% { opacity: 1; stroke-width: 2 }
-  100% { opacity: 0; stroke-width: 0 }
-}
-
-.hubs-all,
-.hubs-crown,
-.hubs-state,
-.hubs-private {
-  opacity: 0;
-  animation: flash 6s ease;
-  -webkit-animation: flash 6s ease;
-}
-
-@for $i from 0 through 3 {
-  .delay-#{$i * 4 + 2} {
-    animation-delay: $i * 4 + 2s;
-    -webkit-animation-delay: $i * 4 + 2s;
-  }
-}
+// CORE
 
 .bg-image {
   @apply absolute duration-500 w-screen h-screen z-n1 top-0 left-0 bg-no-repeat;
@@ -41,4 +15,91 @@
 
 h1 {
   @apply text-xl font-semibold uppercase mb-4;
+}
+
+// MAP
+
+
+// ANIMATION CLASSES
+
+.fade-in {
+  animation: fade-in 1.25s ease 1 forwards;
+  -webkit-animation: fade-in 1.25s ease 1 forwards;
+}
+
+.flash-linear {
+  animation: flash 6s linear;
+  -webkit-animation: flash 6s linear;
+}
+
+.flash {
+  animation: flash 6s cubic-bezier(0, 0.33, 1, 0.67);
+  -webkit-animation: flash 6s cubic-bezier(0, 0.33, 1, 0.67);
+}
+.block-reveal {
+  width: 0%;
+  height: 100%;
+  animation: block-reveal 1.5s cubic-bezier(.74, .06, .4, .92) forwards;
+  -webkit-animation: block-reveal 1.5s cubic-bezier(.74, .06, .4, .92) forwards;
+}
+
+@for $i from 1 through 30 {
+  .delay-#{$i} {
+    animation-delay: $i * 1s;
+    -webkit-animation-delay: $i * 1s;
+  }
+}
+
+
+// KEYFRAMES
+
+@keyframes fade-in {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+}
+@-webkit-keyframes fade-in {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+}
+
+@keyframes flash {
+  0% { opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@-webkit-keyframes flash {
+  0% { opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes block-reveal {
+  0% {
+    width: 0%;
+    left: -5%;
+  }
+  50% {
+    width: 110%;
+    left: -5%;
+  }
+  100% {
+    width: 0;
+    left: 105%;
+  }
+}
+@-webkit-keyframes block-reveal {
+  0% {
+    width: 0%;
+    left: -5%;
+  }
+  50% {
+    width: 110%;
+    left: -5%;
+  }
+  100% {
+    width: 0;
+    left: 105%;
+  }
 }

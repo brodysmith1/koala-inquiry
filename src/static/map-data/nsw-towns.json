@@ -121,13 +121,13 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Griffith"
+        "name": "Eden"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          146.05224609375,
-          -34.28899186503752
+          149.946,
+          -36.8493922
         ]
       }
     },

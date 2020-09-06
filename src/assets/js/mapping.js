@@ -1,6 +1,11 @@
 import * as d3 from "d3";
 import * as topojson from "topojson"
 
+// Animation defs
+const n = 5,
+      delay = 5000,
+      highlights = ["Greater Sydney","Southern Highlands and Shoalhaven","Coffs Harbour - Grafton","Richmond - Tweed","Mid North Coast"];
+
 // Svg defs
 let w = 900,
     h = 1000;
@@ -13,7 +18,9 @@ let hubs = {};
 hubs.src = ["./map-data/wwf_all.json",
              "./map-data/wwf_crown.json",
              "./map-data/wwf_private.json",
-             "./map-data/wwf_state.json"];
+             "./map-data/wwf_state.json",
+             "./map-data/burned-area.json",
+            ];
 
 let extents = {
   "au": {
@@ -23,7 +30,7 @@ let extents = {
   },
   "nsw": {
     "scale": 3550,
-    "center": [148.8,-31.6],
+    "center": [149.8,-31.4],
     "bb": [[140, -27], [154, -39]]
   }
 };
@@ -34,14 +41,16 @@ Promise.all([
   d3.json(hubs.src[0]),
   d3.json(hubs.src[1]),
   d3.json(hubs.src[2]),
-  d3.json(hubs.src[3])
+  d3.json(hubs.src[3]),
+  d3.json(hubs.src[4])
 ]).then( (data) => drawMap(data) );
 
 
 function drawMap (data) {
 
-  let map = data[0];
+  let map   = data[0];
   let towns = data[1];
+  let fires = data[6];
 
   hubs.all = data[2];
   hubs.crown = data[3];
@@ -63,30 +72,16 @@ function drawMap (data) {
       .attr("preserveAspectRatio", "xMinYMin")
       .attr("class", "bg-white");
 
-  // Define hatching pattern
-  var defs = svg.append('defs');
-  var g = defs.append("pattern")
-     .attr('id', 'hatch')
-     .attr('patternUnits', 'userSpaceOnUse')
-     .attr('width', '5')
-     .attr('height', '5')
-     .attr("x", 0).attr("y", 0)
-     .append("g")
-      .style("fill", "none")
-      .style("stroke", "white");
-    g.append("path").attr("d", "M0,5 l5,-5");
-
   // Basemap
   svg.append('g')
     .selectAll('path')
     .data(map.features)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('class', 'fill-current text-green-400')
+    .attr('class', 'basemap fill-current text-green-400')
     .attr('stroke', 'white')
     .attr('stroke-width', 0.2)
-    .on('mouseover', function() { d3.select(this).attr('color', "#002b45") } )
-    .on('mouseleave', function() { d3.select(this).attr('fill', '#002b4500') } );
+    .classed('highlight', d => highlights.includes(d.properties.name) );
 
   // ALL HUBS
   svg.append('g')
@@ -94,8 +89,7 @@ function drawMap (data) {
     .data(hubs.all.features)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('class', 'hubs-all delay-2 stroke-current fill-current text-yellow-300')
-    .attr('stroke-width', 2);
+    .attr('class', 'hubs hubs-all stroke-current fill-current text-yellow-300 opacity-0');
 
   // CROWN HUBS
   svg.append('g')
@@ -103,10 +97,7 @@ function drawMap (data) {
     .data(hubs.crown.geometries)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('class', 'hubs-crown delay-6 stroke-current text-green-100')
-    .attr('stroke-width', 2)
-    .attr('fill', 'none');
-
+    .attr('class', 'hubs hubs-crown stroke-current fill-current text-yellow-300 opacity-0');
 
   // STATE HUBS
   svg.append('g')
@@ -114,9 +105,7 @@ function drawMap (data) {
     .data(hubs.state.geometries)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('class', 'hubs-state delay-10 stroke-current text-green-100')
-    .attr('stroke-width', 2)
-    .attr('fill', 'none');
+    .attr('class', 'hubs hubs-state stroke-current fill-current text-yellow-300 opacity-0');
 
   // PRIVATE HUBS
   svg.append('g')
@@ -124,39 +113,102 @@ function drawMap (data) {
     .data(hubs.private.geometries)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('class', 'hubs-private delay-14 stroke-current text-green-100')
-    .attr('stroke-width', 2)
-    .attr('fill', 'none');
+    .attr('class', 'hubs hubs-private stroke-current fill-current text-yellow-300 opacity-0');
 
-  // Town dots
+  // BUSHFIRES
   svg.append('g')
-    .selectAll('circle')
-    .data(towns.features)
-    .join('circle')
-    .attr('r', 3)
-    .attr('cx', (d) => projection(  d.geometry.coordinates)[0] )
-    .attr('cy', (d) => projection(  d.geometry.coordinates)[1] )
-    .attr('fill','white');
+    .selectAll('path')
+    .data(fires.geometries)
+    .join('path')
+    .attr('d', d3.geoPath(projection))
+    .attr('class', 'hubs hubs-fires fill-current text-black opacity-0');
 
   // Town names
-  // svg.append('g')
-  //   .selectAll('text')
-  //   .data(towns.features)
-  //   .join('text')
-  //     .attr('fill', 'white' )
-  //     .attr('x', (d) => projection(d.geometry.coordinates)[0] )
-  //     .attr('y', (d) => projection(d.geometry.coordinates)[1] )
-  //     .attr('dx', 12)
-  //     .attr('dy', 6)
-  //     .attr("text-anchor", "start")
-  //     .text( (d) => d.properties.name );
+  svg.append('g')
+    .selectAll('text')
+    .data(towns.features)
+    .join('text')
+      .attr('class', 'towns fill-current text-green-400 opacity-0')
+      .attr('x', d => projection(d.geometry.coordinates)[0] )
+      .attr('y', d => projection(d.geometry.coordinates)[1] )
+      .attr('dx', -1)
+      .attr('dy', 7)
+      .attr("text-anchor", "start")
+      .text( (d) => "– " + d.properties.name )
+      .attr('display', d => {
+        return d.properties.name == "Coffs Harbour" || d.properties.name == "Byron Bay" ||
+        d.properties.name == "Newcastle" || d.properties.name == "Wollongong" ||
+        d.properties.name == "Port Macquarie" || d.properties.name == "Sydney" ? "block" : "none"
+      });
 
+
+  // TRANSITIONS: Hub Data
+  d3.selectAll(".hubs")
+    .transition()
+    .duration(1000)
+    .delay( (d,i) => i ? (i+1)*delay : 0)
+    .style("opacity", (d,i) => i==n-1 ? 0.9 : 1)
+    .transition()
+    .duration(1000)
+    .delay( (d,i) => i ? delay-1000 : 2*delay-1000)
+    .style("opacity",0);
+
+  d3.select(".hubs-all")
+    .transition()
+    .duration(1000)
+    .delay(n*delay)
+    .style("opacity",1);
+
+  // TRANSITIONS: towns
+  d3.selectAll(".towns")
+    .transition()
+    .duration(1000)
+    .delay(delay)
+    .style("opacity",1);
+
+  // TRANSITIONS: Accompanying paragraphs
+  d3.selectAll(".map-p")
+    .transition()
+    .duration(1000)
+    .delay( (d,i) => i*delay )
+    .style("opacity",1)
+    .transition()
+    .duration(1000)
+    .delay(delay-1000)
+    .style("opacity",0.2);
+
+  d3.selectAll(".map-p")
+    .transition()
+    .delay(n*delay)
+    .duration(1000)
+    .style("opacity",1);
+
+  d3.selectAll(".map-p .cursor-pointer")
+    .style('transition', 'background-color 0.5s, color 0.5s')
+    .on('click', showData);
+
+  d3.select(".map-p .cursor-pointer")
+    .transition()
+    .delay(n*delay)
+    .on('end', showData);
 
 }
 
+function showData() {
+  let t = this.dataset.target;
+  d3.selectAll('.hubs')
+    .transition()
+    .duration(500)
+    .style('opacity', (d,i) => i==t ? 1 : 0 );
+  d3.selectAll(".map-p .cursor-pointer")
+    .classed('bg-black', false)
+    .classed('bg-yellow-300', false)
+    .classed('text-white', false);
+  t==4 ? this.classList.toggle('text-white') : '';
+  t==4 ? this.classList.toggle('bg-black') : this.classList.toggle('bg-yellow-300');
+}
 
 // Helpers
-
 function toXY(lon, lat) {
   let x = lon > 0  ? 180 + lon : -lon;
   let y = lat < 0  ?  90 - lat : lat;

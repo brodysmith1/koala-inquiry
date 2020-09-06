@@ -12,7 +12,7 @@ module.exports = {
 		colors: {
 			transparent: "transparent",
 
-			black: "#2b314f",
+			black: "#000",
 			white: "#ece5d8",
 
 			// black: #2b314f
@@ -59,7 +59,7 @@ module.exports = {
 			blue: {
 				100: "#ebf8ff",
 				200: "#bee3f8",
-				300: "#90cdf4",
+				300: "#2b314f",
 			},
 			indigo: {
 				100: "#ebf4ff",
