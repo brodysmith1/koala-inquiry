@@ -17,7 +17,7 @@ module.exports = function (eleventyConfig) {
 
 	// Copy `src/static/` to `dist/`
 	eleventyConfig.addPassthroughCopy({ "src/static/": "/" });
-	eleventyConfig.addPassthroughCopy({ "src/assets/images": "/assets/images" });
+	eleventyConfig.addPassthroughCopy({ "src/assets/images": "/assets/images", "src/assets/video": "/assets/video" });
 
 	return {
 		dir: {

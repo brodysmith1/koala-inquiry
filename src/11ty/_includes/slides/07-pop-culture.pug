@@ -1,0 +1,24 @@
+extends ../partials/slide.pug
+
+block content
+  video.rounded-lg.mx-auto(
+    loop
+    autoplay
+    data-tilt
+    width="500"
+    height="300" 
+    data-tilt-max="8"
+    data-tilt-speed="400"
+    data-tilt-perspective="500"
+    style="border: 20px solid black; box-shadow: 0 0 25px 5px #555;"
+  ) 
+    source(src=`${imgpath}/../video/caramello.mp4` type="video/mp4")
+    | Your browser does not support the video tag.
+
+  .text-center.my-12.px-16
+    h1 Cultural value
+    blockquote.text-xl
+      | From cartoons to commercials,
+      | koalas are an icon of
+      | Australian country and culture.
+      | Koalas are a part of who we&nbsp;are.

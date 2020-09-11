@@ -3,7 +3,7 @@ import * as topojson from "topojson"
 
 // Animation defs
 const n = 5,
-      delay = 5000,
+      delay = 4000,
       highlights = ["Greater Sydney","Southern Highlands and Shoalhaven","Coffs Harbour - Grafton","Richmond - Tweed","Mid North Coast"];
 
 // Svg defs

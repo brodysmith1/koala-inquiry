@@ -2,3 +2,6 @@
 include ./navItems/navItems.pug
 include ./slide/slide.pug
 include ./picture/picture.pug
+
+mixin link(text, link)
+  a(target="_blank" rel="nofollow noindex" href=link)!= text

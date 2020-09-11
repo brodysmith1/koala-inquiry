@@ -1,7 +1,21 @@
+import va from "vanilla-tilt";
+
 // Vars
 var x = 0;
-var n = 4;
+var n = 16;
 var i = 0;
+
+// ENUMS
+const COVER = 0;
+const INDIGENOUS = 8;
+const NSW_MAP = 9;
+
+// Colors
+const cream = "#ece5d8";
+const black = "#232626";
+const green400 = "#2f493d";
+const blue300 = "#2b314f";
+
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', onLoad);   // TODO: DEBOUNCE
@@ -57,6 +71,7 @@ function onSlide(p) {
   bgPrev ? bgPrev.classList.remove('active') : "";
   bgCur  ? bgCur.classList.add('active')  : "";
 
+  uniqueSlide(); // Execute specific behaviour for targeted slides
 }
 
 
@@ -72,6 +87,17 @@ function jumpTo(index) {
   onSlide(p);
 }
 
+// Execute specific behaviour for targeted slides
+function uniqueSlide() {
+  let body = document.querySelector('body');
+
+  if (i == COVER) { body.style.background = green400; }
+    else if (i==1 || i==n) { body.style.background = cream; }
+  if (i == INDIGENOUS) { body.style.background = black; }
+    else if (Math.abs(INDIGENOUS-i) == 1) { body.style.background = cream; }
+  if (i == NSW_MAP) { document.querySelector('#nsw-map').style.display = 'block'; document.querySelector('#nsw-map-text').style.display = 'flex';  }
+}
+
 
 // Helpers
 function translateX(el, x) {                  // Apply slide transform
@@ -81,6 +107,7 @@ function checkX(fwd) {                        // Check for start or end position
   if (fwd) { i<n ? slide(fwd) : ""; }
   else { i==0 ? "" : slide(fwd); }
 }
+
 
 
 import "./mapping.js";

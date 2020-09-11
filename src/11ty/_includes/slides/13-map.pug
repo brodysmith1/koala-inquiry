@@ -5,13 +5,11 @@ block content
   - let copy = ['Highlighted on the map are <b data-target="0" class="cursor-pointer border-b-4 border-yellow-300">koala hubs</b> — 100k hectares of NSW\'s highest quality koala habitat.', 'Many of these vital areas are also hotspots for urban development.','Just <b data-target="1" class="cursor-pointer border-b-4 border-yellow-300">16%</b> of koala hub area is currently protected as National Park.','<b data-target="2" class="cursor-pointer border-b-4 border-yellow-300">19%</b> is NSW State Forest, targeted for commercial activity such as logging and development.', 'And <b data-target="3" class="cursor-pointer border-b-4 border-yellow-300">65%</b> is on privately-owned land, making coordinated management and protection efforts difficult.', 'A significant proportion of hubs were affected with the 2019-20 \'black summer\' <b data-target="4" class="cursor-pointer border-b-4 border-black">bushfires</b>.']
   - let delays = ['','delay-6','delay-12','delay-18','delay-24']
   
-  #nsw-map.fixed.left-0.top-0.min-h-screen.min-w-full.z-n1
-  
-  .flex.absolute.left-0.top-0.min-h-screen.min-w-full.z-1
-    div(class="w-1/2")
-    div(class="w-1/8")
-    .my-auto(class="w-2/5")
-      h1 Core Koala Habitat
-      each p,i in copy
-          h2.map-p.mb-4.opacity-0!= p
-            //.block-reveal.absolute.bg-green-300.top-0(class=delays[i])
+    #nsw-map.absolute.hidden.left-0.top-0.min-h-screen.min-w-full.z-n1
+    #nsw-map-text.flex.absolute.hidden.left-0.top-0.min-h-screen.min-w-full.z-1
+      div(class="w-1/2")
+      div(class="w-1/8")
+      .my-auto(class="w-2/5")
+        h1 Core Koala Habitat
+        each p,i in copy
+            h2.map-p.mb-4.opacity-0!= p

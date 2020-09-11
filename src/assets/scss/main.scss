@@ -13,12 +13,20 @@
   opacity: 0;
 }
 
+body {
+  transition: background 500ms;
+}
+
+
+// TYPOGRAPHY
+
 h1 {
   @apply text-xl font-semibold uppercase mb-4;
 }
-
-// MAP
-
+blockquote {
+  @apply inline italic text-green-400 text-4xl bg-yellow-300 font-semibold;
+  padding: 1px
+}
 
 // ANIMATION CLASSES
 

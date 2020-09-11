@@ -15,20 +15,11 @@ module.exports = {
 			black: "#000",
 			white: "#ece5d8",
 
-			// black: #2b314f
-			// gr-dk: #2f493d
-			// gr-md: #4c8075
-			// gr-lt: #6da990
-			// gr-xlt: #a4e3ad
-			// gy-dk: #c0c0c0
-			// gy-lt: #ededed
-			// yl: #f9d165
-			// white: #ece5d8
-
 			gray: {
 				100: "#f7fafc",
-				200: "#c0c0c0",
-				300: "#ededed",
+				200: "#ededed",
+				300: "#c0c0c0",
+				400: "#909090",
 			},
 			red: {
 				100: "#fff5f5",
