@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import "./core/generic_boxsizing";
 @import "./core/typography";
+@import "./core/animation";
 @import "./vendors/tailwind";
 
 // CORE
@@ -26,88 +27,4 @@ h1 {
 blockquote {
   @apply inline italic text-green-400 text-4xl bg-yellow-300 font-semibold;
   padding: 1px
-}
-
-// ANIMATION CLASSES
-
-.fade-in {
-  animation: fade-in 1.25s ease 1 forwards;
-  -webkit-animation: fade-in 1.25s ease 1 forwards;
-}
-
-.flash-linear {
-  animation: flash 6s linear;
-  -webkit-animation: flash 6s linear;
-}
-
-.flash {
-  animation: flash 6s cubic-bezier(0, 0.33, 1, 0.67);
-  -webkit-animation: flash 6s cubic-bezier(0, 0.33, 1, 0.67);
-}
-.block-reveal {
-  width: 0%;
-  height: 100%;
-  animation: block-reveal 1.5s cubic-bezier(.74, .06, .4, .92) forwards;
-  -webkit-animation: block-reveal 1.5s cubic-bezier(.74, .06, .4, .92) forwards;
-}
-
-@for $i from 1 through 30 {
-  .delay-#{$i} {
-    animation-delay: $i * 1s;
-    -webkit-animation-delay: $i * 1s;
-  }
-}
-
-
-// KEYFRAMES
-
-@keyframes fade-in {
-  0% { opacity: 0 }
-  100% { opacity: 1 }
-}
-@-webkit-keyframes fade-in {
-  0% { opacity: 0 }
-  100% { opacity: 1 }
-}
-
-@keyframes flash {
-  0% { opacity: 0; }
-  15% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { opacity: 0; }
-}
-@-webkit-keyframes flash {
-  0% { opacity: 0; }
-  15% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@keyframes block-reveal {
-  0% {
-    width: 0%;
-    left: -5%;
-  }
-  50% {
-    width: 110%;
-    left: -5%;
-  }
-  100% {
-    width: 0;
-    left: 105%;
-  }
-}
-@-webkit-keyframes block-reveal {
-  0% {
-    width: 0%;
-    left: -5%;
-  }
-  50% {
-    width: 110%;
-    left: -5%;
-  }
-  100% {
-    width: 0;
-    left: 105%;
-  }
 }
