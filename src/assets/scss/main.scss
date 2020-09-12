@@ -18,6 +18,25 @@ body {
   transition: background 500ms;
 }
 
+#timeline {
+
+  &::after {
+    content: '';
+    bottom: calc(2.5em);
+    width: 100%;
+    border-bottom: 1px dotted;
+    @apply absolute border-green-400 z-n1;
+  }
+  .tag span::before {
+    content: '';
+    bottom: calc(2.75rem - 3px);
+    left: 50%;
+    height: 0.75rem;
+    @apply absolute bg-green-400 w-px z-n1;
+  }
+}
+
+
 
 // TYPOGRAPHY
 

@@ -1,12 +1,33 @@
 extends ../partials/slide.pug
 
 block content
+
   h1 A Recent history
   p Several key events related to koala population management preceded the inquiry.
-  ul 
-    li 2016: NSW Chief Scientist & Engineer releases a report on declining koala populations in NSW
-    li 2017: Various land management and biodiversity reforms are introduced, including the Biodiversity Conservation Act 2016
-    li 2018: NSW Government commits to a $44.7M Koala Strategy 
-    li 2019: NSW inquiry into koala populations is launched 
-    li Bushfires burn across Australia
-    li 2020: The inquiry releases its report 
+  .py-32
+    
+  #timeline.flex.flex-col.absolute(
+    class="md:flex-row md:left-0 md:mx-24"
+    style="margin-top: -8rem"
+  )
+    - let start = 2016
+    for f,i in new Array(5)
+      .node.flex.flex-1.flex-row-reverse.p-2(class="sm:px-0 md:px-4 md:py-0 md:flex-col-reverse")
+        .tag.text-center: span.relative.text-xl.italic.mx-auto.py-1.px-2.font-semibold.text-green-400= start+i
+        .content.text-sm.text-center
+          case start+i
+            when 2016
+              .mb-8 NSW Chief Scientist & Engineer releases a report on declining koala populations in NSW
+            when 2017
+              .mb-8 Various land management and biodiversity reforms are introduced, including the Biodiversity Conservation Act 2016
+            when 2018
+              .mb-8
+                .text-5xl
+                  sup.text-base $
+                  | 44.7
+                  sub.text-base M
+                | Koala Strategy launched by NSW Government
+            when 2019
+              .mb-8 NSW inquiry into koala populations is launched 
+            when 2020
+              .mb-8 The inquiry releases its report 

@@ -47,6 +47,8 @@ function checkKey(e) {
   e.keyCode == 37 ? checkX(false) :   // left
   e.keyCode == 35 ? jumpTo(n) :       // end
   e.keyCode == 36 ? jumpTo(0) : "";   // home
+
+  e.keyCode == 32 && i==CULTURE ? togglePlay() : "";   // spacebar
 }
 
 
