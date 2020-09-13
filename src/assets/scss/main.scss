@@ -22,17 +22,18 @@ body {
 
   &::after {
     content: '';
-    bottom: calc(2.5em);
+    bottom: 2.75rem;
     width: 100%;
-    border-bottom: 1px dotted;
-    @apply absolute border-green-400 z-n1;
+    border-bottom: 0.5px solid;
+    @apply absolute border-gray-400 z-n1;
   }
-  .tag span::before {
+  .spacer::before {
     content: '';
-    bottom: calc(2.75rem - 3px);
     left: 50%;
-    height: 0.75rem;
-    @apply absolute bg-green-400 w-px z-n1;
+    width: 0;
+    height: 100%;
+    border-left: 0.5px solid;
+    @apply absolute border-gray-400 z-n1;
   }
 }
 
@@ -41,9 +42,9 @@ body {
 // TYPOGRAPHY
 
 h1 {
-  @apply text-xl font-semibold uppercase mb-4;
+  @apply text-xl font-bold uppercase mb-4;
 }
 blockquote {
-  @apply inline italic text-green-400 text-4xl bg-yellow-300 font-semibold;
-  padding: 1px
+  @apply inline text-green-400 text-4xl bg-yellow-300;
+  padding: 1px;
 }

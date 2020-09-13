@@ -1,4 +1,46 @@
+@font-face {
+  font-family: Oswald;
+  src: url("/font/Oswald-VariableFont_wght.ttf") format('truetype');
+  font-weight: 200 700;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: PlayfairItalic;
+  src:  url('/font/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Playfair;
+  src:  url('/font/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+}
+
+.playfair {
+  font-family: 'Playfair', sans-serif;
+  font-variation-settings: 'wght' 500;
+}
+.playfair-italic {
+  font-family: 'PlayfairItalic', sans-serif;
+  font-variation-settings: 'wght' 500;
+}
+.oswald {
+  font-family: 'Oswald', sans-serif;
+  font-variation-settings: 'wght' 400;
+}
+
+.wght-450 {
+  font-variation-settings: 'wght' 450;
+}
+
+blockquote {
+  font-family: 'PlayfairItalic', sans-serif;
+  font-variation-settings: 'wght' 500;
+  letter-spacing: 0.015em;
+}
 
 p:not(:last-child) {
   margin-bottom: 1.2em;

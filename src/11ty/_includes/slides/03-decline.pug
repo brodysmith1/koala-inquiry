@@ -1,6 +1,128 @@
 extends ../partials/slide.pug
 
 block content
-  h1 Reality of the decline
-  p.italic With all this effort, has the situation improved?
-  p DATA TO COME...The Government’s commitment to the $44.7M Koala Strategy comes as a response to diminishing koala numbers.
+  h1 Counting Koalas
+  p Counting Koalas is tricky business. With subpopulations so varied, sparse, and non-uniformly distributed across the state, observations in one area cannot be generalised to others. Data and collection methods are not yet standardised, leaving any estimates of total population with a big caveat of uncertainty. 
+    span.italic (R1)
+  p Finding absolute koalas numbers isn’t pragmatic, nor is it overly insightful. Top ecologists instead prefer to look at the 
+    span.italic rate of change 
+    | of two measures which the IUCN uses to determine a species' risk of extinction: The 
+    span.italic Area of Occupancy 
+    | and the 
+    span.italic Extent of Occurrence.
+    
+    
+  #graph-extent-occurence
+    svg(xmlns='http://www.w3.org/2000/svg' width="200" height="150" viewbox='0 0 200 150' preserveAspectRatio="xMinYMin")
+      defs
+        <style>circle {fill: #f9d165} rect,g {transform-origin: center;}</style>
+      rect( fill="none" stroke-width="1" stroke-dasharray="2 2" stroke="#b12e2d" width='100%' height="100%")
+      rect#occurence(fill="#2f493d" width='100%' height="100%")
+      g#occupancy(class="circles") 
+        g.dissolve
+          circle(cx='55.6' cy='41' r='2')
+          circle(cx='173' cy='86.3' r='2')
+          circle(cx='90.1' cy='42.8' r='2')
+          circle(cx='92.4' cy='3.9' r='2')
+          circle(cx='27.2' cy='80' r='2')
+          circle(cx='23.6' cy='145.3' r='2')
+          circle(cx='147.2' cy='51.4' r='2')
+          circle(cx='168.2' cy='42' r='2')
+          circle(cx='161.8' cy='126.4' r='2')
+          circle(cx='11.2' cy='110.2' r='2')
+          circle(cx='9.4' cy='115.9' r='2')
+          circle(cx='121.2' cy='123.5' r='2')
+          circle(cx='64.4' cy='11.3' r='2')
+          circle(cx='103' cy='4.5' r='2')
+          circle(cx='85.5' cy='119.8' r='2')
+          circle(cx='88.9' cy='24.8' r='2')
+          circle(cx='197.2' cy='57.7' r='2')
+          circle(cx='82' cy='120.4' r='2')
+          circle(cx='158.9' cy='24.4' r='2')
+          circle(cx='24.1' cy='10.6' r='2')
+          circle(cx='19.6' cy='78' r='2')
+          circle(cx='125.3' cy='23.7' r='2')
+          circle(cx='140.9' cy='143.1' r='2')
+          circle(cx='196.3' cy='131' r='2')
+          circle(cx='35.4' cy='33.5' r='2')
+          circle(cx='152.1' cy='9.5' r='2')
+          circle(cx='84.4' cy='123.1' r='2')
+          circle(cx='34.2' cy='16.5' r='2')
+          circle(cx='121.2' cy='58.9' r='2')
+          circle(cx='55.3' cy='43.9' r='2')
+          circle(cx='116.5' cy='47.1' r='2')
+          circle(cx='25.6' cy='70.4' r='2')
+          circle(cx='146.1' cy='88.8' r='2')
+          circle(cx='125.8' cy='144.1' r='2')
+          circle(cx='150.3' cy='102.5' r='2')
+          circle(cx='25.4' cy='142.4' r='2')
+          circle(cx='54.3' cy='101.6' r='2')
+          circle(cx='81' cy='35.4' r='2')
+          circle(cx='162.6' cy='118.3' r='2')
+          circle(cx='128.4' cy='48.4' r='2')
+          circle(cx='13.1' cy='19.5' r='2')
+          circle(cx='10.9' cy='63.9' r='2')
+          circle(cx='92.7' cy='56.8' r='2')
+          circle(cx='48.8' cy='55.4' r='2')
+          circle(cx='134.1' cy='125.8' r='2')
+          circle(cx='184.6' cy='107.3' r='2')
+          circle(cx='135.1' cy='92.7' r='2')
+          circle(cx='139.8' cy='64.1' r='2')
+          circle(cx='109' cy='8.2' r='2')
+          circle(cx='106.6' cy='47.6' r='2')
+        g
+          circle(cx='159.3' cy='15' r='2')
+          circle(cx='98.1' cy='75.5' r='2')
+          circle(cx='173.5' cy='143.5' r='2')
+          circle(cx='177.1' cy='140.9' r='2')
+          circle(cx='146.4' cy='69.9' r='2')
+          circle(cx='8.7' cy='112.4' r='2')
+          circle(cx='126.6' cy='146.4' r='2')
+          circle(cx='84.9' cy='44.8' r='2')
+          circle(cx='122.4' cy='101' r='2')
+          circle(cx='46.9' cy='53.1' r='2')
+          circle(cx='144.3' cy='42.6' r='2')
+          circle(cx='93.1' cy='43.5' r='2')
+          circle(cx='190.8' cy='62.5' r='2')
+          circle(cx='198' cy='2' r='2')
+          circle(cx='75.6' cy='4.3' r='2')
+          circle(cx='90.5' cy='83.6' r='2')
+          circle(cx='134.4' cy='84' r='2')
+          circle(cx='87' cy='96.1' r='2')
+          circle(cx='135.9' cy='20.2' r='2')
+          circle(cx='125.3' cy='92.6' r='2')
+          circle(cx='2' cy='2' r='2')
+          circle(cx='104' cy='139.5' r='2')
+          circle(cx='143.4' cy='59.2' r='2')
+          circle(cx='108.9' cy='91.8' r='2')
+          circle(cx='74.9' cy='127.9' r='2')
+          circle(cx='121.7' cy='42.4' r='2')
+          circle(cx='2' cy='148' r='2')
+          circle(cx='21.7' cy='8.8' r='2')
+          circle(cx='28.5' cy='61.7' r='2')
+          circle(cx='86.6' cy='113.6' r='2')
+          circle(cx='3.3' cy='36.7' r='2')
+          circle(cx='101' cy='8.7' r='2')
+          circle(cx='6.2' cy='115.4' r='2')
+          circle(cx='109.1' cy='79.7' r='2')
+          circle(cx='68.8' cy='146.2' r='2')
+          circle(cx='33.5' cy='101.6' r='2')
+          circle(cx='58.5' cy='56.5' r='2')
+          circle(cx='7.1' cy='41.7' r='2')
+          circle(cx='65.5' cy='118.1' r='2')
+          circle(cx='22.1' cy='142.5' r='2')
+          circle(cx='190' cy='15.7' r='2')
+          circle(cx='190.3' cy='15.9' r='2')
+          circle(cx='185.6' cy='109.5' r='2')
+          circle(cx='191.1' cy='103.9' r='2')
+          circle(cx='174.5' cy='7.7' r='2')
+          circle(cx='198' cy='148' r='2')
+          circle(cx='15.7' cy='50.3' r='2')
+          circle(cx='88.5' cy='54.4' r='2')
+          circle(cx='166' cy='119.4' r='2')
+          circle(cx='147.5' cy='61.6' r='2')
+
+  #graph-area-occupancy
+  
+  //.italic.text-xl [The area of occupancy's] decline is so fast ... it does not matter whether you have 5k, 10k, or 50k, it warrants recognition of this animal as endangered at a State level already.
+    span.py-4.text-lg.italic.text-gray-400 &mdash; Dr Stephen Phillips, Managing Director & Principal Research Scientist of Biolink (1.9)

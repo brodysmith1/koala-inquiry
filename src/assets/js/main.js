@@ -2,14 +2,14 @@ import VanillaTilt from "vanilla-tilt";
 
 // Vars
 var x = 0;
-var n = 16;
+var n = 17;
 var i = 0;
 
 // ENUMS
 const COVER = 0;
-const CULTURE = 7;
-const INDIGENOUS = 8;
-const NSW_MAP = 9;
+const CULTURE = 8;
+const INDIGENOUS = 9;
+const NSW_MAP = 10;
 
 // Colors
 const cream = "#ece5d8";
@@ -134,3 +134,4 @@ function checkX(fwd) {                        // Check for start or end position
 
 
 import "./mapping.js";
+import "./graph.js";
