@@ -2,7 +2,7 @@ import VanillaTilt from "vanilla-tilt";
 
 // Vars
 var x = 0;
-var n = 17;
+var n = 18;
 var i = 0;
 
 // ENUMS
