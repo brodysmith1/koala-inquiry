@@ -1,13 +1,24 @@
-extends ../partials/slide.pug
+extends ../partials/slide-wide.pug
 
 block content
-  h1 Counting Koalas
+  //h1 Counting Koalas
   
-  #graph-extent-occurence.mx-auto
-    svg(xmlns='http://www.w3.org/2000/svg' width="400" height="300" viewbox='0 0 200 150' preserveAspectRatio="xMinYMin")
+  
+  .flex.text-center.my-12
+    .flex-1.mx-2
+      .text-5xl.playfair.text-black -30%
+      .relative.inline.uppercase.text-base Extent of occurence
+        .absolute.p-2.bg-green-400(style="top: 3px; left: -1.5rem")
+      .text-sm.italic Geographic range of&nbsp;koala&nbsp;sightings
+    .flex-1.mx-2
+      .text-5xl.playfair.text-black -50%
+      .relative.inline.uppercase.text-base Area of occupancy
+        .absolute.p-2.bg-yellow-300.rounded-full(style="top: 3px; left: -1.5rem")
+      .text-sm.italic Proportion of extent occupied by&nbsp;koalas
+  #graph-extent-occurence
+    svg.mx-auto(xmlns='http://www.w3.org/2000/svg' width="400" height="300" viewbox='0 0 200 150' preserveAspectRatio="xMinYMin")
       defs
         <style>circle {fill: #f9d165} rect,g {transform-origin: center;}</style>
-        
       rect(fill="#2f493dcc" width='100%' height="100%")
       rect#occurence( fill="#2f493d" stroke-width="0" stroke-dasharray="4 4" stroke="#ece5d8" width='100%' height="100%")
       g#occupancy(class="circles") 
@@ -113,3 +124,6 @@ block content
           circle(cx='88.5' cy='54.4' r='2')
           circle(cx='166' cy='119.4' r='2')
           circle(cx='147.5' cy='61.6' r='2')
+
+
+          
