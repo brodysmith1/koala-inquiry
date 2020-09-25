@@ -1,4 +1,6 @@
 import VanillaTilt from "vanilla-tilt";
+import { mapTriggerNSW } from "./mapping.js";
+import { loadMapNSW } from "./mapping.js";
 
 // Vars
 var x = 0;
@@ -9,7 +11,7 @@ var i = 0;
 const COVER = 0;
 const CULTURE = 8;
 const INDIGENOUS = 9;
-const NSW_MAP = 10;
+const NSW_MAP = 14;
 
 // Colors
 const cream = "#ece5d8";
@@ -17,6 +19,8 @@ const black = "#232626";
 const green400 = "#2f493d";
 const blue300 = "#2b314f";
 
+// Misc
+let mapTriggered = false;
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', onLoad);   // TODO: DEBOUNCE
@@ -29,6 +33,7 @@ function onLoad() {
   onSlide(0);
   document.querySelector('#video-container').addEventListener( 'click', togglePlay );
   document.querySelector('#volume').addEventListener( 'click', toggleSound );
+  loadMapNSW();
 }
 
 
@@ -102,7 +107,7 @@ function uniqueSlide() {
     else if (Math.abs(CULTURE-i) == 1) { document.querySelector('video').pause(); }
   if (i == INDIGENOUS) { body.style.background = black; }
     else if (Math.abs(INDIGENOUS-i) == 1) { body.style.background = cream; }
-  if (i == NSW_MAP) { document.querySelector('#nsw-map').style.display = 'block'; document.querySelector('#nsw-map-text').style.display = 'flex';  }
+  if (i == NSW_MAP) { if(!mapTriggered){mapTriggerNSW(); document.querySelector('#nsw-map-text').style.display = 'flex'; mapTriggered = true;}  }
 }
 
 // Video functions
@@ -130,8 +135,3 @@ function checkX(fwd) {                        // Check for start or end position
   if (fwd) { i<n ? slide(fwd) : ""; }
   else { i==0 ? "" : slide(fwd); }
 }
-
-
-
-import "./mapping.js";
-import "./graph.js";
