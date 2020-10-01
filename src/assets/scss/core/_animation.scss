@@ -1,5 +1,10 @@
 // ANIMATION CLASSES
 
+.slide-up {
+  animation: slide-up .5s .25s cubic-bezier(0.41, 0.46, 0.17, 2) 1 forwards;
+  -webkit-animation: slide-up .5s .25s cubic-bezier(0.41, 0.46, 0.17, 2) 1 forwards;
+}
+
 .fade-in {
   animation: fade-in 1.25s ease 1 forwards;
   -webkit-animation: fade-in 1.25s ease 1 forwards;
@@ -45,6 +50,15 @@
     opacity: 0;
     display: none;
   }
+}
+
+@keyframes slide-up {
+  0% { transform: translateY(1em); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@-webkit-keyframes slide-up {
+  0% { transform: translateY(1em); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
 }
 
 @keyframes fade-in {

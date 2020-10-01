@@ -5,3 +5,29 @@ include ./picture/picture.pug
 
 mixin link(text, link)
   a(target="_blank" rel="nofollow noindex" href=link)!= text
+
+mixin nav()
+  - let n = 18
+  - let COUNTING = 3
+  - let VALUING = 5
+  - let CAUSES = 10
+  - let SOLUTIONS = 16
+  
+  #nav.fixed.bottom-0.w-screen.flex.text-center.text-white.text-sm.border-t.border-white.z-10
+    each v, i in new Array(n)
+      case i
+        when COUNTING
+          - v = "Counting Koalas"
+        when VALUING
+          - v = "Valuing Koalas"
+        when CAUSES
+          - v = "Causes of Decline"
+        default
+          - v = ""
+          
+      .relative.flex-1.h-4.duration-500
+        if v
+          .nav-item.hidden.opacity-0.absolute.playfair-italic.whitespace-no-wrap.cursor-pointer.slide-up(
+            style="top: -200%"
+            data-slide=i
+          )= v

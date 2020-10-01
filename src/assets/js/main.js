@@ -21,6 +21,7 @@ const blue300 = "#2b314f";
 
 // Misc
 let mapTriggered = false;
+let invert = true;
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', onLoad);   // TODO: DEBOUNCE
@@ -31,6 +32,7 @@ window.onresize = onResize;                       // TODO: DEBOUNCE
 // Load
 function onLoad() {
   onSlide(0);
+  setNavigation();
   document.querySelector('#video-container').addEventListener( 'click', togglePlay );
   document.querySelector('#volume').addEventListener( 'click', toggleSound );
   loadMapNSW();
@@ -81,7 +83,7 @@ function onSlide(p) {
   bgPrev ? bgPrev.classList.remove('active') : "";
   bgCur  ? bgCur.classList.add('active')  : "";
 
-  uniqueSlide(); // Execute specific behaviour for targeted slides
+  update(p); // Execute specific behaviour for targeted slides
 }
 
 
@@ -97,16 +99,21 @@ function jumpTo(index) {
   onSlide(p);
 }
 
-// Execute specific behaviour for targeted slides
-function uniqueSlide() {
+
+function update(p) {
   let body = document.querySelector('body');
 
-  if (i == COVER) { body.style.background = green400; }
+  // Update nav trackbar
+  pager();
+
+  // Execute specific behaviour for targeted slides
+  if (p == COVER) { body.style.background = cream; invert = false; }
+  if (i == COVER) { body.style.background = green400; invert = true; }
     else if (i==1 || i==n) { body.style.background = cream; }
   if (i == CULTURE) { document.querySelector('video').play(); }
     else if (Math.abs(CULTURE-i) == 1) { document.querySelector('video').pause(); }
-  if (i == INDIGENOUS) { body.style.background = black; }
-    else if (Math.abs(INDIGENOUS-i) == 1) { body.style.background = cream; }
+  if (i == INDIGENOUS) { body.style.background = black; invert = true;}
+    else if (Math.abs(INDIGENOUS-i) == 1) { body.style.background = cream; invert = false;}
   if (i == NSW_MAP) { if(!mapTriggered){mapTriggerNSW(); document.querySelector('#nsw-map-text').style.display = 'flex'; mapTriggered = true;}  }
 }
 
@@ -127,6 +134,27 @@ function toggleSound() {
 }
 
 
+// Other events
+function setNavigation() {
+  let nav = document.querySelector('#nav');
+  let navItems = document.querySelectorAll('.nav-item');
+
+  nav.addEventListener('mouseover',  () => toggleNav(true) );
+  nav.addEventListener('mouseleave', () => toggleNav(false) );
+
+  navItems.forEach( el => {
+    el.addEventListener('click', () => jumpTo(parseInt(el.dataset.slide, 10)) );
+  });
+
+}
+
+function pager() {
+  let steps = document.querySelectorAll('#nav .flex-1');
+  if (invert) { steps.forEach( (s,ix) => s.style.background = ix < i ?  'white' : ix == i ? 'black' : 'none' ); }
+  else { steps.forEach( (s,ix) => s.style.background = ix < i ?  'black' : ix == i ? 'white' : 'none' ); }
+}
+
+
 // Helpers
 function translateX(el, x) {                  // Apply slide transform
   el.style.transform = `translateX(${x}px)`;
@@ -134,4 +162,8 @@ function translateX(el, x) {                  // Apply slide transform
 function checkX(fwd) {                        // Check for start or end position
   if (fwd) { i<n ? slide(fwd) : ""; }
   else { i==0 ? "" : slide(fwd); }
+}
+function toggleNav(show) {
+  if (show) { document.querySelectorAll('.nav-item').forEach( el => el.classList.remove('hidden') ); }
+  else { document.querySelectorAll('.nav-item').forEach( el => el.classList.add('hidden') ); }
 }
