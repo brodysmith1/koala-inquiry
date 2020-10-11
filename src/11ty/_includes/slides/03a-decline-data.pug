@@ -4,17 +4,18 @@ block content
   //h1 Counting Koalas
   
   
-  .flex.text-center.my-12
+  .flex.text-center.my-8
     .flex-1.mx-2
       .text-5xl.playfair.text-black -30%
       .relative.inline.uppercase.text-base Extent of occurence
         .absolute.p-2.bg-green-400(style="top: 3px; left: -1.5rem")
-      .text-sm.italic Geographic range of&nbsp;koala&nbsp;sightings
+      .text-sm.italic Geographic range of all koala sightings&nbsp;in&nbsp;NSW
     .flex-1.mx-2
       .text-5xl.playfair.text-black -50%
       .relative.inline.uppercase.text-base Area of occupancy
         .absolute.p-2.bg-yellow-300.rounded-full(style="top: 3px; left: -1.5rem")
       .text-sm.italic Proportion of extent occupied by&nbsp;koalas
+
   #graph-extent-occurence
     svg.mx-auto(xmlns='http://www.w3.org/2000/svg' width="400" height="300" viewbox='0 0 200 150' preserveAspectRatio="xMinYMin")
       defs
@@ -125,5 +126,13 @@ block content
           circle(cx='166' cy='119.4' r='2')
           circle(cx='147.5' cy='61.6' r='2')
 
-
+  #radio-ui.text-center.m-4
+    .fieldset.relative.p-2.bg-white
+      input#radio-first.hidden(type='radio' value='first' name='year' data-target='#item_a_target' checked)
+      label(for='radio-first')
+        span.relative.z-10 2002
+      input#radio-second.hidden(type='radio' value='second' name='year' data-target='#item_b_target')
+      label.relative(for='radio-second')
+        span.relative.z-10 2020
+        .switch.absolute.inset-y-0.left-0.w-full.z-1.rounded.bg-green-400.duration-500.pointer-events-none
           

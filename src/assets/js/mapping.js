@@ -226,7 +226,6 @@ function drawMap (data) {
       });
 
 }
-
 function showData() {
   let t = this.dataset.target;
   if (t==4) {

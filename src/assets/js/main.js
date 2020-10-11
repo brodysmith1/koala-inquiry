@@ -223,3 +223,5 @@ function restartAnimation(el, animationClassName) {
   el.offsetHeight; // trigger reflow
   el.classList.add(animationClassName);
 }
+
+import "./graph.js";
