@@ -18,6 +18,16 @@ body {
   transition: background 500ms;
 }
 
+.nav-item {
+  transition: margin-top ease-out 300ms;
+}
+.nav-item:hover {
+  @apply text-green-200;
+  margin-top: -2px;
+  padding-bottom: 2px;
+  transition: margin-top ease-out 300ms, color 500ms;
+}
+
 #timeline {
 
   &::after {

@@ -2,7 +2,7 @@ extends ../partials/slide-wide.pug
 
 block content
     
-  .text-white
+  .text-white.relative
     .text-center
       h1.tracking-wide.playfair.wght-450.text-5xl.whitespace-no-wrap The Great Koala Debate
       h1.tracking-wider.playfair-italic.wght-450.text-2xl.normal-case Lessons from the Parliamentary<br>Inquiry into Koala Populations
@@ -12,5 +12,6 @@ block content
       | Use arrow keys to advance
       .w-20.m-auto
         +picture(imgpath, 'arrows', ['png'], 'Arrow keys')
-      | <br><br> or jump to a section
-      
+        
+  .absolute.inset-x-0.text-white.uppercase.text-base.text-center.duration-500(style="bottom: 7.75rem;")
+    | Or jump to a section

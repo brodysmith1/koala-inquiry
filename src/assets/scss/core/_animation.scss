@@ -1,4 +1,4 @@
-// ANIMATION CLASSES
+// ANIMATION ONLY CLASSES
 
 .slide-up {
   animation: slide-up .5s .25s cubic-bezier(0.41, 0.46, 0.17, 2) 1 forwards;
@@ -30,13 +30,12 @@
   -webkit-animation: block-reveal 1.5s cubic-bezier(.74, .06, .4, .92) forwards;
 }
 
-@for $i from 1 through 30 {
+@for $i from 0 through 20 {
   .delay-#{$i} {
-    animation-delay: $i * 1s;
-    -webkit-animation-delay: $i * 1s;
+    animation-delay: $i * 100ms;
+    -webkit-animation-delay: $i * 100ms;
   }
 }
-
 
 // KEYFRAMES
 

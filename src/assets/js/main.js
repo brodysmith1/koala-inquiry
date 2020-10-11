@@ -4,7 +4,7 @@ import { loadMapNSW } from "./mapping.js";
 
 // Vars
 var x = 0;
-var n = 18;
+var n = 19;
 var i = 0;
 
 // ENUMS
@@ -16,12 +16,24 @@ const NSW_MAP = 14;
 // Colors
 const cream = "#ece5d8";
 const black = "#232626";
+const green100 = "#a4e3ad";
+const green200 = "#6da990";
 const green400 = "#2f493d";
+const yellow100 = "#fffff0";
 const blue300 = "#2b314f";
 
 // Misc
+let navActive = true;
 let mapTriggered = false;
-let invert = true;
+let invert = false;
+
+// Handles
+const body = document.querySelector('body');
+const nav = document.querySelector('#nav');
+const navLine = document.querySelector('#nav-line');
+const navItemBg = document.querySelectorAll('.nav-item-bg');
+const pager = document.querySelector('#pager');
+
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', onLoad);   // TODO: DEBOUNCE
@@ -31,8 +43,8 @@ window.onresize = onResize;                       // TODO: DEBOUNCE
 
 // Load
 function onLoad() {
-  onSlide(0);
-  setNavigation();
+  update(null);
+  setNav();
   document.querySelector('#video-container').addEventListener( 'click', togglePlay );
   document.querySelector('#volume').addEventListener( 'click', toggleSound );
   loadMapNSW();
@@ -52,7 +64,7 @@ function onResize(e) {
 function checkKey(e) {
   e.keyCode == 39 ? checkX(true) :    // right
   e.keyCode == 37 ? checkX(false) :   // left
-  e.keyCode == 35 ? jumpTo(n) :       // end
+  e.keyCode == 35 ? jumpTo(n-1) :       // end
   e.keyCode == 36 ? jumpTo(0) : "";   // home
 
   e.keyCode == 32 && i==CULTURE ? togglePlay() : "";   // spacebar
@@ -101,20 +113,21 @@ function jumpTo(index) {
 
 
 function update(p) {
-  let body = document.querySelector('body');
 
-  // Update nav trackbar
-  pager();
+  let bg = cream
+  let colorScheme = invert
 
   // Execute specific behaviour for targeted slides
-  if (p == COVER) { body.style.background = cream; invert = false; }
-  if (i == COVER) { body.style.background = green400; invert = true; }
-    else if (i==1 || i==n) { body.style.background = cream; }
+  if (p == COVER) { offHome() }
+  if (i == COVER) { onHome(); bg = green400; }
   if (i == CULTURE) { document.querySelector('video').play(); }
     else if (Math.abs(CULTURE-i) == 1) { document.querySelector('video').pause(); }
-  if (i == INDIGENOUS) { body.style.background = black; invert = true;}
-    else if (Math.abs(INDIGENOUS-i) == 1) { body.style.background = cream; invert = false;}
+  if (i == INDIGENOUS) { bg = black; invert = true;}
+    else if (Math.abs(INDIGENOUS-i) == 1) { invert = false;}
   if (i == NSW_MAP) { if(!mapTriggered){mapTriggerNSW(); document.querySelector('#nsw-map-text').style.display = 'flex'; mapTriggered = true;}  }
+
+  pager.style.left = `calc(${(100*i/n).toFixed(2)}% + 10px)`       // Update progress bar
+  colorScheme != invert ? updateColorScheme(bg) : "";   // Update color scheme
 }
 
 // Video functions
@@ -135,35 +148,78 @@ function toggleSound() {
 
 
 // Other events
-function setNavigation() {
-  let nav = document.querySelector('#nav');
+function setNav() {
   let navItems = document.querySelectorAll('.nav-item');
 
-  nav.addEventListener('mouseover',  () => toggleNav(true) );
-  nav.addEventListener('mouseleave', () => toggleNav(false) );
-
-  navItems.forEach( el => {
-    el.addEventListener('click', () => jumpTo(parseInt(el.dataset.slide, 10)) );
-  });
+  nav.addEventListener('mouseenter',  () => toggleNav(true)  )
+  nav.addEventListener('mouseleave', () => toggleNav(false) )
+  navItems.forEach( el => el.addEventListener('click', () => jumpTo(+el.dataset.slide)) )
 
 }
 
-function pager() {
-  let steps = document.querySelectorAll('#nav .flex-1');
-  if (invert) { steps.forEach( (s,ix) => s.style.background = ix < i ?  'white' : ix == i ? 'black' : 'none' ); }
-  else { steps.forEach( (s,ix) => s.style.background = ix < i ?  'black' : ix == i ? 'white' : 'none' ); }
+function toggleNav(show) {
+
+  if (show && !navActive) {
+    navActive = !navActive;
+    document.querySelectorAll('.nav-item').forEach( el => {
+      el.classList.add('opacity-0');
+      el.style.animationDirection = 'normal';
+      restartAnimation(el, 'slide-up');
+    });
+  }
+  else if (!show && navActive && i != COVER) {
+    navActive = !navActive;
+    document.querySelectorAll('.nav-item').forEach( el => {
+      el.classList.remove('opacity-0');
+      el.style.animationDirection = 'reverse';
+      restartAnimation(el, 'slide-up');
+    });
+  }
+
+}
+
+function updateColorScheme(bg) {
+
+  body.style.background = bg
+
+  // ON FOR DEFAULT SCHEME
+  nav.classList.toggle('text-green-400')
+  nav.classList.toggle('border-transparent')
+
+  // ON FOR DARK (inverted) SCHEME
+  nav.classList.toggle('text-white')
+  nav.classList.toggle('border-white')
+
 }
 
 
 // Helpers
+function onHome() {
+  invert = true
+  toggleNav(true)
+  nav.style.transform = ''
+  setTimeout( () => {
+   navLine.style.opacity = 0.5
+   navItemBg.forEach( e => e.style.display = 'block')
+  }, 500)
+}
+function offHome() {
+  invert = false
+  toggleNav(false)
+  navLine.style.opacity = 0
+  nav.style.transform = 'translateY(5rem)'
+  navItemBg.forEach( e => e.style.display = 'none')
+}
+
 function translateX(el, x) {                  // Apply slide transform
   el.style.transform = `translateX(${x}px)`;
 }
 function checkX(fwd) {                        // Check for start or end position
-  if (fwd) { i<n ? slide(fwd) : ""; }
+  if (fwd) { i<(n-1) ? slide(fwd) : ""; }
   else { i==0 ? "" : slide(fwd); }
 }
-function toggleNav(show) {
-  if (show) { document.querySelectorAll('.nav-item').forEach( el => el.classList.remove('hidden') ); }
-  else { document.querySelectorAll('.nav-item').forEach( el => el.classList.add('hidden') ); }
+function restartAnimation(el, animationClassName) {
+  el.classList.remove(animationClassName);
+  el.offsetHeight; // trigger reflow
+  el.classList.add(animationClassName);
 }
