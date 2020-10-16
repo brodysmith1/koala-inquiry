@@ -1,0 +1,19 @@
+extends ../partials/slide.pug
+
+block content
+  h1 Counting Koalas
+
+  p Lacking updated research, many inquiry submissions referred to 
+    +link("a 2016 study", "https://onlinelibrary.wiley.com/doi/epdf/10.1111/ddi.12400")
+    |  used in the Chief Scientist report which estimated 36,000 koalas in NSW as of 2012 and projected a 26% decrease by 2030. A more 
+    +link("recent investigation", "https://www.ifaw.org/de/resources/koala-conservation-status-in-new-south-wales-english")
+    |  revised this projection to be between 28.5-65.9%.
+
+  p However, counting koalas is tricky. With subpopulations so varied, sparse, and non-uniformly distributed across the state, observations in one area cannot be generalised to others. Data and collection methods aren’t standardised, leaving a lot of uncertainty in total population estimates. 
+    span.italic (R1)
+  p Instead of absolute koala counts, top ecologists look at two statistics used by the IUCN to identify threatened species: The change in 
+    span.font-medium Area of Occupancy 
+    | and 
+    span.font-medium Extent of Occurrence
+    | . 
+    span.italic (1.6, 1.9)

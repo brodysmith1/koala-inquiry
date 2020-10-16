@@ -4,14 +4,14 @@ import { loadMapNSW } from "./mapping.js";
 
 // Vars
 var x = 0;
-var n = 19;
+var n = 18;
 var i = 0;
 
 // ENUMS
 const COVER = 0;
-const CULTURE = 8;
-const INDIGENOUS = 9;
-const NSW_MAP = 14;
+const CULTURE = 9;
+const INDIGENOUS = 10;
+const NSW_MAP = 3;
 
 // Colors
 const cream = "#ece5d8";

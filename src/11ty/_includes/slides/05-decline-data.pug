@@ -1,20 +1,6 @@
 extends ../partials/slide-wide.pug
 
 block content
-  //h1 Counting Koalas
-  
-  
-  .flex.text-center.my-8
-    .flex-1.mx-2
-      .text-5xl.playfair.text-black -30%
-      .relative.inline.uppercase.text-base Extent of occurence
-        .absolute.p-2.bg-green-400(style="top: 3px; left: -1.5rem")
-      .text-sm.italic Geographic range of all koala sightings&nbsp;in&nbsp;NSW
-    .flex-1.mx-2
-      .text-5xl.playfair.text-black -50%
-      .relative.inline.uppercase.text-base Area of occupancy
-        .absolute.p-2.bg-yellow-300.rounded-full(style="top: 3px; left: -1.5rem")
-      .text-sm.italic Proportion of extent occupied by&nbsp;koalas
 
   #graph-extent-occurence
     svg.mx-auto(xmlns='http://www.w3.org/2000/svg' width="400" height="300" viewbox='0 0 200 150' preserveAspectRatio="xMinYMin")
@@ -130,9 +116,24 @@ block content
     .fieldset.relative.p-2.bg-white
       input#radio-first.hidden(type='radio' value='first' name='year' data-target='#item_a_target' checked)
       label(for='radio-first')
-        span.relative.z-10 2002
+        span.relative.z-10 2012
       input#radio-second.hidden(type='radio' value='second' name='year' data-target='#item_b_target')
       label.relative(for='radio-second')
-        span.relative.z-10 2020
+        span.relative.z-10 2030
         .switch.absolute.inset-y-0.left-0.w-full.z-1.rounded.bg-green-400.duration-500.pointer-events-none
+
+  .flex.text-center.px-8
+    .flex-1
+      .text-5xl.playfair.text-black -30%
+      .relative.inline.uppercase.text-base.font-medium Extent of occurence
+        .absolute.p-2.bg-green-400(style="top: 3px; left: -1.5rem")
+      .text-sm.italic Geographic range of all koala sightings&nbsp;in&nbsp;NSW
+    .flex-1
+      .text-5xl.playfair.text-black -50%
+      .relative.inline.uppercase.text-base.font-medium Area of occupancy
+        .absolute.p-2.bg-yellow-300.rounded-full(style="top: 3px; left: -1.5rem")
+      .text-sm.italic Proportion of extent of occurence occupied by&nbsp;koalas
           
+  .text-center.my-8
+    blockquote.text-lg.bg-white “[The area of occupancy's] decline is so fast ... it does not matter whether you have 5K, 10K, or 50K koalas ... it warrants recognition of this animal as endangered at a State level already.”
+    .py-4.text-base.italic.text-gray-400 &mdash; Dr Stephen Phillips, Managing Director & Principal Research Scientist of Biolink (1.9)
