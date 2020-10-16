@@ -5,6 +5,11 @@
   -webkit-animation: slide-up .5s .25s cubic-bezier(0.41, 0.46, 0.17, 2) 1 forwards;
 }
 
+.slide-up-full {
+  animation: slide-up-full 0.3s 0.35s cubic-bezier(0.3, 0.24, 0.39, 1.04) 1 forwards;
+  -webkit-animation: slide-up-full 0.3s 0.35s cubic-bezier(0.3, 0.24, 0.39, 1.04) 1 forwards;
+}
+
 .fade-in {
   animation: fade-in 1.25s ease 1 forwards;
   -webkit-animation: fade-in 1.25s ease 1 forwards;
@@ -58,6 +63,15 @@
 @-webkit-keyframes slide-up {
   0% { transform: translateY(1em); opacity: 0; }
   100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slide-up-full {
+  0% { transform: translateY(100%); opacity: .75; }
+  100% { transform: translateY(0);  opacity: 1; }
+}
+@-webkit-keyframes slide-up-full {
+  0% { transform: translateY(100%); opacity: 0; opacity: .75; }
+  100% { transform: translateY(0); opacity: 1;  opacity: 1; }
 }
 
 @keyframes fade-in {

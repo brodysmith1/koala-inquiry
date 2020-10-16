@@ -9,9 +9,10 @@ var i = 0;
 
 // ENUMS
 const COVER = 0;
+const NSW_MAP = 3;
+const TOURISM = 8;
 const CULTURE = 9;
 const INDIGENOUS = 10;
-const NSW_MAP = 3;
 
 // Colors
 const cream = "#ece5d8";
@@ -119,12 +120,14 @@ function update(p) {
 
   // Execute specific behaviour for targeted slides
   if (p == COVER) { offHome() }
+  else if (p == CULTURE) { document.querySelector('video').pause(); }
+  else if (p == INDIGENOUS) { invert = false; }
+
   if (i == COVER) { onHome(); bg = green400; }
-  if (i == CULTURE) { document.querySelector('video').play(); }
-    else if (Math.abs(CULTURE-i) == 1) { document.querySelector('video').pause(); }
-  if (i == INDIGENOUS) { bg = black; invert = true;}
-    else if (Math.abs(INDIGENOUS-i) == 1) { invert = false;}
-  if (i == NSW_MAP) { if(!mapTriggered){mapTriggerNSW(); document.querySelector('#nsw-map-text').style.display = 'flex'; mapTriggered = true;}  }
+  else if (i == TOURISM || p == TOURISM) { document.querySelector('#obama').classList.toggle('hidden') }
+  else if (i == CULTURE) { document.querySelector('video').play(); }
+  else if (i == INDIGENOUS) { bg = black; invert = true;}
+  else if (i == NSW_MAP) { if(!mapTriggered){mapTriggerNSW(); document.querySelector('#nsw-map-text').style.display = 'flex'; mapTriggered = true;}  }
 
   pager.style.left = `calc(${(100*i/n).toFixed(2)}% + 10px)`       // Update progress bar
   colorScheme != invert ? updateColorScheme(bg) : "";   // Update color scheme
