@@ -1,6 +1,7 @@
 {
   "main.css": "/assets/css/main.css",
   "main.js": "/assets/js/main.js",
+  "force.js": "/assets/js/force.js",
   "sw.js": "/assets/js/sw.js",
   "year": 2020
 }

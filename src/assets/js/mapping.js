@@ -25,7 +25,6 @@ export function loadMapNSW() {
     d3.json(hubs.src[4])
   ]).then( (data) => drawMap(data, hubs) );
 
-  console.log('loaded');
 }
 export function mapTriggerNSW() {
 

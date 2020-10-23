@@ -14,9 +14,9 @@ block content
     - mix = (a,b,p) => a.map( (v,i) => (v + p*(b[i]-v)).toFixed(0) )
     - rgb = (p) => `rgb(${mix(g400,g100,p).toString()})`
 
-  .absolute.w-screen.left-0.bottom-0(style="height: 25%")
+  //.absolute.w-screen.left-0.bottom-0(style="height: 100%")
       
-    svg#roads.absolute.top-0.mt-12(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 1405.3 265.2')
+    svg#roads.absolute.top-0.mt-0(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 1405.3 265.2')
       defs
         style.
           #roads .a,#roads .b{fill:none;stroke:#434646;stroke-miterlimit:10;}#roads .a{stroke-width:0.75px;}#roads .b{stroke-width:10px;}
@@ -93,21 +93,28 @@ block content
       polyline.a(points='1402.2 229.5 1391.2 225.5 1400.2 169.5')
       polyline.b(points='1326.7 5 1302.2 28.5 1123.2 184.5 1072.2 262.5')
 
-    svg#trees.absolute.bottom-0(width="100%" height="100%")
-      defs
-        radialGradient#grad
-          stop(offset="10%" stop-color=g100)
-          stop(offset="95%" stop-color=g400)
-    
-      each u, i in new Array (1000)
-        - r  =  10 + 10 * rand()
-        - cx = (100 * rand()).toFixed(1) + "%"
-        - cy = (15 + 100 * rand()).toFixed(1) + "%"
+    svg#trees.absolute.bottom-0(width="100%" height="20%")
+      
+      //defs: filter#treefilter
+        feTurbulence(type="fractalNoise" baseFrequency='0.08' result='noise' numOctaves="5")
+        feDiffuseLighting(in='noise' lighting-color='#2f493d' surfaceScale='6')
+          feDistantLight(azimuth='15' elevation='30')
+
+      - w = 2
+      - h = 20
+        
+      each u, i in new Array (250)
+        
+        - x = 10 + w * (i % 50) + "%"
+        - y = 10 + h * Math.floor( (i%250)/50 )  + "%"
         - fl = rgb(rand())
         
-        //- r  =  10
-        //- cx = (100 * (5%i)/5).toFixed(1) + "%"
-        //- cy = (15 + 100 * (5%i)/5).toFixed(1) + "%"
-        //- fl = rgb(rand())
+        circle(r=10 cx=x cy=y fill=fl )
         
-        circle(r=r cx=cx cy=cy fill=fl )
+        //rect(
+          x=x y=y
+          width=`${w}%`
+          height=`${h}%`
+          filter="url('#treefilter')"
+          fill="none"
+          )

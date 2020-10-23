@@ -6,6 +6,22 @@
 
 // CORE
 
+.recommendation {
+  @apply absolute rounded-full w-12 h-12 text-lg text-center leading-10 ease-out font-bold cursor-pointer select-none;
+  @apply bg-white text-green-400 border-2 border-green-400;
+
+  .tooltip {
+    @apply absolute pointer-events-none w-screen leading-6 text-sm text-left font-normal duration-150 bg-white rounded-lg p-4;
+    @apply text-green-400 border-2 border-green-400;
+    max-width: 280px;
+    left: calc(-140px + 2rem);
+    bottom: 100%;
+
+    .bg-green-400 { @apply bg-green-400 }
+    .text-white   { @apply text-white }
+  }
+}
+
 .bg-image {
   @apply absolute duration-500 w-screen h-screen z-n1 top-0 left-0 bg-no-repeat;
 }

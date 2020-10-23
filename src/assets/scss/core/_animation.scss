@@ -42,6 +42,13 @@
   }
 }
 
+@for $i from 0 through 50 {
+  .recommendation-transition-#{$i} {
+    transition:         all ease-out 0.5s $i * 10ms, background-color 0.3s, color 0.1s;
+    -webkit-transition: all ease-out 0.5s $i * 10ms, background-color 0.3s, color 0.1s;
+  }
+}
+
 // KEYFRAMES
 
 @keyframes ping {
