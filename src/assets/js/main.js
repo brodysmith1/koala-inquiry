@@ -62,15 +62,17 @@ function onLoad() {
   document.querySelectorAll('.recommendation').forEach( el =>
     el.addEventListener( 'click', () => {
       let tt = el.querySelector('.tooltip')
-      let on = tt.classList.contains('active')
+      let toggle = el.classList.contains('active')
       let active = el.parentElement.querySelector('.active')
 
-      active ? toggleClasses(active, ['active','opacity-0']) : ""
-      on ? "" : toggleClasses(tt, ['active','opacity-0'])
+      if (active && !toggle) {
+        active.firstElementChild.classList.toggle('opacity-0')
+        active.classList.toggle('active')
+      }
 
-      el.classList.add('bg-green-400')
-      el.classList.add('text-white')
-
+      el.classList.toggle('active')
+      tt.classList.toggle('opacity-0')
+      positionTT(tt)
     }))
 
 }
@@ -154,8 +156,8 @@ function update(p) {
   else if (i == INDIGENOUS) { bg = black; invert = true;}
   else if (i == NSW_MAP) { if(!mapTriggered){mapTriggerNSW(); document.querySelector('#nsw-map-text').style.display = 'flex'; mapTriggered = true;}  }
   else if (i == CUTS) { triggerForestCuts(); }
-  else if (i == FORCE)   { invert=true; bg = green300; layoutGrid(recommendations);  }
-  else if (i == FORCE+1) { invert=true; bg = green300; layoutSplit(recommendations); }
+  else if (i == FORCE)   { invert=true; bg = green400; layoutGrid(recommendations);  }
+  else if (i == FORCE+1) { invert=true; bg = green400; layoutSplit(recommendations); }
 
   pager.style.left = `calc(${(100*i/n).toFixed(2)}% + 10px)`       // Update progress bar
   colorScheme != invert ? updateColorScheme(bg) : "";   // Update color scheme
@@ -260,4 +262,12 @@ function toggleClasses(el,classes) {
   }
 }
 
-import "./graph.js";
+function positionTT(tt){
+  let rec = tt.getBoundingClientRect()
+  let l = rec.left, t = rec.top
+  t < 0 ? tt.style.lineHeight = '1.25rem' : ""
+  t < 0 ? tt.style.fontSize = '.8rem' : ""
+}
+
+
+import "./graph.js"

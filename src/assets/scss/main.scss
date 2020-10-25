@@ -6,20 +6,37 @@
 
 // CORE
 
+.annotation {
+  @apply absolute w-48 text-center text-white text-xs tracking-wide uppercase z-n1 text-green-200 duration-1000;
+
+  &.frag {
+    @apply text-center;
+    width: 17rem;
+  }
+  &.soln {
+    @apply text-center;
+    width: 14.5rem;
+  }
+}
+
 .recommendation {
-  @apply absolute rounded-full w-12 h-12 text-lg text-center leading-10 ease-out font-bold cursor-pointer select-none;
-  @apply bg-white text-green-400 border-2 border-green-400;
+  @apply absolute rounded-full w-12 h-12 text-lg text-center ease-out font-bold cursor-pointer select-none;
+  @apply bg-white text-green-400 border-2 border-white;
+  line-height: 42px;
+
+  &.active {
+    @apply bg-green-400 text-white;
+  }
 
   .tooltip {
-    @apply absolute pointer-events-none w-screen leading-6 text-sm text-left font-normal duration-150 bg-white rounded-lg p-4;
+    @apply absolute pointer-events-none leading-6 text-sm text-left font-normal duration-150 bg-white rounded-lg p-4;
     @apply text-green-400 border-2 border-green-400;
-    max-width: 280px;
-    left: calc(-140px + 2rem);
-    bottom: 100%;
-
-    .bg-green-400 { @apply bg-green-400 }
-    .text-white   { @apply text-white }
+    width: 90vw;
+    max-width: 350px;
+    left: calc(-175px + 2rem);
+    bottom: 110%;
   }
+
 }
 
 .bg-image {
