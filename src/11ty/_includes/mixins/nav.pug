@@ -1,12 +1,13 @@
 mixin nav()
-	- let n = 19
+	- let n = 31
 	- let delay = 0
 	- let START = 0
-	- let COUNTING = 3
-	- let VALUING = 5
-	- let CAUSES = 10
-	- let MGMT = 13
-	- let SOLUTIONS = 17
+	- let COUNT = 3
+	- let VALUE = 5
+	- let CAUSE = 11
+	- let POLCY = 14
+	- let SOLNS = 17
+	- let HEROS = 21
 
 	#pager.absolute.bottom-0.h-3.w-3.bg-green-200.duration-500.ease-out.z-10.rounded-full
 	#nav.fixed.bottom-0.w-screen.flex.text-center.text-sm.text-green-400.z-10(style="transition: transform 0.5s; height: 7rem;")
@@ -15,16 +16,18 @@ mixin nav()
 			case i
 				when START
 					- v = "Start"
-				when COUNTING
+				when COUNT
 					- v = "Populations"
-				when VALUING
+				when VALUE
 					- v = "Value"
-				when CAUSES
+				when CAUSE
 					- v = "Causes of Decline"
-				when MGMT
+				when POLCY
 					- v = "Current Policies"
-				when SOLUTIONS
+				when SOLNS
 					- v = "Recommendations"
+				when HEROS
+					- v = "Arguments"
 				default
 					- v = ""
 	        

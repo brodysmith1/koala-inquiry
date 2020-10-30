@@ -13,6 +13,8 @@
 
 - NSW Administrative Boundaries - https://portal.spatial.nsw.gov.au/portal/apps/sites/#/home/items?group_ids=2df06ccf9c5a4c869371c1a6814545b6
 
+- Rewing GeoJSON tool used to set correct fill rule for maps: https://observablehq.com/@bumbeishvili/rewind-geojson
+
 ## Running locally
 
 ```bash

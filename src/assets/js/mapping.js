@@ -1,6 +1,26 @@
 import * as d3 from "d3";
 import * as topojson from "topojson"
 
+var targetSLN = 'georges'
+const extents = {
+  "nsw": {
+    "scale": 3550,
+    "center": [151.8,-31.4]
+  },
+  "georges": {
+    "scale": 78000,
+    "center": [151.2,-33.8]
+  },
+  "gknp": {
+    "scale": 50000,
+    "center": [153.1,-30.3]
+  },
+  "default": {
+    "scale": 15000,
+    "center": [152,-31.4]
+  }
+};
+
 export function loadMapNSW() {
 
   // Data defs
@@ -23,10 +43,10 @@ export function loadMapNSW() {
     d3.json(hubs.src[2]),
     d3.json(hubs.src[3]),
     d3.json(hubs.src[4])
-  ]).then( (data) => drawMap(data, hubs) );
+  ]).then( (data) => drawMapNSW(data, hubs) );
 
 }
-export function mapTriggerNSW() {
+export function triggerMapNSW() {
 
   // Animation defs
   const n = 5,
@@ -108,43 +128,26 @@ export function mapTriggerNSW() {
       .style('height','0%');
 
 }
-
-function drawMap (data) {
+function drawMapNSW(data) {
 
   // Svg defs
   let w = 900,
       h = 1000;
 
-  let extents = {
-    "au": {
-      "scale": 1050,
-      "center": [138, -23.5],
-      "bb": [[110, -6], [157, -46]]
-    },
-    "nsw": {
-      "scale": 3550,
-      "center": [151.8,-31.4],
-      "bb": [[140, -27], [154, -39]]
-    }
-  };
-
   // Data defs
-  let map   = data[0];
-  let towns = data[1];
-  let fires = data[6];
-  let hubs = {};
+  let map   = data[0]
+  let towns = data[1]
+  let fires = data[6]
+  let hubs  = {}
 
-  hubs.all = data[2];
-  hubs.crown = data[3];
-  hubs.private = data[4];
-  hubs.state = data[5];
+  hubs.all     = data[2]
+  hubs.crown   = data[3]
+  hubs.private = data[4]
+  hubs.state   = data[5]
 
   // Map defs
-  const highlights = ["Greater Sydney","Southern Highlands and Shoalhaven","Coffs Harbour - Grafton","Richmond - Tweed","Mid North Coast"];
-  let target = extents.nsw;
-  let projection = d3.geoMercator()
-    .center(target.center)
-    .scale(target.scale);
+  const highlights = ["Greater Sydney","Southern Highlands and Shoalhaven","Coffs Harbour - Grafton","Richmond - Tweed","Mid North Coast"]
+  let projection = setProjection(extents.nsw)
 
   // Create svg canvas
   var svg = d3.select("body #nsw-map")
@@ -224,6 +227,98 @@ function drawMap (data) {
         d.properties.name == "Port Macquarie" || d.properties.name == "Sydney" ? "block" : "none"
       });
 
+}
+
+export function loadMapSLN() {
+
+  // Data defs
+  let map   = "./map-data/nsw-rda.json";
+  let towns = "./map-data/nsw-towns.json";
+
+  Promise.all([
+    d3.json(map),
+    d3.json(towns)
+  ]).then( (data) => drawMapSLN(data) );
+
+}
+export function triggerMapSLN(view) {
+  let svg = d3.selectAll("#soln-map")
+  let paths = svg.selectAll("path")
+  let proj    = setProjection(extents[view])
+  let projOut = setProjection(extents.default)
+
+  if (targetSLN != view) {
+    targetSLN = view
+    paths
+      .transition()
+      .ease(d3.easeSinIn)
+      .duration(800)
+      .attr('d', d3.geoPath(projOut))
+      .transition()
+      .ease(d3.easeSinOut)
+      .duration(800)
+      .attr('d', d3.geoPath(proj))
+  }
+
+
+}
+function drawMapSLN(data) {
+
+  // Svg defs
+  let w = 900,
+      h = 1000;
+
+  // Data defs
+  let map   = data[0]
+  let towns = data[1]
+
+  // Map defs
+  let projection = setProjection(extents['georges'])
+
+  // Create svg canvas
+  var svg = d3.select("#soln-map")
+      .append("svg")
+      .attr("width", "100%")
+      .attr("height", h)
+      .attr("viewBox", [0,0,w,h])
+      .attr("preserveAspectRatio", "xMinYMin")
+      .attr("class", "bg-white");
+
+  // Basemap
+  svg.append('g')
+    .selectAll('path')
+    .data(map.features)
+    .join('path')
+    .attr('d', d3.geoPath(projection))
+    .attr('class', 'basemap fill-current text-green-400')
+    .attr('stroke', 'white')
+    .attr('stroke-width', 0.2);
+
+  // Town names
+  svg.append('g')
+    .selectAll('text')
+    .data(towns.features)
+    .join('text')
+      .attr('class', 'towns fill-current text-green-400 opacity-0')
+      .attr('x', d => projection(d.geometry.coordinates)[0] )
+      .attr('y', d => projection(d.geometry.coordinates)[1] )
+      .attr('dx', -1)
+      .attr('dy', 7)
+      .attr("text-anchor", "start")
+      .text( (d) => "— " + d.properties.name )
+      .attr('display', d => {
+        return d.properties.name == "Coffs Harbour" || d.properties.name == "Byron Bay" ||
+        d.properties.name == "Newcastle" || d.properties.name == "Wollongong" ||
+        d.properties.name == "Port Macquarie" || d.properties.name == "Sydney" ? "block" : "none"
+      });
+
+}
+
+// Helpers
+function setProjection(target) {
+  return d3.geoMercator()
+    .center(target.center)
+    .scale(target.scale)
 }
 function showData() {
   let t = this.dataset.target;

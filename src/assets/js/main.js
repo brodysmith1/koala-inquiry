@@ -1,24 +1,30 @@
 import VanillaTilt from "vanilla-tilt";
-import { mapTriggerNSW } from "./mapping.js";
+
+import { triggerMapNSW } from "./mapping.js";
+import { triggerMapSLN } from "./mapping.js";
 import { loadMapNSW } from "./mapping.js";
+import { loadMapSLN } from "./mapping.js";
+
 import { loadGraphEOC } from "./graph.js";
 import { triggerForestCuts } from "./graph.js";
+
 import { layoutGrid } from "./force.js";
 import { layoutSplit } from "./force.js";
 
 // Vars
 var x = 0;
-var n = 20;
+var n = 31;
 var i = 0;
 
 // ENUMS
 const COVER = 0;
-const NSW_MAP = 5;
+const LOCATION = 3;
 const TOURISM = 8;
 const CULTURE = 9;
 const INDIGENOUS = 10;
 const CUTS = 12;
-const FORCE = 2;
+const RECOS = 17;
+const SOLNS = 19;
 
 // Colors
 const cream = "#ece5d8";
@@ -30,14 +36,18 @@ const green400 = "#2f493d";
 const yellow100 = "#fffff0";
 const blue300 = "#2b314f";
 
+// Responsiveness
+var vw = document.querySelector('.slide').getBoundingClientRect().width;
+
 // Misc
 let navActive = true;
-let mapTriggered = false;
+let mapNSWTriggered = false;
 let invert = false;
 
 // Handles
 const body = document.querySelector('body');
 const nav = document.querySelector('#nav');
+const mapSLN = document.querySelector('#soln-map');
 const navLine = document.querySelector('#nav-line');
 const navItemBg = document.querySelectorAll('.nav-item-bg');
 const pager = document.querySelector('#pager');
@@ -55,6 +65,7 @@ function onLoad() {
   update(null);
   setNav();
   loadMapNSW();
+  loadMapSLN();
   loadGraphEOC();
 
   document.querySelector('#video-container').addEventListener( 'click', togglePlay );
@@ -81,7 +92,7 @@ function onLoad() {
 // Resize
 function onResize(e) {
   let slides = document.querySelector('.slides');
-  let vw = document.querySelector('.slide').getBoundingClientRect().width;
+  vw = document.querySelector('.slide').getBoundingClientRect().width;
   x = - i * vw;
   translateX(slides, x);
 }
@@ -130,7 +141,6 @@ function onSlide(p) {
 function jumpTo(index) {
   let p = i;
   let slides = document.querySelector('.slides');
-  let vw = document.querySelector('.slide').getBoundingClientRect().width;
 
   i = index;
   x = - index * vw;
@@ -148,16 +158,18 @@ function update(p) {
   if (p == COVER) { offHome() }
   else if (p == CULTURE) { document.querySelector('video').pause(); }
   else if (p == INDIGENOUS) { invert = false; }
-  else if ( p == FORCE || p == FORCE+1 ) { invert = false; }
+  else if ( p == RECOS || p == RECOS+1 ) { invert = false; }
 
   if (i == COVER) { onHome(); bg = green400; }
   else if (i == TOURISM || p == TOURISM) { document.querySelector('#obama').classList.toggle('hidden') }
   else if (i == CULTURE) { document.querySelector('video').play(); }
   else if (i == INDIGENOUS) { bg = black; invert = true;}
-  else if (i == NSW_MAP) { if(!mapTriggered){mapTriggerNSW(); document.querySelector('#nsw-map-text').style.display = 'flex'; mapTriggered = true;}  }
+  else if (i == LOCATION) { if(!mapNSWTriggered){triggerMapNSW(); mapNSWTriggered = true;}  }
   else if (i == CUTS) { triggerForestCuts(); }
-  else if (i == FORCE)   { invert=true; bg = green400; layoutGrid(recommendations);  }
-  else if (i == FORCE+1) { invert=true; bg = green400; layoutSplit(recommendations); }
+  else if (i == RECOS)   { invert=true; bg = green400; layoutGrid(recommendations);  }
+  else if (i == RECOS+1) { invert=true; bg = green400; layoutSplit(recommendations); }
+  else if (i == SOLNS)   { mapSLN.style.transform = "translateX(0)"; triggerMapSLN('georges') }
+  else if (i == SOLNS+1) { mapSLN.style.transform = `translateX(${vw}px`; triggerMapSLN('gknp') }
 
   pager.style.left = `calc(${(100*i/n).toFixed(2)}% + 10px)`       // Update progress bar
   colorScheme != invert ? updateColorScheme(bg) : "";   // Update color scheme
