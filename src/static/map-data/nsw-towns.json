@@ -95,32 +95,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Broken Hill"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          141.48193359375,
-          -31.97080393043308
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Mildura"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          142.1630859375,
-          -34.17999758688083
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Eden"
       },
       "geometry": {
@@ -154,6 +128,58 @@
         "coordinates": [
           150.88623046875,
           -34.415973384481866
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Campbelltown"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          150.8196,
+          -34.0666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Helensburgh"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151,
+          -34.1833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sydney Airport"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.1753,
+          -33.9399
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Parramatta"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.0034,
+          -33.8136
         ]
       }
     }

@@ -11,9 +11,12 @@
 
 - NSW Koala Prioritisation Project - Areas of Regional Koala Significance (ARKS) - https://datasets.seed.nsw.gov.au/dataset/areas-of-regional-koala-significance-arks
 
+- Georges River NP Geo Data - https://webmap.environment.nsw.gov.au/Html5Viewer291/index.html?viewer=CPCP_Exhibition_Viewer
+- Gerges River Waterway Geo Data - https://data.gov.au/dataset/ds-nsw-5251af2f-3121-4a62-92a9-e9c495e0571f/details?q=georges%20river
+
 - NSW Administrative Boundaries - https://portal.spatial.nsw.gov.au/portal/apps/sites/#/home/items?group_ids=2df06ccf9c5a4c869371c1a6814545b6
 
-- Rewing GeoJSON tool used to set correct fill rule for maps: https://observablehq.com/@bumbeishvili/rewind-geojson
+- Rewind GeoJSON tool used to set correct fill rule for maps: https://observablehq.com/@bumbeishvili/rewind-geojson
 
 ## Running locally
 

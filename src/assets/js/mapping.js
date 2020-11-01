@@ -2,14 +2,15 @@ import * as d3 from "d3";
 import * as topojson from "topojson"
 
 var targetSLN = 'georges'
+var town = ''
 const extents = {
   "nsw": {
     "scale": 3550,
     "center": [151.8,-31.4]
   },
   "georges": {
-    "scale": 78000,
-    "center": [151.2,-33.8]
+    "scale": 60000,
+    "center": [151.1,-33.95]
   },
   "gknp": {
     "scale": 50000,
@@ -19,7 +20,7 @@ const extents = {
     "scale": 15000,
     "center": [152,-31.4]
   }
-};
+}
 
 export function loadMapNSW() {
 
@@ -136,10 +137,10 @@ function drawMapNSW(data) {
 
   // Data defs
   let map   = data[0]
-  let towns = data[1]
   let fires = data[6]
   let hubs  = {}
 
+  town        = data[1]
   hubs.all     = data[2]
   hubs.crown   = data[3]
   hubs.private = data[4]
@@ -212,7 +213,7 @@ function drawMapNSW(data) {
   // Town names
   svg.append('g')
     .selectAll('text')
-    .data(towns.features)
+    .data(town.features)
     .join('text')
       .attr('class', 'towns fill-current text-green-400 opacity-0')
       .attr('x', d => projection(d.geometry.coordinates)[0] )
@@ -232,18 +233,27 @@ function drawMapNSW(data) {
 export function loadMapSLN() {
 
   // Data defs
-  let map   = "./map-data/nsw-rda.json";
-  let towns = "./map-data/nsw-towns.json";
+  let map   = "./map-data/nsw-rda.json",
+      wsap = "./map-data/wsia-4326.json",
+      grnp = "./map-data/grknp-4326.json",
+      grco = "./map-data/sws-corridors.json",
+      grrv = "./map-data/grrv.json",
+      gknp = "./map-data/gknp-4326-combined.json"
 
   Promise.all([
     d3.json(map),
-    d3.json(towns)
-  ]).then( (data) => drawMapSLN(data) );
+    d3.json(wsap),
+    d3.json(grnp),
+    d3.json(grco),
+    d3.json(grrv),
+    d3.json(gknp)
+  ]).then( (data) => drawMapSLN(data) )
 
 }
 export function triggerMapSLN(view) {
   let svg = d3.selectAll("#soln-map")
   let paths = svg.selectAll("path")
+  let labls = svg.selectAll("text")
   let proj    = setProjection(extents[view])
   let projOut = setProjection(extents.default)
 
@@ -258,10 +268,20 @@ export function triggerMapSLN(view) {
       .ease(d3.easeSinOut)
       .duration(800)
       .attr('d', d3.geoPath(proj))
+    labls
+      .transition()
+      .ease(d3.easeSinIn)
+      .duration(800)
+      .attr('x', d => projOut(d.geometry.coordinates)[0])
+      .attr('y', d => projOut(d.geometry.coordinates)[1])
+      .transition()
+      .ease(d3.easeSinOut)
+      .duration(800)
+      .attr('x', d => proj(d.geometry.coordinates)[0])
+      .attr('y', d => proj(d.geometry.coordinates)[1])
   }
-
-
 }
+
 function drawMapSLN(data) {
 
   // Svg defs
@@ -269,11 +289,16 @@ function drawMapSLN(data) {
       h = 1000;
 
   // Data defs
-  let map   = data[0]
-  let towns = data[1]
+  let map  = data[0],
+      wsap = data[1],
+      grnp = data[2],
+      grco = data[3],
+      grrv = data[4],
+      gknp = data[5]
 
   // Map defs
-  let projection = setProjection(extents['georges'])
+  let projection = setProjection(extents['georges']),
+      points = ["Parramatta", "Campbelltown", "Helensburgh", "Sydney Airport", "Coffs Harbour"]
 
   // Create svg canvas
   var svg = d3.select("#soln-map")
@@ -294,23 +319,55 @@ function drawMapSLN(data) {
     .attr('stroke', 'white')
     .attr('stroke-width', 0.2);
 
-  // Town names
+  // ---- GEORGES RIVER ---- //
+  // River
+  svg.append('g')
+    .selectAll('path')
+    .data(grrv.features)
+    .join('path')
+    .attr('d', d3.geoPath(projection))
+    .attr('class', 'basemap stroke-current fill-current text-blue-200')
+    .style('stroke-width', '1px');
+
+  // Corridors
+  svg.append('g')
+    .selectAll('path')
+    .data(grco.features)
+    .join('path')
+    .attr('d', d3.geoPath(projection))
+    .attr('class', 'basemap fill-current text-green-200 opacity-25');
+
+  // Koala Reserve
+  svg.append('g')
+    .selectAll('path')
+    .data(grnp.features)
+    .join('path')
+    .attr('d', d3.geoPath(projection))
+    .attr('class', 'basemap fill-current text-green-100');
+
+  // Airport
+  svg.append('g')
+    .selectAll('path')
+    .data(wsap.features)
+    .join('path')
+    .attr('d', d3.geoPath(projection))
+    .attr('class', 'basemap fill-current text-gray-400');
+
+
+
+  // GREAT KOALA NATIONAL PARK
+
+  // Towns
   svg.append('g')
     .selectAll('text')
-    .data(towns.features)
+    .data( town.features.filter( d => points.includes(d.properties.name) ))
     .join('text')
-      .attr('class', 'towns fill-current text-green-400 opacity-0')
-      .attr('x', d => projection(d.geometry.coordinates)[0] )
-      .attr('y', d => projection(d.geometry.coordinates)[1] )
-      .attr('dx', -1)
-      .attr('dy', 7)
-      .attr("text-anchor", "start")
-      .text( (d) => "— " + d.properties.name )
-      .attr('display', d => {
-        return d.properties.name == "Coffs Harbour" || d.properties.name == "Byron Bay" ||
-        d.properties.name == "Newcastle" || d.properties.name == "Wollongong" ||
-        d.properties.name == "Port Macquarie" || d.properties.name == "Sydney" ? "block" : "none"
-      });
+    .attr('class', 'fill-current text-white text-sm uppercase font-medium')
+    .attr('x', d => projection(d.geometry.coordinates)[0] )
+    .attr('y', d => projection(d.geometry.coordinates)[1] )
+    .attr('dy', 8)
+    .attr("text-anchor", "end")
+    .text( (d) => d.properties.name + " ▪" )
 
 }
 

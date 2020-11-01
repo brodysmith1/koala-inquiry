@@ -1,0 +1,3 @@
+{"type":"FeatureCollection", "features": [
+{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[150.739,-33.872],[150.7208,-33.8696],[150.6968,-33.8848],[150.6863,-33.9004],[150.7101,-33.9162],[150.7164,-33.9067],[150.74,-33.8991],[150.7533,-33.8875],[150.739,-33.872]]]},"properties":{"LABEL":"Western Sydney International (Nancy-Bird Walton) Airport","CURRENCY_D":"20200610","OBJECTID":1,"SHAPE":""}}
+]}
