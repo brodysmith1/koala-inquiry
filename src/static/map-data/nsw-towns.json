@@ -182,6 +182,19 @@
           -33.8136
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Western Sydney International Airport"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          150.7,
+          -33.8853
+        ]
+      }
     }
   ]
 }

@@ -1,8 +1,10 @@
 import * as d3 from "d3";
 import * as topojson from "topojson"
+import textures from 'textures'
 
-var targetSLN = 'georges'
-var town = ''
+var targetSLN = 'georges',
+    town
+
 const extents = {
   "nsw": {
     "scale": 3550,
@@ -13,8 +15,8 @@ const extents = {
     "center": [151.1,-33.95]
   },
   "gknp": {
-    "scale": 50000,
-    "center": [153.1,-30.3]
+    "scale": 30000,
+    "center": [153.1,-30.1]
   },
   "default": {
     "scale": 15000,
@@ -251,11 +253,13 @@ export function loadMapSLN() {
 
 }
 export function triggerMapSLN(view) {
-  let svg = d3.selectAll("#soln-map")
-  let paths = svg.selectAll("path")
-  let labls = svg.selectAll("text")
+  let svg     = d3.select("#soln-map svg")
+  let paths   = svg.selectAll("g path")
+  let labls   = svg.selectAll("text")
   let proj    = setProjection(extents[view])
   let projOut = setProjection(extents.default)
+
+  view == 'georges' ? svg.style('background','#000a19') : ""
 
   if (targetSLN != view) {
     targetSLN = view
@@ -300,6 +304,11 @@ function drawMapSLN(data) {
   let projection = setProjection(extents['georges']),
       points = ["Parramatta", "Campbelltown", "Helensburgh", "Sydney Airport", "Coffs Harbour"]
 
+  // Textures
+  let texture = {}
+      texture.scrub = textures.lines().size(4).strokeWidth(.5).stroke('#a4e3ad')
+      texture.build = textures.lines().size(8).strokeWidth(1).orientation("3/8", "7/8").stroke("#909090")
+
   // Create svg canvas
   var svg = d3.select("#soln-map")
       .append("svg")
@@ -307,7 +316,8 @@ function drawMapSLN(data) {
       .attr("height", h)
       .attr("viewBox", [0,0,w,h])
       .attr("preserveAspectRatio", "xMinYMin")
-      .attr("class", "bg-white");
+      .call(texture.scrub)
+      .call(texture.build);
 
   // Basemap
   svg.append('g')
@@ -326,7 +336,8 @@ function drawMapSLN(data) {
     .data(grrv.features)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('class', 'basemap stroke-current fill-current text-blue-200')
+    .style('fill','#000a19')
+    .style('stroke','#000a19')
     .style('stroke-width', '1px');
 
   // Corridors
@@ -335,7 +346,8 @@ function drawMapSLN(data) {
     .data(grco.features)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('class', 'basemap fill-current text-green-200 opacity-25');
+    .attr('class', 'opacity-50')
+    .style('fill', texture.scrub.url() );
 
   // Koala Reserve
   svg.append('g')
@@ -343,7 +355,8 @@ function drawMapSLN(data) {
     .data(grnp.features)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('class', 'basemap fill-current text-green-100');
+    .attr('class', 'fill-current text-green-200')
+    .style('stroke', 'white');
 
   // Airport
   svg.append('g')
@@ -351,11 +364,18 @@ function drawMapSLN(data) {
     .data(wsap.features)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('class', 'basemap fill-current text-gray-400');
+    .attr('class', 'stroke-current text-gray-400')
+    .style('fill', texture.build.url() );
 
+  // --- GREAT KOALA NATIONAL PARK --- //
+  // Koala Reserve
+  svg.append('g')
+    .selectAll('path')
+    .data(gknp.features)
+    .join('path')
+    .attr('d', d3.geoPath(projection))
+    .attr('class', 'fill-current text-green-300');
 
-
-  // GREAT KOALA NATIONAL PARK
 
   // Towns
   svg.append('g')

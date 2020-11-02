@@ -158,7 +158,8 @@ function update(p) {
   if (p == COVER) { offHome() }
   else if (p == CULTURE) { document.querySelector('video').pause(); }
   else if (p == INDIGENOUS) { invert = false; }
-  else if ( p == RECOS || p == RECOS+1 ) { invert = false; }
+  else if ( p == RECOS || p == RECOS+1 )  { invert = false; }
+  else if ( p == SOLNS+1 )  { invert = false; }
 
   if (i == COVER) { onHome(); bg = green400; }
   else if (i == TOURISM || p == TOURISM) { document.querySelector('#obama').classList.toggle('hidden') }
@@ -166,10 +167,12 @@ function update(p) {
   else if (i == INDIGENOUS) { bg = black; invert = true;}
   else if (i == LOCATION) { if(!mapNSWTriggered){triggerMapNSW(); mapNSWTriggered = true;}  }
   else if (i == CUTS) { triggerForestCuts(); }
-  else if (i == RECOS)   { invert=true; bg = green400; layoutGrid(recommendations);  }
-  else if (i == RECOS+1) { invert=true; bg = green400; layoutSplit(recommendations); }
-  else if (i == SOLNS)   { mapSLN.style.transform = "translateX(0)"; triggerMapSLN('georges') }
-  else if (i == SOLNS+1) { mapSLN.style.transform = `translateX(${vw}px`; triggerMapSLN('gknp') }
+  else if (i == RECOS-1) { invert=false; }
+  else if (i == RECOS)   { invert=true; bg=green400; layoutGrid(recommendations);  }
+  else if (i == RECOS+1) { colorScheme=""; bg=green400; layoutSplit(recommendations); }
+  else if (i == SOLNS)   { mapSLN.style.transform = "translateX(0)"; triggerMapSLN('georges');   colorScheme=""; invert=true; bg=green400;  }
+  else if (i == SOLNS+1) { mapSLN.style.transform = `translateX(${vw}px`; triggerMapSLN('gknp'); colorScheme=""; invert=true; bg='#000a19'; }
+  else if (i == SOLNS+2) { p==SOLNS+1 ? document.querySelector('#soln-map svg').style.background = 'none' : "" }
 
   pager.style.left = `calc(${(100*i/n).toFixed(2)}% + 10px)`       // Update progress bar
   colorScheme != invert ? updateColorScheme(bg) : "";   // Update color scheme
@@ -227,14 +230,22 @@ function updateColorScheme(bg) {
 
   body.style.background = bg
 
-  // ON FOR DEFAULT SCHEME
-  nav.classList.toggle('text-green-400')
-  nav.classList.toggle('border-transparent')
-
-  // ON FOR DARK (inverted) SCHEME
-  nav.classList.toggle('text-white')
-  nav.classList.toggle('border-white')
-
+  if (invert) {
+    // ON FOR DEFAULT SCHEME
+    nav.classList.remove('text-green-400')
+    nav.classList.remove('border-transparent')
+    // ON FOR DARK (inverted) SCHEME
+    nav.classList.add('text-white')
+    nav.classList.add('border-white')
+  }
+  else {
+    // ON FOR DEFAULT SCHEME
+    nav.classList.add('text-green-400')
+    nav.classList.add('border-transparent')
+    // ON FOR DARK (inverted) SCHEME
+    nav.classList.remove('text-white')
+    nav.classList.remove('border-white')
+  }
 }
 
 
