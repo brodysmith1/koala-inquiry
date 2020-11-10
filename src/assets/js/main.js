@@ -13,7 +13,7 @@ import { layoutSplit } from "./force.js";
 
 // Vars
 var x = 0;
-var n = 31;
+var n = 32;
 var i = 0;
 
 // ENUMS
