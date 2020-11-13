@@ -2,8 +2,11 @@ extends ../partials/slide-wide.pug
 
 block content
 
-  #graph-extent-occurence
-    svg.mx-auto(xmlns='http://www.w3.org/2000/svg' width="400" height="300" viewbox='0 0 200 150' preserveAspectRatio="xMinYMin")
+  h1.mb-8.text-center NSW's Fading Koalas
+  
+  #graph-extent-occurence.relative
+  
+    svg.mx-auto.relative(xmlns='http://www.w3.org/2000/svg' width="400" height="300" viewbox='0 0 200 150' preserveAspectRatio="xMinYMin")
       defs
         <style>#graph-extent-occurence circle {fill: #f9d165} rect,g {transform-origin: center;}</style>
       rect(fill="#2f493dcc" width='100%' height="100%")
@@ -111,29 +114,39 @@ block content
           circle(cx='88.5' cy='54.4' r='2')
           circle(cx='166' cy='119.4' r='2')
           circle(cx='147.5' cy='61.6' r='2')
+    
+    #radio-ui.absolute.bottom-0.text-center(style="left: calc(50% - 310px)")
 
-  #radio-ui.text-center.m-4
-    .fieldset.relative.p-2.bg-white
-      input#radio-first.hidden(type='radio' value='first' name='year' data-target='#item_a_target' checked)
-      label(for='radio-first')
-        span.relative.z-10 2012
-      input#radio-second.hidden(type='radio' value='second' name='year' data-target='#item_b_target')
-      label.relative(for='radio-second')
-        span.relative.z-10 2030
-        .switch.absolute.inset-y-0.left-0.w-full.z-1.rounded.bg-green-400.duration-500.pointer-events-none
+      .fieldset
+        .mb-6
+          input#radio-first.hidden(type='radio' value='first' name='year' data-target='#item_a_target' checked)
+          label(for='radio-first')
+            span.relative.z-10 2012
+        .mt-6
+          input#radio-second.hidden(type='radio' value='second' name='year' data-target='#item_b_target')
+          label.relative(for='radio-second')
+            span.relative.z-10 2030
+            .switch.absolute.inset-y-0.left-0.w-full.z-1.rounded.bg-green-400.duration-500.pointer-events-none
 
-  .flex.text-center.px-8
-    .flex-1
-      .text-5xl.playfair.text-black -30%
-      .relative.inline.uppercase.text-base.font-medium Extent of occurence
-        .absolute.p-2.bg-green-400(style="top: 3px; left: -1.5rem")
-      .text-sm.italic Geographic range of all koala sightings&nbsp;in&nbsp;NSW
-    .flex-1
-      .text-5xl.playfair.text-black -50%
-      .relative.inline.uppercase.text-base.font-medium Area of occupancy
-        .absolute.p-2.bg-yellow-300.rounded-full(style="top: 3px; left: -1.5rem")
-      .text-sm.italic Proportion of extent of occurence occupied by&nbsp;koalas
+        .mt-4.text-xs.text-gray-400
+          svg.mx-auto(xmlns="http://www.w3.org/2000/svg" fill="#999" width="10" viewBox="0 0 3.06 4.03")
+            polygon(points="3.06 1.53 2.06 0.53 1.53 0 1 0.53 0 1.53 0.53 2.06 1.16 1.44 1.16 4.03 1.91 4.03 1.91 1.44 2.53 2.06 3.06 1.53")
+          .mt-4.text-left Over three koala<br>generations, the<br>EOO has shrunk<br>by <b>30%</b> and the<br>AOO fallen&nbsp;<b>50%</b>
+
+    .absolute.bottom-0.flex.flex-col(style="left: calc(50% + 225px)")
+      .flex-1
+        //.text-5xl.playfair.text-black -30%
+        .w-4.h-4.mb-2.bg-green-400
+        .font-medium.uppercase.text-xs Extent of Occurence
+        .text-sm.text-gray-400 Total geographic <br>range of sightings
+      .flex-1.mt-6
+        //.text-5xl.playfair.text-black -50%
+        .w-4.h-4.mb-2.bg-yellow-300.rounded-full
+        .font-medium.uppercase.text-xs Area of Occupancy
+        .text-sm.text-gray-400 Proportion of EOC<br>occupied by koalas
+      
+  .mt-10.mb-8.border-t.h
           
-  .text-center.my-8
-    blockquote.text-lg.bg-white “[The area of occupancy's] decline is so fast ... it does not matter whether you have 5K, 10K, or 50K koalas ... it warrants recognition of this animal as endangered at a State level already.”
+  .px-12.text-center.playfair
+    .italic.text-lg.font-light “[The area of occupancy's] decline is so fast ... it does not matter whether you have 5K, 10K, or 50K koalas ... it warrants recognition of this animal as endangered at a State level already.”
     .py-4.text-base.italic.text-gray-400 &mdash; Dr Stephen Phillips, Managing Director & Principal Research Scientist of Biolink (1.9)

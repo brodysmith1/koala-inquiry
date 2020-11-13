@@ -2,18 +2,14 @@ extends ../partials/slide.pug
 
 block content
   h1 Counting Koalas
+  
+  p Nobody knows exactly how many koalas are left in NSW. With subpopulations so varied and non-uniformly distributed across the state, observations in one area cannot be generalised to others. Data and collection methods aren’t standardised either, leaving doubt in any estimate of total population.
+  
+  p 
+    | Submissions mostly cited 
+    +link('a study', 'https://onlinelibrary.wiley.com/doi/epdf/10.1111/ddi.12400')
+    |  estimating 36,000 NSW koalas as of 2012. The same model projected a decrease to 26,640 by 2030. However, a more 
+    +link('recent investigation', 'https://www.ifaw.org/de/resources/koala-conservation-status-in-new-south-wales-english')
+    |  revises this projection to be between 25,740–12,276.
 
-  p Lacking updated research, many inquiry submissions referred to 
-    +link("a 2016 study", "https://onlinelibrary.wiley.com/doi/epdf/10.1111/ddi.12400")
-    |  used in the Chief Scientist report which estimated 36,000 koalas in NSW as of 2012 and projected a 26% decrease by 2030. A more 
-    +link("recent investigation", "https://www.ifaw.org/de/resources/koala-conservation-status-in-new-south-wales-english")
-    |  revised this projection to be between 28.5-65.9%.
-
-  p However, counting koalas is tricky. With subpopulations so varied, sparse, and non-uniformly distributed across the state, observations in one area cannot be generalised to others. Data and collection methods aren’t standardised, leaving a lot of uncertainty in total population estimates. 
-    span.italic (R1)
-  p Instead of absolute koala counts, top ecologists look at two statistics used by the IUCN to identify threatened species: The change in 
-    span.font-medium Area of Occupancy 
-    | and 
-    span.font-medium Extent of Occurrence
-    | . 
-    span.italic (1.6, 1.9)
+  p Because of the uncertainty in such koala counts, ecologists prefer two other metrics: <em>Area of Occupancy</em> and the <em>Extent of Occurrence</em>. These indicators are used by the IUCN to determine the status of threatened species.

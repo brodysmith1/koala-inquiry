@@ -3,18 +3,15 @@ extends ../partials/slide.pug
 block content
 
   blockquote "Death by 1000 cuts"
-  p.my-8
-    | Overwhelmingly, the inquiry report found that loss and fragmentation of habitat over time is the major reason for declining koala numbers 
-    span.italic (F4)
-    | . Koala habitat is lost to development projects, logging and mine sites. No habitat means no koalas.
+  p.my-8 Overwhelmingly, the inquiry report found that loss and fragmentation of habitat over time is the major reason for declining koala numbers. Koala habitat is lost to development projects, logging and mine sites. No habitat means no koalas. 
+
+  //.absolute.w-screen.left-0.bottom-0(style="height: 100%")
 
     - g100 = [ 164, 227, 173 ]
     - g400 = [ 47, 73, 61 ]
     - rand  = () => Math.random()
     - mix = (a,b,p) => a.map( (v,i) => (v + p*(b[i]-v)).toFixed(0) )
     - rgb = (p) => `rgb(${mix(g400,g100,p).toString()})`
-
-  //.absolute.w-screen.left-0.bottom-0(style="height: 100%")
       
     svg#roads.absolute.top-0.mt-0(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 1405.3 265.2')
       defs

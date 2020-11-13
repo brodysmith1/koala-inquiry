@@ -19,12 +19,12 @@ var i = 0;
 // ENUMS
 const COVER = 0;
 const LOCATION = 3;
-const TOURISM = 8;
-const CULTURE = 9;
-const INDIGENOUS = 10;
-const CUTS = 12;
-const RECOS = 17;
-const SOLNS = 19;
+const TOURISM = 7;
+const CULTURE = 8;
+const INDIGENOUS = 9;
+const CUTS = 11;
+const RECOS = 16;
+const SOLNS = 18;
 
 // Colors
 const cream = "#ece5d8";

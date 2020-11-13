@@ -1,26 +1,23 @@
 extends ../partials/slide.pug
 
 block content
-  //h1.text-center Koalas generate
-  
-  .flex.text-center.px-8
-    .flex-1
-      .text-5xl.playfair.text-black 9000
-      .relative.inline.uppercase.text-base.font-medium Jobs in NSW
-    .flex-1
-      .text-5xl.playfair.text-black 
-        sup.text-2xl $
-        | 2.5B
-      .relative.inline.uppercase.text-base.font-medium Annual revenue
-      
-  .relative.my-8.w-full.text-center.text-white.font-medium.bg-green-200.rounded.uppercase.text-sm.tracking-wide(style="height: 3rem; line-height: 3rem") Koala contribution to NSW economy
-    .absolute.h-full.rounded-l.bg-green-400.left-0.top-0(style="width: 0.6%")
-      .absolute.h-4.border-l.border-green-400(style="top: 3.15rem; left: 25%")
-      .absolute.w-0.h-0.border-transparent.border-2(style="border-bottom: 5px solid #2f493d; top: 3rem; left: calc(25% - 1.5px);")
-      .absolute.left-0.whitespace-no-wrap.text-green-400.text-sm.leading-none(style="top: 4.25rem; font-size: 0.75rem") NSW Investment in Koala Strategy
+
+  h1 Koala decline means economic decline
+
+  .relative.my-8.w-full.text-center.text-white.font-medium.bg-green-200.rounded.uppercase.text-sm.tracking-wide(style="height: 5rem; line-height: 5rem") Koala contribution to NSW economy
+    .absolute.h-full.rounded-l.bg-green-400.left-0.top-0(style="width: 1.35%")
+      .absolute.left-0.whitespace-no-wrap.text-green-400.text-sm.leading-none(style="top: 6.25rem;")
+        span NSW Investment in Koala Strategy
+        svg.absolute.left-0.fill-current(xmlns="http://www.w3.org/2000/svg" width="8" viewBox="0 0 3.06 4.03" style="top: -14px;")
+          polygon(points="3.06 1.53 2.06 0.53 1.53 0 1 0.53 0 1.53 0.53 2.06 1.16 1.44 1.16 4.03 1.91 4.03 1.91 1.44 2.53 2.06 3.06 1.53")
     
   p.mt-20
-    span.font-medium Koala decline means economic decline. <br>
-    | In NSW, koalas are linked to 9,000 jobs and contribute $2.5B to the state's economy each year 
-    span.italic (9.42). 
-    | The government's three-year, $44.7M Koala Strategy is significant, yet annually it’s just 0.6% of the $2.5B revenue brought in by koalas.
+    | According to the 
+    +link('NSW Government','https://www.environment.nsw.gov.au/topics/animals-and-plants/native-animals/native-animal-facts/koala#:~:text=Koalas%20benefit%20the%20Australian%20economy,year%20to%20tourism%20in%20Australia.')
+    | , koalas create over 9,000 jobs and contribute $1.1–2.5B to the state's economy each year. So while the State’s three-year, $44.7M Koala Strategy is significant, annually it is (at most) just 1.35% of the revenue koalas provide.
+    
+  p When the world looks at Australia, it looks for koalas — and seeing one in the wild is a drawcard only we can offer.
+
+
+  #obama.absolute.hidden.opacity-0.left-0.bottom-0.slide-up-full(style="max-width: 200px;")
+    +picture(imgpath, "obama", ["jpg"], "President Obama with a koala")

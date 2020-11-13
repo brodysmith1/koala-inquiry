@@ -63,7 +63,7 @@ body {
 
 #radio-ui {
   label {
-    @apply duration-500 rounded mx-2 px-4 py-2 cursor-pointer shadow;
+    @apply duration-500 rounded mx-2 px-4 py-2 cursor-pointer shadow text-gray-400;
 
     &:hover {
       @apply shadow-lg
@@ -74,10 +74,10 @@ body {
     @apply text-white border-none;
   }
   input + label > .switch {
-    transform: translateX(-87px)
+    transform: translateY(-50px)
   }
   input:checked + label > .switch {
-    transform: translateX(0px)
+    transform: translateY(0px)
   }
 }
 
