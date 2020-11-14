@@ -13,14 +13,14 @@ export const layoutGrid = (nodes) => {
   let a = nodes[0].parentElement.querySelectorAll('.annotation')
       a.forEach( ai => ai.style.opacity = 0 )
 
-  layoutMove(nodes[0], false)
-
+  layoutMove(nodes[0], 0)
+  showText(0)
 }
 
-export const layoutSplit = (nodes) => {
+export const layoutSplit = (nodes, page) => {
 
   let t, x
-  let a = nodes[0].parentElement.querySelectorAll('.annotation')
+  let a  = nodes[0].parentElement.querySelectorAll('.annotation')
 
   let r = [
         [5, 7, 41],
@@ -34,27 +34,53 @@ export const layoutSplit = (nodes) => {
       fire = [...nodes].filter( (n,i) => r[2].includes(i+1) ),
       frag = [...nodes].filter( (n,i) => r[3].includes(i+1) )
 
-  fade.forEach( r => {r.style.opacity = 0; r.classList.add('pointer-events-none')} )
-  soln.forEach( (r,i) => r.style = `top: 80%; left: ${100*(i+2)/6}%; transform: scale(1.1); z-index: 10` )
 
-  frag.forEach( (r,i) => {
-    [t,x] = [100 * Math.floor(i/5)/7, 100 * (i%5) / 8]
-    r.style = `top: ${t}%; left: ${x}%` })
+  if (page == 1) {
 
-  fire.forEach( (r,i) => {
-    [t,x] = [100 * Math.floor(i/2)/7, 100 - 100 * ((i+1)%2) / 8]
-    r.style = `top: ${t}%; left: calc(${x}% - 48px)` })
+    fade.forEach( r => {r.style.opacity = 0; r.classList.add('pointer-events-none')} )
+    soln.forEach( (r,i) => r.style = `top: 80%; left: ${100*(i+2)/6}%; transform: scale(1.1); z-index: 10` )
 
-  a[0].style = "opacity: 1; top: -13%; left: 8px;"
-  a[1].style = `opacity: 1; top: -13%; left: calc(${100*7/8}% + ${16-a[1].offsetWidth/2}px);`
-  a[2].style = `opacity: 1; top: 95%;  left: calc(50% - 90px);`
+    frag.forEach( (r,i) => {
+      [t,x] = [100 * Math.floor(i/5)/7, 100 * (i%5) / 8]
+      r.style = `top: ${t}%; left: ${x}%` })
 
-  layoutMove(nodes[0], true)
+    fire.forEach( (r,i) => {
+      [t,x] = [100 * Math.floor(i/2)/7, 100 - 100 * ((i+1)%2) / 8]
+      r.style = `top: ${t}%; left: calc(${x}% - 48px)` })
 
+    a[0].style = "opacity: 1; top: -13%; left: 8px;"
+    a[1].style = `opacity: 1; top: -13%; left: calc(${100*7/8}% + ${16-a[1].offsetWidth/2}px);`
+    a[2].style = `opacity: 1; top: 95%;  left: calc(50% - 90px);`
+
+    layoutMove(nodes[0], 1)
+
+  }
+
+  else if (page == 2) {
+
+    fire.forEach( r => {r.style.opacity = 0; r.classList.add('pointer-events-none')} )
+    frag.forEach( r => {r.style.opacity = 0; r.classList.add('pointer-events-none')} )
+    a.forEach( (ai,i) => i!=2 ? ai.style.opacity = 0 : "" )
+
+    soln[1].classList.add('pointer-events-none')
+    soln[1].style.opacity = 0
+    soln[0].style.left = "42.5%"
+    soln[2].style.left = "57.5%"
+
+  }
+
+  layoutMove(nodes[0], page)
+  showText(page)
+
+}
+
+function showText(i) {
+  let t = document.querySelectorAll('.recommendation-text')
+  t.forEach( (e,j) => e.style.opacity = i==j ? 1 : 0 )
 }
 
 function layoutMove(n,i) {
   let c = n.parentElement.parentElement
-  let x = i ? document.querySelector('.slide').getBoundingClientRect().width : 0
+  let x = i*document.querySelector('.slide').getBoundingClientRect().width
   c.style.transform = `translateX(${x}px)`
 }

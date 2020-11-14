@@ -24,7 +24,7 @@ const CULTURE = 8;
 const INDIGENOUS = 9;
 const CUTS = 11;
 const RECOS = 16;
-const SOLNS = 18;
+const SOLNS = 19;
 
 // Colors
 const cream = "#ece5d8";
@@ -169,7 +169,8 @@ function update(p) {
   else if (i == CUTS) { triggerForestCuts(); }
   else if (i == RECOS-1) { invert=false; }
   else if (i == RECOS)   { invert=true; bg=green400; layoutGrid(recommendations);  }
-  else if (i == RECOS+1) { colorScheme=""; bg=green400; layoutSplit(recommendations); }
+  else if (i == RECOS+1) { colorScheme=""; bg=green400; layoutSplit(recommendations, 1); }
+  else if (i == RECOS+2) { colorScheme=""; bg=green400; layoutSplit(recommendations, 2); }
   else if (i == SOLNS)   { mapSLN.style.transform = "translateX(0)"; triggerMapSLN('georges');   colorScheme=""; invert=true; bg=green400;  }
   else if (i == SOLNS+1) { mapSLN.style.transform = `translateX(${vw}px`; triggerMapSLN('gknp'); colorScheme=""; invert=true; bg='#000a19'; }
   else if (i == SOLNS+2) { p==SOLNS+1 ? document.querySelector('#soln-map svg').style.background = 'none' : "" }
