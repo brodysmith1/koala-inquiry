@@ -6,6 +6,16 @@
 
 // CORE
 
+#nsw-instructions {
+  @apply opacity-0 mt-12 text-xs text-gray-200;
+}
+
+svg .key {
+  fill: none;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+}
+
 .annotation {
   @apply absolute w-48 text-center text-white text-xs tracking-wide uppercase z-n1 text-green-200 duration-1000;
 
@@ -88,7 +98,7 @@ body {
     bottom: 2.75rem;
     width: 100%;
     border-bottom: 0.5px solid;
-    @apply absolute border-gray-400 z-n1;
+    @apply absolute border-white opacity-75;
   }
   .spacer::before {
     content: '';
@@ -96,7 +106,7 @@ body {
     width: 0;
     height: 100%;
     border-left: 0.5px solid;
-    @apply absolute border-gray-400 z-n1;
+    @apply absolute border-white opacity-75;
   }
 }
 

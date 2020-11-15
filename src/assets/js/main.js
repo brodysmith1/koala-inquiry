@@ -11,48 +11,48 @@ import { triggerForestCuts } from "./graph.js";
 import { layoutGrid } from "./force.js";
 import { layoutSplit } from "./force.js";
 
-// Vars
-var x = 0;
-var n = 32;
-var i = 0;
-
 // ENUMS
-const COVER = 0;
-const LOCATION = 3;
-const TOURISM = 7;
-const CULTURE = 8;
-const INDIGENOUS = 9;
-const CUTS = 11;
-const RECOS = 16;
-const SOLNS = 19;
+const COVER = 0,
+      LOCATION = 3,
+      TOURISM = 7,
+      CULTURE = 8,
+      INDIG = 9,
+      CUTS = 11,
+      RECOS = 16,
+      SOLNS = 19
 
-// Colors
-const cream = "#ece5d8";
-const black = "#232626";
-const green100 = "#a4e3ad";
-const green200 = "#6da990";
-const green300 = "#4c8075";
-const green400 = "#2f493d";
-const yellow100 = "#fffff0";
-const blue300 = "#2b314f";
+// COLORS
+const cream     = "#ece5d8",
+      black     = "#232626",
+      green100  = "#a4e3ad",
+      green200  = "#6da990",
+      green300  = "#4c8075",
+      green400  = "#2f493d",
+      yellow100 = "#fffff0",
+      blue300   = "#2b314f",
+      blue400   = "#000a19"
+
+// STATE
+var x  = 0,
+    n  = 32,
+    i  = 0,
+    bg         = green400,
+    navActive  = true,
+    mapNSWPlay = false,
+    invert     = false
+
+// ELEMENTS
+const body      = document.querySelector('body'),
+      nav       = document.querySelector('#nav'),
+      mapSLN    = document.querySelector('#soln-map'),
+      navLine   = document.querySelector('#nav-line'),
+      navItemBg = document.querySelectorAll('.nav-item-bg'),
+      pager     = document.querySelector('#pager'),
+      recoms    = document.querySelectorAll('.recommendation')
+
 
 // Responsiveness
 var vw = document.querySelector('.slide').getBoundingClientRect().width;
-
-// Misc
-let navActive = true;
-let mapNSWTriggered = false;
-let invert = false;
-
-// Handles
-const body = document.querySelector('body');
-const nav = document.querySelector('#nav');
-const mapSLN = document.querySelector('#soln-map');
-const navLine = document.querySelector('#nav-line');
-const navItemBg = document.querySelectorAll('.nav-item-bg');
-const pager = document.querySelector('#pager');
-const recommendations = document.querySelectorAll('.recommendation');
-
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', onLoad);  // TODO: DEBOUNCE
@@ -62,6 +62,7 @@ window.onresize = onResize;                             // TODO: DEBOUNCE
 
 // Load
 function onLoad() {
+
   update(null);
   setNav();
   loadMapNSW();
@@ -104,7 +105,6 @@ function checkKey(e) {
   e.keyCode == 37 ? checkX(false) :   // left
   e.keyCode == 35 ? jumpTo(n-1) :       // end
   e.keyCode == 36 ? jumpTo(0) : "";   // home
-
   e.keyCode == 32 && i==CULTURE ? togglePlay() : "";   // spacebar
 }
 
@@ -113,9 +113,8 @@ function checkKey(e) {
 function slide(fwd) {
   let p = i;
   let slides = document.querySelector('.slides');
-  let dx = document.querySelector('.slide').getBoundingClientRect().width;
 
-  x += fwd ? -dx : dx;
+  x += fwd ? -vw : vw;
   i += fwd ? 1 : -1;
 
   translateX(slides, x);
@@ -127,11 +126,11 @@ function slide(fwd) {
 function onSlide(p) {
   let prev = document.querySelectorAll('.slide')[p];
   let cur = document.querySelectorAll('.slide')[i];
-  let bgPrev = prev.querySelector('.bg-image');
+  let bgPrv = prev.querySelector('.bg-image');
   let bgCur = cur.querySelector('.bg-image');
 
-  bgPrev ? bgPrev.classList.remove('active') : "";
-  bgCur  ? bgCur.classList.add('active')  : "";
+  bgPrv ? bgPrv.classList.remove('active') : "";
+  bgCur ? bgCur.classList.add('active')  : "";
 
   update(p); // Execute specific behaviour for targeted slides
 }
@@ -151,32 +150,31 @@ function jumpTo(index) {
 
 function update(p) {
 
-  let bg = cream
-  let colorScheme = invert
+  let bgi = green400
 
   // Execute specific behaviour for targeted slides
   if (p == COVER) { offHome() }
-  else if (p == CULTURE) { document.querySelector('video').pause(); }
-  else if (p == INDIGENOUS) { invert = false; }
+  else if ( p == TOURISM)  { document.querySelector('#obama').classList.toggle('hidden') }
+  else if ( p == CULTURE)  { document.querySelector('video').pause(); }
+  else if ( p == INDIG)    { invert = false; }
   else if ( p == RECOS || p == RECOS+1 )  { invert = false; }
-  else if ( p == SOLNS+1 )  { invert = false; }
+  else if ( p == SOLNS+1 ) { invert = false; }
 
-  if (i == COVER) { onHome(); bg = green400; }
-  else if (i == TOURISM || p == TOURISM) { document.querySelector('#obama').classList.toggle('hidden') }
-  else if (i == CULTURE) { document.querySelector('video').play(); }
-  else if (i == INDIGENOUS) { bg = black; invert = true;}
-  else if (i == LOCATION) { if(!mapNSWTriggered){triggerMapNSW(); mapNSWTriggered = true;}  }
-  else if (i == CUTS) { triggerForestCuts(); }
-  else if (i == RECOS-1) { invert=false; }
-  else if (i == RECOS)   { invert=true; bg=green400; layoutGrid(recommendations);  }
-  else if (i == RECOS+1) { colorScheme=""; bg=green400; layoutSplit(recommendations, 1); }
-  else if (i == RECOS+2) { colorScheme=""; bg=green400; layoutSplit(recommendations, 2); }
-  else if (i == SOLNS)   { mapSLN.style.transform = "translateX(0)"; triggerMapSLN('georges');   colorScheme=""; invert=true; bg=green400;  }
-  else if (i == SOLNS+1) { mapSLN.style.transform = `translateX(${vw}px`; triggerMapSLN('gknp'); colorScheme=""; invert=true; bg='#000a19'; }
-  else if (i == SOLNS+2) { p==SOLNS+1 ? document.querySelector('#soln-map svg').style.background = 'none' : "" }
+  if (i == COVER) { onHome(); }
+  else if (i == TOURISM)  { document.querySelector('#obama').classList.toggle('hidden') }
+  else if (i == CULTURE)  { document.querySelector('video').play(); }
+  else if (i == INDIG)    { bgi = black; invert = true;}
+  else if (i == LOCATION) { bgi = blue400; if(!mapNSWPlay){triggerMapNSW(); mapNSWPlay = true;}  }
+  else if (i == CUTS)     { triggerForestCuts(); }
+  else if (i == RECOS-1)  { invert=false; }
+  else if (i == RECOS)    { invert=true;    layoutGrid(recoms);  }
+  else if (i == RECOS+1)  { layoutSplit(recoms, 1); }
+  else if (i == RECOS+2)  { layoutSplit(recoms, 2); }
+  else if (i == SOLNS)    { mapSLN.style.transform = "translateX(0)"; triggerMapSLN('georges');   invert=true;  }
+  else if (i == SOLNS+1)  { mapSLN.style.transform = `translateX(${vw}px`; triggerMapSLN('gknp'); invert=true; bgi=blue400; }
 
   pager.style.left = `calc(${(100*i/n).toFixed(2)}% + 10px)`       // Update progress bar
-  colorScheme != invert ? updateColorScheme(bg) : "";   // Update color scheme
+  bg != bgi ? updateColorScheme(bgi) : "";   // Update color scheme
 }
 
 // Video functions
@@ -227,26 +225,26 @@ function toggleNav(show) {
 
 }
 
-function updateColorScheme(bg) {
+function updateColorScheme(b) {
 
-  body.style.background = bg
+  body.style.background = bg = b
 
-  if (invert) {
-    // ON FOR DEFAULT SCHEME
-    nav.classList.remove('text-green-400')
-    nav.classList.remove('border-transparent')
-    // ON FOR DARK (inverted) SCHEME
-    nav.classList.add('text-white')
-    nav.classList.add('border-white')
-  }
-  else {
-    // ON FOR DEFAULT SCHEME
-    nav.classList.add('text-green-400')
-    nav.classList.add('border-transparent')
-    // ON FOR DARK (inverted) SCHEME
-    nav.classList.remove('text-white')
-    nav.classList.remove('border-white')
-  }
+  // if (invert) {
+  //   // ON FOR DEFAULT SCHEME
+  //   nav.classList.remove('text-green-400')
+  //   nav.classList.remove('border-transparent')
+  //   // ON FOR DARK (inverted) SCHEME
+  //   nav.classList.add('text-white')
+  //   nav.classList.add('border-white')
+  // }
+  // else {
+  //   // ON FOR DEFAULT SCHEME
+  //   nav.classList.add('text-green-400')
+  //   nav.classList.add('border-transparent')
+  //   // ON FOR DARK (inverted) SCHEME
+  //   nav.classList.remove('text-white')
+  //   nav.classList.remove('border-white')
+  // }
 }
 
 
@@ -255,17 +253,15 @@ function onHome() {
   invert = true
   toggleNav(true)
   nav.style.transform = ''
-  setTimeout( () => {
-   navLine.style.opacity = 0.5
-   navItemBg.forEach( e => e.style.display = 'block')
-  }, 500)
+  navLine.style.opacity = 0.5
+  navItemBg.forEach( e => e.style.opacity = 1)
 }
 function offHome() {
   invert = false
   toggleNav(false)
   navLine.style.opacity = 0
   nav.style.transform = 'translateY(5rem)'
-  navItemBg.forEach( e => e.style.display = 'none')
+  navItemBg.forEach( e => e.style.opacity = 0)
 }
 
 function translateX(el, x) {                  // Apply slide transform

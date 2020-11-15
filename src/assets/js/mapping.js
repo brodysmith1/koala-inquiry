@@ -52,17 +52,17 @@ export function loadMapNSW() {
 export function triggerMapNSW() {
 
   // Animation defs
-  const n = 5,
-        delay = 4000;
+  const n = 4,
+        delay = 5000;
 
   d3.selectAll(".hubs")
     .transition()
     .duration(1000)
-    .delay( (d,i) => i ? (i+1)*delay : 0)
+    .delay( (d,i) => i ? i*delay : 0)
     .style("opacity", 1)
     .transition()
     .duration(1000)
-    .delay( (d,i) => i ? delay-1000 : 2*delay-1000)
+    .delay(delay-1000)
     .style("opacity",0);
 
   d3.select(".hubs-fires")
@@ -81,12 +81,11 @@ export function triggerMapNSW() {
     .delay((n)*delay)
     .style("opacity",1);
 
-  // TRANSITIONS: towns
-  d3.selectAll(".towns")
+  d3.select("#nsw-instructions")
     .transition()
     .duration(1000)
-    .delay(delay)
-    .style("opacity",1);
+    .delay((n+1)*delay)
+    .style("opacity",.5);
 
   // TRANSITIONS: Accompanying paragraphs
   d3.selectAll(".map-p")
@@ -158,8 +157,7 @@ function drawMapNSW(data) {
       .attr("width", "100%")
       .attr("height", h)
       .attr("viewBox", [0,0,w,h])
-      .attr("preserveAspectRatio", "xMinYMin")
-      .attr("class", "bg-white");
+      .attr("preserveAspectRatio", "xMinYMin");
 
   // Basemap
   svg.append('g')
@@ -210,20 +208,20 @@ function drawMapNSW(data) {
     .data(fires.geometries)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('class', 'hubs-fires fill-current text-black opacity-0');
+    .attr('class', 'hubs-fires fill-current text-red-300 opacity-0');
 
   // Town names
   svg.append('g')
     .selectAll('text')
     .data(town.features)
     .join('text')
-      .attr('class', 'towns fill-current text-green-400 opacity-0')
+      .attr('class', 'towns fill-current text-gray-200 opacity-50 text-sm uppercase font-medium tracking-wide')
       .attr('x', d => projection(d.geometry.coordinates)[0] )
       .attr('y', d => projection(d.geometry.coordinates)[1] )
       .attr('dx', -1)
       .attr('dy', 7)
       .attr("text-anchor", "start")
-      .text( (d) => "– " + d.properties.name )
+      .text( (d) => "— " + d.properties.name )
       .attr('display', d => {
         return d.properties.name == "Coffs Harbour" || d.properties.name == "Byron Bay" ||
         d.properties.name == "Newcastle" || d.properties.name == "Wollongong" ||
@@ -382,7 +380,7 @@ function drawMapSLN(data) {
     .selectAll('text')
     .data( town.features.filter( d => points.includes(d.properties.name) ))
     .join('text')
-    .attr('class', 'fill-current text-white text-sm uppercase font-medium')
+    .attr('class', 'fill-current text-white text-sm uppercase font-medium tracking-wide')
     .attr('x', d => projection(d.geometry.coordinates)[0] )
     .attr('y', d => projection(d.geometry.coordinates)[1] )
     .attr('dy', 8)
@@ -400,12 +398,12 @@ function setProjection(target) {
 function showData() {
   let t = this.dataset.target;
   if (t==4) {
-    this.classList.toggle('text-white');
-    this.classList.toggle('bg-black');
+    this.classList.toggle('text-black');
+    this.classList.toggle('bg-red-300');
     d3.select('.hubs-fires')
       .transition()
       .duration(500)
-      .style('opacity', this.classList.contains('bg-black') ? 0.75 : 0 );
+      .style('opacity', this.classList.contains('bg-red-300') ? 0.75 : 0 );
   }
   else {
     d3.selectAll('.hubs')
@@ -414,8 +412,10 @@ function showData() {
       .style('opacity', (d,i) => i==t ? 1 : 0 );
 
     d3.selectAll(".map-p .cursor-pointer")
-      .classed('bg-yellow-300', false);
+      .classed('bg-yellow-300', false)
+      .classed('text-black', false);
 
      this.classList.toggle('bg-yellow-300');
+     this.classList.toggle('text-black');
   }
 }

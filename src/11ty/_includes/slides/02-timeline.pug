@@ -1,40 +1,41 @@
 extends ../partials/slide.pug
 
 block content
+  
+  .absolute.bg-green-400.inset-0
+  
+    .absolute.my-auto.inset-0.mx-24.h-64
+          
+      #timeline.relative.flex.flex-col(class="md:flex-row")
+        - let start = 2016
+        for f,i in new Array(5)
+          .node.flex.flex-1.flex-row-reverse.p-2(class="sm:px-0 md:px-4 md:py-0 md:flex-col-reverse")
+            .flex-none.tag.text-center: span.playfair-italic.relative.text-xl.mx-auto.opacity-75= start+i
+            .spacer.relative.flex-1.my-2(style="min-height: 2rem;")
+            .flex-none.content.text-sm.text-center
+              case start+i
+                when 2016
+                  .mb-2 NSW Chief Scientist releases a 
+                    +link('report', 'https://www.chiefscientist.nsw.gov.au/__data/assets/pdf_file/0010/94519/161202-NSWCSE-koala-report.pdf')
+                    |  on declining koala populations in NSW
+                when 2017
+                  .mb-2
+                    span.italic Biodiversity Conservation Act 2016
+                    |  introduces various land management and biodiversity reforms
+                when 2018
+                  .mb-2
+                    .text-6xl.playfair(style="margin-top: -.5em")
+                      sup.text-2xl $
+                      | 44.7
+                      sub.text-3xl M
+                    +link('Koala Strategy', 'https://www.environment.nsw.gov.au/topics/animals-and-plants/threatened-species/programs-legislation-and-framework/nsw-koala-strategy')
+                    |  launched by NSW Government
+                when 2019
+                  .mb-2 NSW parliamentary inquiry into koala populations launched 
+                when 2020
+                  .mb-2 
+                    | Inquiry 
+                    +link('report', 'https://www.parliament.nsw.gov.au/lcdocs/inquiries/2536/Koala%20populations%20and%20habitat%20in%20New%20South%20Wales%20-%20Report%203.pdf')
+                    |  released.<br>National Party tries to split the Coalition over koala policy.
 
-  .absolute.my-auto.inset-0(class="md:mx-24 md:h-64")
-    
-    
-    #timeline.relative.flex.flex-col(class="md:flex-row")
-      - let start = 2016
-      for f,i in new Array(5)
-        .node.flex.flex-1.flex-row-reverse.p-2(class="sm:px-0 md:px-4 md:py-0 md:flex-col-reverse")
-          .flex-none.tag.text-center: span.playfair-italic.relative.text-xl.mx-auto.text-gray-400= start+i
-          .spacer.relative.flex-1.my-2(style="min-height: 2rem;")
-          .flex-none.content.text-sm.text-center
-            case start+i
-              when 2016
-                .mb-2 NSW Chief Scientist releases a 
-                  +link('report', 'https://www.chiefscientist.nsw.gov.au/__data/assets/pdf_file/0010/94519/161202-NSWCSE-koala-report.pdf')
-                  |  on declining koala populations in NSW
-              when 2017
-                .mb-2
-                  span.italic Biodiversity Conservation Act 2016
-                  |  introduces various land management and biodiversity reforms
-              when 2018
-                .mb-2
-                  .text-6xl.playfair(style="margin-top: -.5em")
-                    sup.text-2xl $
-                    | 44.7
-                    sub.text-3xl M
-                  +link('Koala Strategy', 'https://www.environment.nsw.gov.au/topics/animals-and-plants/threatened-species/programs-legislation-and-framework/nsw-koala-strategy')
-                  |  launched by NSW Government
-              when 2019
-                .mb-2 NSW parliamentary inquiry into koala populations launched 
-              when 2020
-                .mb-2 
-                  | Inquiry 
-                  +link('report', 'https://www.parliament.nsw.gov.au/lcdocs/inquiries/2536/Koala%20populations%20and%20habitat%20in%20New%20South%20Wales%20-%20Report%203.pdf')
-                  |  released.<br>National Party tries to split the Coalition over koala policy.
-
-    h1.playfair-italic.wght-450.text-green-400.my-12.text-center A Recent History of Koala Policy
+      h1.playfair.wght-450.my-12.text-center A Recent History of Koala Policy
