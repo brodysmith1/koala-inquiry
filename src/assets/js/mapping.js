@@ -257,8 +257,6 @@ export function triggerMapSLN(view) {
   let proj    = setProjection(extents[view])
   let projOut = setProjection(extents.default)
 
-  view == 'georges' ? svg.style('background','#000a19') : ""
-
   if (targetSLN != view) {
     targetSLN = view
     paths

@@ -6,6 +6,13 @@
 
 // CORE
 
+
+.park-title {
+  @apply uppercase playfair pb-4 mb-4 text-xl tracking-wide;
+  border-bottom: 0.5px solid #b1aea8
+}
+
+
 #nsw-instructions {
   @apply opacity-0 mt-12 text-xs text-gray-200;
 }
@@ -73,18 +80,18 @@ body {
 
 #radio-ui {
   label {
-    @apply duration-500 rounded mx-2 px-4 py-2 cursor-pointer shadow text-gray-400;
+    @apply duration-500 rounded mx-2 px-4 py-2 cursor-pointer shadow-xl text-gray-400 bg-gray-200 select-none font-medium;
 
     &:hover {
-      @apply shadow-lg
+      @apply shadow-xs;
     }
   }
 
   input:checked + label {
-    @apply text-white border-none;
+    @apply text-white;
   }
   input + label > .switch {
-    transform: translateY(-50px)
+    transform: translateY(-51px)
   }
   input:checked + label > .switch {
     transform: translateY(0px)

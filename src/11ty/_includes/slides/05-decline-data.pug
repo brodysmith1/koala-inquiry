@@ -6,11 +6,11 @@ block content
   
   #graph-extent-occurence.relative
   
-    svg.mx-auto.relative(xmlns='http://www.w3.org/2000/svg' width="400" height="300" viewbox='0 0 200 150' preserveAspectRatio="xMinYMin")
+    svg.mx-auto.relative.border.bg-white(xmlns='http://www.w3.org/2000/svg' width="400" height="300" viewbox='0 0 200 150' preserveAspectRatio="xMinYMin")
       defs
         <style>#graph-extent-occurence circle {fill: #f9d165} rect,g {transform-origin: center;}</style>
       rect(fill="#2f493dcc" width='100%' height="100%")
-      rect#occurence( fill="#2f493d" stroke-width="0" stroke-dasharray="4 4" stroke="#ece5d8" width='100%' height="100%")
+      rect#occurence( fill="#2f493d" stroke-width="0" stroke-dasharray="2" stroke="#ece5d8" width='100%' y="-1" height="calc(100% + 2px)")
       g#occupancy(class="circles") 
         g.dissolve.opacity-100
           circle(cx='55.6' cy='41' r='2')
@@ -76,10 +76,10 @@ block content
           circle(cx='144.3' cy='42.6' r='2')
           circle(cx='93.1' cy='43.5' r='2')
           circle(cx='190.8' cy='62.5' r='2')
-          circle(cx='198' cy='2' r='2')
           circle(cx='75.6' cy='4.3' r='2')
-        g
           circle(cx='90.5' cy='83.6' r='2')
+        g
+          circle(cx='198' cy='2' r='2')
           circle(cx='134.4' cy='84' r='2')
           circle(cx='87' cy='96.1' r='2')
           circle(cx='135.9' cy='20.2' r='2')
@@ -126,27 +126,27 @@ block content
           input#radio-second.hidden(type='radio' value='second' name='year' data-target='#item_b_target')
           label.relative(for='radio-second')
             span.relative.z-10 2030
-            .switch.absolute.inset-y-0.left-0.w-full.z-1.rounded.bg-green-400.duration-500.pointer-events-none
+            .switch.absolute.inset-y-0.left-0.w-full.z-1.rounded.bg-green-300.duration-500.pointer-events-none
 
-        .mt-4.text-xs.text-gray-400
-          svg.mx-auto(xmlns="http://www.w3.org/2000/svg" fill="#999" width="10" viewBox="0 0 3.06 4.03")
+        .mt-8.text-xs.text-gray-300
+          svg.mx-auto(xmlns="http://www.w3.org/2000/svg" fill="#ccc" width="10" viewBox="0 0 3.06 4.03")
             polygon(points="3.06 1.53 2.06 0.53 1.53 0 1 0.53 0 1.53 0.53 2.06 1.16 1.44 1.16 4.03 1.91 4.03 1.91 1.44 2.53 2.06 3.06 1.53")
           .mt-4.text-left Over three koala<br>generations, the<br>EOO has shrunk<br>by <b>30%</b> and the<br>AOO fallen&nbsp;<b>50%</b>
 
     .absolute.bottom-0.flex.flex-col(style="left: calc(50% + 225px)")
       .flex-1
         //.text-5xl.playfair.text-black -30%
-        .w-4.h-4.mb-2.bg-green-400
+        .w-4.h-4.mb-2.border.border-white.border-dashed
         .font-medium.uppercase.text-xs Extent of Occurence
-        .text-sm.text-gray-400 Total geographic <br>range of sightings
+        .text-sm.text-gray-300 Total geographic <br>range of sightings
       .flex-1.mt-6
         //.text-5xl.playfair.text-black -50%
         .w-4.h-4.mb-2.bg-yellow-300.rounded-full
         .font-medium.uppercase.text-xs Area of Occupancy
-        .text-sm.text-gray-400 Proportion of EOC<br>occupied by koalas
+        .text-sm.text-gray-300 Proportion of EOC<br>occupied by koalas
       
-  .mt-10.mb-8.border-t.h
+  .my-8.h-2
           
-  .px-12.text-center.playfair
-    .italic.text-lg.font-light “[The area of occupancy's] decline is so fast ... it does not matter whether you have 5K, 10K, or 50K koalas ... it warrants recognition of this animal as endangered at a State level already.”
-    .py-4.text-base.italic.text-gray-400 &mdash; Dr Stephen Phillips, Managing Director & Principal Research Scientist of Biolink (1.9)
+  .mx-20.text-justify
+    span.text-lg “[The area of occupancy's] decline is so fast ... it does not matter whether you have 5K, 10K, or 50K koalas ... it warrants recognition of this animal as endangered at a State level already.”
+    span.py-4.text-base.italic.font-light.text-gray-300 &emsp;&mdash; Dr Stephen Phillips, Managing Director & Principal Research Scientist of Biolink

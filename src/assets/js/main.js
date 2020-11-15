@@ -23,7 +23,7 @@ const COVER = 0,
 
 // COLORS
 const cream     = "#ece5d8",
-      black     = "#232626",
+      black     = "#191c1c",
       green100  = "#a4e3ad",
       green200  = "#6da990",
       green300  = "#4c8075",
@@ -38,8 +38,7 @@ var x  = 0,
     i  = 0,
     bg         = green400,
     navActive  = true,
-    mapNSWPlay = false,
-    invert     = false
+    mapNSWPlay = false
 
 // ELEMENTS
 const body      = document.querySelector('body'),
@@ -101,11 +100,20 @@ function onResize(e) {
 
 // Check keypress
 function checkKey(e) {
-  e.keyCode == 39 ? checkX(true) :    // right
-  e.keyCode == 37 ? checkX(false) :   // left
-  e.keyCode == 35 ? jumpTo(n-1) :       // end
-  e.keyCode == 36 ? jumpTo(0) : "";   // home
-  e.keyCode == 32 && i==CULTURE ? togglePlay() : "";   // spacebar
+  switch(e.keyCode){
+    // R
+    case 39: checkX(true); break;
+    // L
+    case 37: checkX(false); break;
+    // Home
+    case 35: jumpTo(n-1); break;
+    // End
+    case 36: jumpTo(0); break;
+    // Space
+    case 32: if (i==CULTURE) togglePlay(); break;
+    // Tab
+    case 9: e.preventDefault(); break;
+  }
 }
 
 
@@ -125,7 +133,7 @@ function slide(fwd) {
 // Execute methods when a slide becomes in view
 function onSlide(p) {
   let prev = document.querySelectorAll('.slide')[p];
-  let cur = document.querySelectorAll('.slide')[i];
+  let cur  = document.querySelectorAll('.slide')[i];
   let bgPrv = prev.querySelector('.bg-image');
   let bgCur = cur.querySelector('.bg-image');
 
@@ -135,19 +143,6 @@ function onSlide(p) {
   update(p); // Execute specific behaviour for targeted slides
 }
 
-
-// Jump to specific slide
-function jumpTo(index) {
-  let p = i;
-  let slides = document.querySelector('.slides');
-
-  i = index;
-  x = - index * vw;
-  translateX(slides, x);
-  onSlide(p);
-}
-
-
 function update(p) {
 
   let bgi = green400
@@ -156,25 +151,21 @@ function update(p) {
   if (p == COVER) { offHome() }
   else if ( p == TOURISM)  { document.querySelector('#obama').classList.toggle('hidden') }
   else if ( p == CULTURE)  { document.querySelector('video').pause(); }
-  else if ( p == INDIG)    { invert = false; }
-  else if ( p == RECOS || p == RECOS+1 )  { invert = false; }
-  else if ( p == SOLNS+1 ) { invert = false; }
 
   if (i == COVER) { onHome(); }
   else if (i == TOURISM)  { document.querySelector('#obama').classList.toggle('hidden') }
   else if (i == CULTURE)  { document.querySelector('video').play(); }
-  else if (i == INDIG)    { bgi = black; invert = true;}
+  else if (i == INDIG)    { bgi = black; }
   else if (i == LOCATION) { bgi = blue400; if(!mapNSWPlay){triggerMapNSW(); mapNSWPlay = true;}  }
   else if (i == CUTS)     { triggerForestCuts(); }
-  else if (i == RECOS-1)  { invert=false; }
-  else if (i == RECOS)    { invert=true;    layoutGrid(recoms);  }
+  else if (i == RECOS)    { layoutGrid(recoms); }
   else if (i == RECOS+1)  { layoutSplit(recoms, 1); }
   else if (i == RECOS+2)  { layoutSplit(recoms, 2); }
-  else if (i == SOLNS)    { mapSLN.style.transform = "translateX(0)"; triggerMapSLN('georges');   invert=true;  }
-  else if (i == SOLNS+1)  { mapSLN.style.transform = `translateX(${vw}px`; triggerMapSLN('gknp'); invert=true; bgi=blue400; }
+  else if (i == SOLNS)    { mapSLN.style.transform = "translateX(0)"; triggerMapSLN('georges');   bgi=blue400; }
+  else if (i == SOLNS+1)  { mapSLN.style.transform = `translateX(${vw}px`; triggerMapSLN('gknp'); bgi=blue400; }
 
   pager.style.left = `calc(${(100*i/n).toFixed(2)}% + 10px)`       // Update progress bar
-  bg != bgi ? updateColorScheme(bgi) : "";   // Update color scheme
+  bg != bgi ? setBackground(bgi) : "";   // Update color scheme
 }
 
 // Video functions
@@ -225,49 +216,33 @@ function toggleNav(show) {
 
 }
 
-function updateColorScheme(b) {
-
-  body.style.background = bg = b
-
-  // if (invert) {
-  //   // ON FOR DEFAULT SCHEME
-  //   nav.classList.remove('text-green-400')
-  //   nav.classList.remove('border-transparent')
-  //   // ON FOR DARK (inverted) SCHEME
-  //   nav.classList.add('text-white')
-  //   nav.classList.add('border-white')
-  // }
-  // else {
-  //   // ON FOR DEFAULT SCHEME
-  //   nav.classList.add('text-green-400')
-  //   nav.classList.add('border-transparent')
-  //   // ON FOR DARK (inverted) SCHEME
-  //   nav.classList.remove('text-white')
-  //   nav.classList.remove('border-white')
-  // }
-}
-
-
 // Helpers
+function setBackground(b) { body.style.background = bg = b }
 function onHome() {
-  invert = true
   toggleNav(true)
   nav.style.transform = ''
   navLine.style.opacity = 0.5
   navItemBg.forEach( e => e.style.opacity = 1)
 }
 function offHome() {
-  invert = false
   toggleNav(false)
   navLine.style.opacity = 0
   nav.style.transform = 'translateY(5rem)'
   navItemBg.forEach( e => e.style.opacity = 0)
 }
+function jumpTo(index) { // Jump to specific slide
+  let p = i;
+  let slides = document.querySelector('.slides');
 
-function translateX(el, x) {                  // Apply slide transform
+  i = index;
+  x = - index * vw;
+  translateX(slides, x);
+  onSlide(p);
+}
+function translateX(el, x) {    // Apply slide transform
   el.style.transform = `translateX(${x}px)`;
 }
-function checkX(fwd) {                        // Check for start or end position
+function checkX(fwd) {          // Check for start or end position
   if (fwd) { i<(n-1) ? slide(fwd) : ""; }
   else { i==0 ? "" : slide(fwd); }
 }
@@ -281,13 +256,11 @@ function toggleClasses(el,classes) {
     el.classList.toggle(classes[i])
   }
 }
-
 function positionTT(tt){
   let rec = tt.getBoundingClientRect()
   let l = rec.left, t = rec.top
   t < 0 ? tt.style.lineHeight = '1.25rem' : ""
   t < 0 ? tt.style.fontSize = '.8rem' : ""
 }
-
 
 import "./graph.js"
