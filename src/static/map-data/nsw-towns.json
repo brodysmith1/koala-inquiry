@@ -69,26 +69,26 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Tamworth"
+        "name": "Liverpool"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          150.92468,
-          -31.09057
+          150.918,
+          -33.928
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Bathurst"
+        "name": "Otford"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          148.6010,
-          -32.2499
+          151.010,
+          -34.210
         ]
       }
     },
@@ -147,13 +147,13 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Helensburgh"
+        "name": "Cronulla"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          151,
-          -34.1833
+          151.151,
+          -34.057
         ]
       }
     },
@@ -206,6 +206,19 @@
         "coordinates": [
           151.2073,
           -33.8708
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unprotected koala habitat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          150.79,
+          -34.23
         ]
       }
     }
