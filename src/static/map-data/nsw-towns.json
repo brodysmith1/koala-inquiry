@@ -22,8 +22,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          151.754150390625,
-          -32.93723381397089
+          151.7541503,
+          -32.9372338
         ]
       }
     },
@@ -35,8 +35,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          152.8912353515625,
-          -31.433350262414404
+          152.89123,
+          -31.43335
         ]
       }
     },
@@ -48,8 +48,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          153.11920166015625,
-          -30.294646395871705
+          153.1192,
+          -30.2946
         ]
       }
     },
@@ -61,8 +61,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          153.61083984374997,
-          -28.649620345339752
+          153.610839,
+          -28.649620
         ]
       }
     },
@@ -74,8 +74,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          150.9246826171875,
-          -31.09057409495418
+          150.92468,
+          -31.09057
         ]
       }
     },
@@ -87,8 +87,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          148.60107421875,
-          -32.249974455863295
+          148.6010,
+          -32.2499
         ]
       }
     },
@@ -101,7 +101,7 @@
         "type": "Point",
         "coordinates": [
           149.946,
-          -36.8493922
+          -36.849
         ]
       }
     },
@@ -113,8 +113,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          149.11605834960938,
-          -35.29831467054512
+          149.11605,
+          -35.29831
         ]
       }
     },
@@ -126,8 +126,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          150.88623046875,
-          -34.415973384481866
+          150.8862304,
+          -34.4159733
         ]
       }
     },
@@ -186,13 +186,26 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Western Sydney International Airport"
+        "name": "Western Sydney Intl. Airport"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          150.7,
-          -33.8853
+          150.709,
+          -33.909
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sydney CBD"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.2073,
+          -33.8708
         ]
       }
     }

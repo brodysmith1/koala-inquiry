@@ -49,6 +49,7 @@ export function loadMapNSW() {
   ]).then( (data) => drawMapNSW(data, hubs) );
 
 }
+
 export function triggerMapNSW() {
 
   // Animation defs
@@ -141,14 +142,14 @@ function drawMapNSW(data) {
   let fires = data[6]
   let hubs  = {}
 
-  town        = data[1]
+  town         = data[1]
   hubs.all     = data[2]
   hubs.crown   = data[3]
   hubs.private = data[4]
   hubs.state   = data[5]
 
   // Map defs
-  const highlights = ["Greater Sydney","Southern Highlands and Shoalhaven","Coffs Harbour - Grafton","Richmond - Tweed","Mid North Coast"]
+  const towns = ["Coffs Harbour", "Byron Bay", "Newcastle", "Wollongong", "Port Macquarie", "Sydney", "Eden"]
   let projection = setProjection(extents.nsw)
 
   // Create svg canvas
@@ -167,8 +168,7 @@ function drawMapNSW(data) {
     .attr('d', d3.geoPath(projection))
     .attr('class', 'basemap fill-current text-green-400')
     .attr('stroke', 'white')
-    .attr('stroke-width', 0.2)
-    .classed('highlight', d => highlights.includes(d.properties.name) );
+    .attr('stroke-width', 0.2);
 
   // ALL HUBS
   svg.append('g')
@@ -213,7 +213,7 @@ function drawMapNSW(data) {
   // Town names
   svg.append('g')
     .selectAll('text')
-    .data(town.features)
+    .data( town.features.filter( t => towns.includes(t.properties.name)) )
     .join('text')
       .attr('class', 'towns fill-current text-gray-200 opacity-50 text-sm uppercase font-medium tracking-wide')
       .attr('x', d => projection(d.geometry.coordinates)[0] )
@@ -221,12 +221,7 @@ function drawMapNSW(data) {
       .attr('dx', -1)
       .attr('dy', 7)
       .attr("text-anchor", "start")
-      .text( (d) => "— " + d.properties.name )
-      .attr('display', d => {
-        return d.properties.name == "Coffs Harbour" || d.properties.name == "Byron Bay" ||
-        d.properties.name == "Newcastle" || d.properties.name == "Wollongong" ||
-        d.properties.name == "Port Macquarie" || d.properties.name == "Sydney" ? "block" : "none"
-      });
+      .text( (d) => "— " + d.properties.name );
 
 }
 
@@ -238,7 +233,7 @@ export function loadMapSLN() {
       grnp = "./map-data/grknp-4326.json",
       grco = "./map-data/sws-corridors.json",
       grrv = "./map-data/grrv.json",
-      gknp = "./map-data/gknp-4326-combined.json"
+      gknp = "./map-data/gknp-split.json"
 
   Promise.all([
     d3.json(map),
@@ -298,7 +293,8 @@ function drawMapSLN(data) {
 
   // Map defs
   let projection = setProjection(extents['georges']),
-      points = ["Parramatta", "Campbelltown", "Helensburgh", "Sydney Airport", "Coffs Harbour"]
+      towns = ["Parramatta", "Campbelltown", "Helensburgh", "Sydney Airport", "Coffs Harbour", "Sydney CBD"],
+      feats = ["Western Sydney Intl. Airport", "National Park", "State Forest"]
 
   // Textures
   let texture = {}
@@ -370,20 +366,33 @@ function drawMapSLN(data) {
     .data(gknp.features)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('class', 'fill-current text-green-300');
+    .style('fill',  (d,i) => i ? "#4c8075" : texture.scrub.url())
+    .style('stroke',(d,i) => i ? "white"   : "");
 
 
   // Towns
   svg.append('g')
     .selectAll('text')
-    .data( town.features.filter( d => points.includes(d.properties.name) ))
+    .data( town.features.filter( t => towns.includes(t.properties.name)) )
     .join('text')
     .attr('class', 'fill-current text-white text-sm uppercase font-medium tracking-wide')
     .attr('x', d => projection(d.geometry.coordinates)[0] )
     .attr('y', d => projection(d.geometry.coordinates)[1] )
     .attr('dy', 8)
-    .attr("text-anchor", "end")
-    .text( (d) => d.properties.name + " ▪" )
+    .attr("text-anchor", "start")
+    .text( (d) => "▪ " + d.properties.name );
+
+  // Features
+  svg.append('g')
+    .selectAll('text')
+    .data( town.features.filter( t => feats.includes(t.properties.name)) )
+    .join('text')
+    .attr('class', 'fill-current text-gray-300 text-sm font-light italic')
+    .attr('x', d => projection(d.geometry.coordinates)[0] )
+    .attr('y', d => projection(d.geometry.coordinates)[1] )
+    .attr('dy', 8)
+    .attr("text-anchor", "start")
+    .text( (d) => "— " + d.properties.name );
 
 }
 
