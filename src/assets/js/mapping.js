@@ -242,9 +242,10 @@ export function loadMapSLN() {
     d3.json(grco),
     d3.json(grrv),
     d3.json(gknp)
-  ]).then( (data) => drawMapSLN(data) )
+  ]).then( (data) => setTimeout( () => drawMapSLN(data), 5000 ) )
 
 }
+
 export function triggerMapSLN(view) {
   let svg     = d3.select("#soln-map svg")
   let paths   = svg.selectAll("g path")
@@ -279,7 +280,7 @@ export function triggerMapSLN(view) {
 
 function drawMapSLN(data) {
 
-  console.log('drawMapNSW')
+  console.log('5s Load')
 
   // Svg defs
   let w = 900,
