@@ -279,6 +279,8 @@ export function triggerMapSLN(view) {
 
 function drawMapSLN(data) {
 
+  console.log('drawMapNSW')
+
   // Svg defs
   let w = 900,
       h = 1000;
@@ -369,11 +371,12 @@ function drawMapSLN(data) {
     .style('fill',  (d,i) => i ? "#4c8075" : texture.scrub.url())
     .style('stroke',(d,i) => i ? "white"   : "");
 
-
+  console.log(town);
+  let tfilter = town.features.filter( t => towns.includes(t.properties.name))
   // Towns
   svg.append('g')
     .selectAll('text')
-    .data( town.features.filter( t => towns.includes(t.properties.name)) )
+    .data( tfilter )
     .join('text')
     .attr('class', 'fill-current text-white text-sm uppercase font-medium tracking-wide')
     .attr('x', d => projection(d.geometry.coordinates)[0] )
