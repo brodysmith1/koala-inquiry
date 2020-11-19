@@ -293,8 +293,8 @@ function drawMapSLN(data) {
 
   // Map defs
   let projection = setProjection(extents['georges']),
-      towns = ["Parramatta", "Cronulla", "Liverpool", "Otford", "Sydney Airport", "Coffs Harbour", "Campbelltown", "Sydney CBD"],
-      feats = ["Western Sydney Intl. Airport", "National Park", "Unprotected koala habitat"]
+      towns = ["Cronulla", "Otford", "Coffs Harbour", "Sydney Airport", "Campbelltown", "Sydney CBD", "Parramatta", "Liverpool"],
+      feats = ["Western Sydney Intl. Airport", "Unprotected koala habitat", "Georges River Koala Reserve", "Existing national park", "State forest to be converted"]
 
   // Textures
   let texture = {}
@@ -379,15 +379,16 @@ function drawMapSLN(data) {
     .attr('x', d => projection(d.geometry.coordinates)[0] )
     .attr('y', d => projection(d.geometry.coordinates)[1] )
     .attr('dy', 8)
-    .attr("text-anchor", (d,i) => i < 5 ? "start" : "end")
-    .text( (d,i) => i < 5 ? "▪ " + d.properties.name : d.properties.name + " ▪" );
+    .attr("text-anchor", (d,i) => towns.indexOf(d.properties.name) < 3 ? "start" : "end")
+    .text( (d,i) => towns.indexOf(d.properties.name) < 3 ? "▪ " + d.properties.name : d.properties.name + " ▪" );
 
   // Features
   svg.append('g')
     .selectAll('text')
     .data( town.features.filter( t => feats.includes(t.properties.name)) )
     .join('text')
-    .attr('class', 'fill-current text-green-100 text-sm font-light italic')
+    .attr('class', 'text-sm font-light italic')
+    .attr('fill', (d,i) => i ? '#a4e3ad' : '#c0c0c0')
     .attr('x', d => projection(d.geometry.coordinates)[0] )
     .attr('y', d => projection(d.geometry.coordinates)[1] )
     .attr('dy', 8)

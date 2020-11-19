@@ -1,41 +1,48 @@
 mixin nav()
-	- let n = 31
+	- let n = 32
 	- let delay = 0
 	- let START = 0
 	- let COUNT = 3
-	- let VALUE = 5
-	- let CAUSE = 11
-	- let POLCY = 14
+	- let VALUE = 6
+	- let CAUSE = 10
+	- let POLCY = 13
 	- let REC0S = 16
+	- let PARKS = 19
 	- let HEROS = 21
+	- let VISON = 31
 
-	#pager.absolute.bottom-0.h-3.w-3.bg-green-200.duration-500.ease-out.z-10.rounded-full
-	#nav.fixed.bottom-0.w-screen.flex.text-center.text-sm.z-10(style="transition: transform 0.5s; height: 7rem;")
-		#nav-line.absolute.border-white.w-screen.duration-500.opacity-0(style="top: .75rem; border-top: 0.5px dashed;")
+	#pager
+	#nav(style="transition: transform 0.5s; height: 7rem;")
+		#nav-line(style="top: .75rem; border-top: 0.5px dashed;")
+		#nav-label SECTIONS ↴
+		
 		each v, i in new Array(n)
 			case i
 				when START
 					- v = "Start"
 				when COUNT
-					- v = "Populations"
+					- v = "Koalas in NSW"
 				when VALUE
-					- v = "Value"
+					- v = "Valuing Koalas"
 				when CAUSE
 					- v = "Causes of Decline"
 				when POLCY
-					- v = "Current Policies"
+					- v = "Current Policy"
 				when REC0S
 					- v = "Recommendations"
+				when PARKS
+					- v = "Koala Parks"
 				when HEROS
-					- v = "Arguments"
+					- v = "Concerns"
+				when VISON
+					- v = "A Future Vision"
 				default
 					- v = ""
-	        
-			.relative.flex-1.h-3.duration-500
-				.nav-item.absolute.opacity-0.playfair-italic.whitespace-no-wrap.cursor-pointer.z-10.slide-up(
-					class=`${(v ? "px-2" : "")} delay-${delay}`
-					data-slide=i
-				)= v
-				if v
-					.nav-item-bg.text-green-400.bg-green-400.absolute.px-2.z-1.playfair-italic.whitespace-no-wrap.duration-700= v
+	    
+			if v
+				.relative.h-3.duration-500
+					.nav-item.bg-green-400(
+						class=`${(v ? "px-2" : "")} delay-${delay}`
+						data-slide=i
+					)= v
 					- delay++

@@ -68,8 +68,23 @@ body {
   transition: background 500ms;
 }
 
+#nav {
+  @apply fixed bottom-0 w-screen flex justify-around text-sm z-10;
+}
+#nav-line {
+  @apply absolute border-white w-screen duration-500 opacity-0;
+}
+#nav-label {
+  @apply absolute w-screen text-center duration-700 text-xs tracking-wide font-medium opacity-0;
+}
+#pager {
+  @apply absolute top-0 left-0 bg-green-200 duration-500 ease-out z-10;
+  height: 5px
+}
+
 .nav-item {
-  transition: margin-top ease-out 300ms;
+  transition: margin-top ease-out 300ms, opacity ease-out 300ms;
+  @apply opacity-0 playfair-italic whitespace-no-wrap cursor-pointer z-10;
 }
 .nav-item:hover {
   @apply text-green-200;

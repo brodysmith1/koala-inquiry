@@ -7,6 +7,10 @@ block content
     .absolute.my-auto.inset-0.mx-24.h-64
           
       #timeline.relative.flex.flex-col(class="md:flex-row")
+      
+        .absolute.z-10.text-center.text-xs(style="left: 72.5%; width: 15%; bottom: 2.25rem") 
+          span.px-6.py.bg-red-300.text-white.uppercase.font-medium.tracking-wide Bushfires
+      
         - let start = 2016
         for f,i in new Array(5)
           .node.flex.flex-1.flex-row-reverse.p-2(class="sm:px-0 md:px-4 md:py-0 md:flex-col-reverse")
@@ -31,9 +35,9 @@ block content
                     +link('Koala Strategy', 'https://www.environment.nsw.gov.au/topics/animals-and-plants/threatened-species/programs-legislation-and-framework/nsw-koala-strategy')
                     |  launched by NSW Government
                 when 2019
-                  .mb-2 NSW parliamentary inquiry into koala populations launched 
+                  .mb-2 NSW parliamentary inquiry into koala populations launched
                 when 2020
-                  .mb-2 
+                  .mb-2
                     | Inquiry 
                     +link('report', 'https://www.parliament.nsw.gov.au/lcdocs/inquiries/2536/Koala%20populations%20and%20habitat%20in%20New%20South%20Wales%20-%20Report%203.pdf')
                     |  released.<br>National Party tries to split the Coalition over koala policy.

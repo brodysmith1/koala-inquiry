@@ -37,7 +37,7 @@ var x  = 0,
     n  = 32,
     i  = 0,
     bg         = green400,
-    navActive  = true,
+    navActive  = false,
     mapNSWPlay = false
 
 // ELEMENTS
@@ -45,7 +45,8 @@ const body      = document.querySelector('body'),
       nav       = document.querySelector('#nav'),
       mapSLN    = document.querySelector('#soln-map'),
       navLine   = document.querySelector('#nav-line'),
-      navItemBg = document.querySelectorAll('.nav-item-bg'),
+      navItems  = document.querySelectorAll('.nav-item'),
+      navLabel  = document.querySelector('#nav-label'),
       pager     = document.querySelector('#pager'),
       recoms    = document.querySelectorAll('.recommendation')
 
@@ -164,7 +165,7 @@ function update(p) {
   else if (i == SOLNS)    { mapSLN.style.transform = "translateX(0)"; triggerMapSLN('georges');   bgi=blue400; }
   else if (i == SOLNS+1)  { mapSLN.style.transform = `translateX(${vw}px`; triggerMapSLN('gknp'); bgi=blue400; }
 
-  pager.style.left = `calc(${(100*i/n).toFixed(2)}% + 10px)`       // Update progress bar
+  pager.style.width = `${(100*i/(n-1)).toFixed(0)}%`       // Update progress bar
   bg != bgi ? setBackground(bgi) : "";   // Update color scheme
 }
 
@@ -187,28 +188,27 @@ function toggleSound() {
 
 // Other events
 function setNav() {
-  let navItems = document.querySelectorAll('.nav-item');
-
   nav.addEventListener('mouseenter', () => toggleNav(true)  )
   nav.addEventListener('mouseleave', () => toggleNav(false) )
   navItems.forEach( el => el.addEventListener('click', () => jumpTo(+el.dataset.slide)) )
-
 }
 
 function toggleNav(show) {
 
   if (show && !navActive) {
     navActive = !navActive;
-    document.querySelectorAll('.nav-item').forEach( el => {
-      el.classList.add('opacity-0');
+    navLabel.style.opacity = 0;
+    navItems.forEach( el => {
+      el.style.opacity = 0;
       el.style.animationDirection = 'normal';
       restartAnimation(el, 'slide-up');
     });
   }
   else if (!show && navActive && i != COVER) {
     navActive = !navActive;
-    document.querySelectorAll('.nav-item').forEach( el => {
-      el.classList.remove('opacity-0');
+    navLabel.style.opacity = 0.75;
+    navItems.forEach( el => {
+      el.style.opacity = 1;
       el.style.animationDirection = 'reverse';
       restartAnimation(el, 'slide-up');
     });
@@ -222,13 +222,13 @@ function onHome() {
   toggleNav(true)
   nav.style.transform = ''
   navLine.style.opacity = 0.5
-  navItemBg.forEach( e => e.style.opacity = 1)
+  navItems.forEach( e => e.classList.add('bg-green-400'))
 }
 function offHome() {
   toggleNav(false)
   navLine.style.opacity = 0
   nav.style.transform = 'translateY(5rem)'
-  navItemBg.forEach( e => e.style.opacity = 0)
+  navItems.forEach( e => e.classList.remove('bg-green-400'))
 }
 function jumpTo(index) { // Jump to specific slide
   let p = i;

@@ -48,7 +48,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          153.1192,
+          153.128,
           -30.2946
         ]
       }
@@ -219,6 +219,45 @@
         "coordinates": [
           150.79,
           -34.23
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Georges River Koala Reserve"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          150.865,
+          -34.075
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Existing national park"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.078,
+          -30.407
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "State forest to be converted"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.009,
+          -30.621
         ]
       }
     }

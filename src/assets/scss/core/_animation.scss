@@ -37,8 +37,8 @@
 
 @for $i from 0 through 20 {
   .delay-#{$i} {
-    animation-delay: $i * 100ms;
-    -webkit-animation-delay: $i * 100ms;
+    animation-delay: $i * 80ms;
+    -webkit-animation-delay: $i * 80ms;
   }
 }
 
