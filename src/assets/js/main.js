@@ -2,8 +2,7 @@ import VanillaTilt from "vanilla-tilt";
 
 import { triggerMapNSW } from "./mapping.js";
 import { triggerMapSLN } from "./mapping.js";
-import { loadMapNSW } from "./mapping.js";
-import { loadMapSLN } from "./mapping.js";
+import { loadMaps } from "./mapping.js";
 
 import { loadGraphEOC } from "./graph.js";
 import { triggerForestCuts } from "./graph.js";
@@ -65,8 +64,7 @@ function onLoad() {
 
   update(null);
   setNav();
-  loadMapNSW();
-  loadMapSLN();
+  loadMaps();
   loadGraphEOC();
 
   document.querySelector('#video-container').addEventListener( 'click', togglePlay );

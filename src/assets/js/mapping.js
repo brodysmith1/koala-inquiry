@@ -24,7 +24,7 @@ const extents = {
   }
 }
 
-export function loadMapNSW() {
+export function loadMaps() {
 
   // Data defs
   let ausmap = "./map-data/sa4-au-east.json";
@@ -46,10 +46,10 @@ export function loadMapNSW() {
     d3.json(hubs.src[2]),
     d3.json(hubs.src[3]),
     d3.json(hubs.src[4])
-  ]).then( (data) => drawMapNSW(data, hubs) );
+  ]).then( (data) => drawMapNSW(data, hubs) )
+    .then( () => loadMapSLN() );
 
 }
-
 export function triggerMapNSW() {
 
   // Animation defs
@@ -225,7 +225,9 @@ function drawMapNSW(data) {
 
 }
 
-export function loadMapSLN() {
+function loadMapSLN() {
+
+  console.log('Promise loading')
 
   // Data defs
   let map   = "./map-data/nsw-rda.json",
@@ -242,10 +244,9 @@ export function loadMapSLN() {
     d3.json(grco),
     d3.json(grrv),
     d3.json(gknp)
-  ]).then( (data) => setTimeout( () => drawMapSLN(data), 5000 ) )
+  ]).then( (data) => drawMapSLN(data) )
 
 }
-
 export function triggerMapSLN(view) {
   let svg     = d3.select("#soln-map svg")
   let paths   = svg.selectAll("g path")
@@ -277,10 +278,7 @@ export function triggerMapSLN(view) {
       .attr('y', d => proj(d.geometry.coordinates)[1])
   }
 }
-
 function drawMapSLN(data) {
-
-  console.log('5s Load')
 
   // Svg defs
   let w = 900,
