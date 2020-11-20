@@ -38,9 +38,9 @@ export const layoutSplit = (nodes, page) => {
   fade.forEach( r => {r.style.opacity = 0; r.classList.add('pointer-events-none')} )
   soln.forEach( (r,i) => r.style = `top: 80%; left: ${100*(i+2)/6}%; transform: scale(1.1); z-index: 10` )
 
-  a[0].style = "opacity: 1; top: -13%; left: 8px;"
-  a[1].style = `opacity: 1; top: -13%; left: calc(${100*7/8}% + ${16-a[1].offsetWidth/2}px);`
-  a[2].style = `opacity: 1; top: 95%;  left: calc(50% - 90px);`
+  a[0].style = "opacity: 1; top: -15%; left: 8px;"
+  a[1].style = `opacity: 1; top: -15%; left: calc(${100*7/8}% + ${16-a[1].offsetWidth/2}px);`
+  a[2].style = `opacity: 1; top: 97%;  left: calc(50% - 90px);`
 
   if (page == 1) {
 
