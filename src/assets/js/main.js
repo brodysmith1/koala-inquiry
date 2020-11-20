@@ -60,6 +60,7 @@ document.addEventListener('keydown', checkKey);    // TODO: DEBOUNCE
 window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 250) };               // TODO: DEBOUNCE
 
 function onFontLoad() {
+  console.log('Trying font load')
   if (loaded) { return }
   loaded = true
   const end = new Date()
