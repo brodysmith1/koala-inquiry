@@ -49,16 +49,8 @@ svg .key {
 }
 
 .annotation {
-  @apply absolute w-48 text-center text-white text-xs tracking-wide uppercase z-n1 text-green-200 duration-1000;
-
-  &.frag {
-    @apply text-center;
-    width: 17rem;
-  }
-  &.soln {
-    @apply text-center;
-    width: 14.5rem;
-  }
+  @apply absolute opacity-0 text-center text-white text-xs tracking-wide uppercase z-n1 text-green-200 duration-1000;
+  width: 300px
 }
 
 .recommendation {

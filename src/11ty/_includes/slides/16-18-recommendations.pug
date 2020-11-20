@@ -32,7 +32,7 @@ block content
         )= r.id
           .tooltip.opacity-0(class=`${i<15?"below":""}`)!= `<b>Recommendation ${r.id}:</b> ${r.description}`
       
-      .annotation.frag Protects koala colonies and habitat, but in a fragmented or long-term capacity
-      .annotation.fire Enables bushfire recovery and future fire protection
-      .annotation.soln Ensures large areas of connected koala habitat without burdening private landowners, with potential economic gains
+      .annotation.frag(style="top: -13%; left: -4px;") Protects koala colonies and habitat, but<br>in a fragmented or long-term capacity
+      .annotation.fire(style=`top: -13%; left: calc(${100*7/8}% - 142px);`) Enables bushfire recovery<br>and future fire protection
+      .annotation.soln(style="top: 96%;  left: calc(50% - 125px);") Ensures large areas of connected<br>koala habitat without burdening<br>private landowners, with<br>potential economic gains
     
