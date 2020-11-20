@@ -10,6 +10,8 @@ import { triggerForestCuts } from "./graph.js";
 import { layoutGrid } from "./force.js";
 import { layoutSplit } from "./force.js";
 
+import "./graph.js"
+
 // ENUMS
 const COVER = 0,
       LOCATION = 3,
@@ -260,5 +262,3 @@ function positionTT(tt){
   t < 0 ? tt.style.lineHeight = '1.25rem' : ""
   t < 0 ? tt.style.fontSize = '.8rem' : ""
 }
-
-import "./graph.js"

@@ -227,8 +227,6 @@ function drawMapNSW(data) {
 
 function loadMapSLN() {
 
-  console.log('Promise loading')
-
   // Data defs
   let map   = "./map-data/nsw-rda.json",
       wsap = "./map-data/wsia-4326.json",
@@ -370,12 +368,10 @@ function drawMapSLN(data) {
     .style('fill',  (d,i) => i ? "#4c8075" : texture.scrub.url())
     .style('stroke',(d,i) => i ? "white"   : "");
 
-  console.log(town);
-  let tfilter = town.features.filter( t => towns.includes(t.properties.name))
   // Towns
   svg.append('g')
     .selectAll('text')
-    .data( tfilter )
+    .data( town.features.filter( t => towns.includes(t.properties.name)) )
     .join('text')
     .attr('class', 'fill-current text-white text-sm uppercase font-medium tracking-wide')
     .attr('x', d => projection(d.geometry.coordinates)[0] )

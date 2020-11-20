@@ -35,6 +35,7 @@
   -webkit-animation: block-reveal 1.5s cubic-bezier(.74, .06, .4, .92) forwards;
 }
 
+/*! purgecss start ignore */
 @for $i from 0 through 20 {
   .delay-#{$i} {
     animation-delay: $i * 80ms;
@@ -48,6 +49,7 @@
     -webkit-transition: all ease-out 0.5s $i * 10ms, background-color 0.3s, color 0.1s;
   }
 }
+/*! purgecss end ignore */
 
 // KEYFRAMES
 
