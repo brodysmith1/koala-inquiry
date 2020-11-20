@@ -37,7 +37,8 @@ var x  = 0,
     i  = 0,
     bg         = green400,
     navActive  = false,
-    mapNSWPlay = false
+    mapNSWPlay = false,
+    loaded     = false
 
 // ELEMENTS
 const body      = document.querySelector('body'),
@@ -58,15 +59,18 @@ document.addEventListener('keydown', checkKey);         // TODO: DEBOUNCE
 window.onresize = onResize;                             // TODO: DEBOUNCE
 
 function onFontLoad() {
+  if (loaded) { return }
+  loaded = true
   const end = new Date()
   console.log(`Fonts loaded in ${end-start}ms`)
-  document.querySelector('#loader').style.opacity = 0;
+  document.querySelector('#loader').style.opacity = 0
   setTimeout( () => update(null), 200 )
 }
 
 // Load
 function onDOMLoad() {
 
+  setTimeout(onFontLoad, 3500 ) // fallback if fonts don't load
   document.fonts.ready.then(onFontLoad)
 
   setNav()
