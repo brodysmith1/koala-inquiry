@@ -7,16 +7,16 @@ var targetSLN = 'georges',
 
 const extents = {
   "nsw": {
-    "scale": 3550,
-    "center": [151.8,-31.4]
+    "scale": 4100,
+    "center": [151.6,-30.4]
   },
   "georges": {
-    "scale": 60000,
-    "center": [151.1,-33.95]
+    "scale": 64000,
+    "center": [150.99,-33.88]
   },
   "gknp": {
-    "scale": 30000,
-    "center": [153.1,-30.1]
+    "scale": 37000,
+    "center": [152.93,-30.09]
   },
   "default": {
     "scale": 15000,
@@ -151,14 +151,14 @@ function drawMapNSW(data) {
   hubs.state   = data[5]
 
   // Map defs
-  const towns = ["Coffs Harbour", "Byron Bay", "Newcastle", "Wollongong", "Port Macquarie", "Sydney", "Eden"]
+  const towns = ["Coffs Harbour", "Byron Bay", "Newcastle", "Wollongong", "Port Macquarie", "Sydney", "Narooma"]
   let projection = setProjection(extents.nsw)
 
   // Create svg canvas
   var svg = d3.select("body #nsw-map")
       .append("svg")
       .attr("width", "100%")
-      .attr("height", h)
+      .attr("height", "100vh")
       .attr("viewBox", [0,0,w,h])
       .attr("preserveAspectRatio", "xMinYMin");
 
@@ -217,7 +217,7 @@ function drawMapNSW(data) {
     .selectAll('text')
     .data( town.features.filter( t => towns.includes(t.properties.name)) )
     .join('text')
-      .attr('class', 'towns fill-current text-gray-200 opacity-50 text-sm uppercase font-medium tracking-wide')
+      .attr('class', 'towns fill-current text-gray-200 opacity-50 text-base uppercase font-medium tracking-wide')
       .attr('x', d => projection(d.geometry.coordinates)[0] )
       .attr('y', d => projection(d.geometry.coordinates)[1] )
       .attr('dx', -1)
@@ -306,7 +306,7 @@ function drawMapSLN(data) {
 
   // Map defs
   let projection = setProjection(extents['georges']),
-      towns = ["Cronulla", "Otford", "Coffs Harbour", "Sydney Airport", "Campbelltown", "Sydney CBD", "Parramatta", "Liverpool"],
+      towns = ["Cronulla", "Otford", "Coffs Harbour", "Bulli", "Campbelltown", "Sydney CBD", "Parramatta"],
       feats = ["Western Sydney Intl. Airport", "Unprotected koala habitat", "Georges River Koala Reserve", "Existing national park", "State forest to be converted"]
 
   // Textures
@@ -318,7 +318,7 @@ function drawMapSLN(data) {
   var svg = d3.select("#soln-map")
       .append("svg")
       .attr("width", "100%")
-      .attr("height", h)
+      .attr("height", "100vh")
       .attr("viewBox", [0,0,w,h])
       .attr("preserveAspectRatio", "xMinYMin")
       .call(texture.scrub)
@@ -387,24 +387,25 @@ function drawMapSLN(data) {
     .selectAll('text')
     .data( town.features.filter( t => towns.includes(t.properties.name)) )
     .join('text')
-    .attr('class', 'fill-current text-white text-sm uppercase font-medium tracking-wide')
+    .attr('class', 'fill-current text-gray-300 text-base uppercase font-medium tracking-wide')
     .attr('x', d => projection(d.geometry.coordinates)[0] )
     .attr('y', d => projection(d.geometry.coordinates)[1] )
     .attr('dy', 8)
-    .attr("text-anchor", (d,i) => towns.indexOf(d.properties.name) < 3 ? "start" : "end")
-    .text( (d,i) => towns.indexOf(d.properties.name) < 3 ? "▪ " + d.properties.name : d.properties.name + " ▪" );
+    .attr("text-anchor", (d,i) => towns.indexOf(d.properties.name) < 4 ? "start" : "end")
+    .text( (d,i) => towns.indexOf(d.properties.name) < 4 ? "▪ " + d.properties.name : d.properties.name + " ▪" );
 
   // Features
   svg.append('g')
     .selectAll('text')
     .data( town.features.filter( t => feats.includes(t.properties.name)) )
     .join('text')
-    .attr('class', 'text-sm font-light italic')
+    .attr('class', 'text-base font-light italic')
     .attr('fill', (d,i) => i ? '#a4e3ad' : '#c0c0c0')
     .attr('x', d => projection(d.geometry.coordinates)[0] )
     .attr('y', d => projection(d.geometry.coordinates)[1] )
     .attr('dy', 8)
     .attr("text-anchor", "start")
+    .classed('text-lg', (d,i) => i)
     .text( (d) => "— " + d.properties.name );
 
 }

@@ -69,13 +69,13 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Liverpool"
+        "name": "Bulli"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          150.918,
-          -33.928
+          150.921,
+          -34.333
         ]
       }
     },
@@ -95,13 +95,13 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Eden"
+        "name": "Narooma"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          149.946,
-          -36.849
+          150.1082,
+          -36.2419
         ]
       }
     },

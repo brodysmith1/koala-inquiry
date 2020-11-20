@@ -2,7 +2,7 @@ doctype html
 //- Import mixins here to use globally
 include ../../_includes/mixins/mixins.pug
 
-html(lang='en-us' class='antialiased overflow-hidden')
+html(lang='en-us' class='antialiased')
 	head
 		//- Meta Tags
 		title=site.metaTitle
@@ -21,7 +21,7 @@ html(lang='en-us' class='antialiased overflow-hidden')
 		if(project.production)
 			script(defer src=assets["sw.js"])
 
-	body.bg-green-400.text-white
+	body.bg-green-400.text-white.overflow-hidden.h-screen
 		+nav
 		.slides.flex.min-h-screen.duration-500.ease-out.text-lg
 			block slides
