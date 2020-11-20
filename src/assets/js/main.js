@@ -72,7 +72,7 @@ function onFontLoad() {
 
 function onDOMLoad() {
 
-  setTimeout(onFontLoad, 3500 ) // fallback if fonts don't load
+  setTimeout(onFontLoad, 3000 ) // fallback if fonts don't load
   document.fonts.ready.then(onFontLoad)
 
   setNav()
