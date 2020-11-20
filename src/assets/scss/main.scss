@@ -82,8 +82,11 @@ svg .key {
 }
 
 body {
+  @apply bg-green-400 text-white overflow-hidden h-screen;
   transition: background 500ms;
 }
+
+.slides { @apply flex min-h-screen duration-500 ease-out text-lg }
 
 #nav {
   @apply fixed bottom-0 w-screen flex justify-around text-sm z-10;
