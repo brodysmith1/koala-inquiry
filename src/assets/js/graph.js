@@ -39,14 +39,15 @@ function shrinkDots(shrink) {
   let dots = d3.select("#graph-extent-occurence #occupancy");
   let w = 200,
       h = 150,
-      eoo = 0.7,
+      eoo = 0.3*2,
       scale = 2;
 
   w *= scale;
   h *= scale;
 
   dots.transition()
-    .duration(1500)
+    .duration(1200)
+    .ease(d3.easePolyInOut.exponent(2))
     .selectAll('circle')
     .attr('transform', function() {
       if (!shrink) { return "translate(0 0)" }
@@ -59,18 +60,16 @@ function shrinkDots(shrink) {
 }
 
 function shrinkRect(shrink) {
-  let rect = d3.select("#graph-extent-occurence #occurence");
-  rect.transition()
-    .duration(1500)
-    .attr('transform', shrink ? 'scale(0.7, 1)' : 'scale(1)' )
-    .attr('stroke-width', shrink ? '1' : '0' )
+  let occ = document.querySelector("#graph-extent-occurence #occurence");
+  occ.setAttribute('stroke-width', shrink ? '1' : '0' );
+  occ.classList.toggle('shrink');
 }
 
 function dissolveDots(shrink) {
   let dissolve = d3.select('#graph-extent-occurence #occupancy .dissolve');
   dissolve
     .transition()
-    .duration(1500)
+    .duration(1200)
     .style('opacity', () => shrink ? 0 : 1 )
 }
 

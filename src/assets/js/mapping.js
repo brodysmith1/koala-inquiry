@@ -24,33 +24,8 @@ const extents = {
   }
 }
 
-export function loadMaps() {
-
-  // Data defs
-  let ausmap = "./map-data/sa4-au-east.json";
-  let towns = "./map-data/nsw-towns.json";
-  let hubs = {};
-
-  hubs.src = ["./map-data/wwf_all.json",
-               "./map-data/wwf_crown.json",
-               "./map-data/wwf_private.json",
-               "./map-data/wwf_state.json",
-               "./map-data/burned-area.json",
-              ];
-
-  Promise.all([
-    d3.json(ausmap),
-    d3.json(towns),
-    d3.json(hubs.src[0]),
-    d3.json(hubs.src[1]),
-    d3.json(hubs.src[2]),
-    d3.json(hubs.src[3]),
-    d3.json(hubs.src[4])
-  ]).then( (data) => drawMapNSW(data, hubs) )
-    .then( () => loadMapSLN() );
-
-}
-export function triggerMapNSW() {
+/*
+function triggerMapNSW() {
 
   // Animation defs
   const n = 4,
@@ -129,6 +104,33 @@ export function triggerMapNSW() {
       .duration(1000)
       .ease(d3.easeElasticIn.amplitude(1).period(0.841))
       .style('height','0%');
+}
+*/
+
+export function loadMaps() {
+
+  // Data defs
+  let ausmap = "./map-data/sa4-au-east.json";
+  let towns = "./map-data/nsw-towns.json";
+  let hubs = {};
+
+  hubs.src = ["./map-data/wwf_all.json",
+               "./map-data/wwf_crown.json",
+               "./map-data/wwf_private.json",
+               "./map-data/wwf_state.json",
+               "./map-data/burned-area.json",
+              ];
+
+  Promise.all([
+    d3.json(ausmap),
+    d3.json(towns),
+    d3.json(hubs.src[0]),
+    d3.json(hubs.src[1]),
+    d3.json(hubs.src[2]),
+    d3.json(hubs.src[3]),
+    d3.json(hubs.src[4])
+  ]).then( (data) => drawMapNSW(data, hubs) )
+    .then( () => loadMapSLN() );
 
 }
 function drawMapNSW(data) {
@@ -228,6 +230,10 @@ function drawMapNSW(data) {
   d3.selectAll(".map-p .cursor-pointer")
     .style('transition', 'background-color 0.5s, color 0.5s')
     .on('click', showData);
+
+  d3.select(".map-p .cursor-pointer")
+    .transition()
+    .on('end', showData);
 
 }
 
@@ -412,7 +418,6 @@ function setProjection(target) {
 function showData() {
   let t = this.dataset.target;
   if (t==4) {
-    this.classList.toggle('text-black');
     this.classList.toggle('bg-red-300');
     d3.select('.hubs-fires')
       .transition()

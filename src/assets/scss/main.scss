@@ -18,7 +18,12 @@
 
 #occurence {
   height: calc(100% + 2px);
+  transition-duration: 1.2s;
+  transition-timing-function: ease-in-out;
   transform-origin: center;
+  transform: scaleX(1);
+  /* purgecss ignore */
+  &.shrink { transform: scaleX(0.7) }
 }
 
 svg .key {
