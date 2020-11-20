@@ -1,11 +1,10 @@
 @charset "UTF-8";
+@import "./vendors/tailwind";
 @import "./core/generic_boxsizing";
 @import "./core/typography";
 @import "./core/animation";
-@import "./vendors/tailwind";
 
 // CORE
-
 
 .park-title {
   @apply uppercase playfair pb-4 mb-4 text-xl tracking-wide;
@@ -57,7 +56,7 @@ svg .key {
 }
 
 .bg-image {
-  @apply absolute duration-500 w-screen h-screen z-n1 top-0 left-0 bg-no-repeat;
+  @apply absolute duration-500 w-screen h-screen z-n1 top-0 right-0 bg-no-repeat;
 }
 
 .bg-image:not(.active) {
@@ -130,16 +129,4 @@ body {
     border-left: 0.5px solid;
     @apply absolute border-white opacity-75;
   }
-}
-
-
-
-// TYPOGRAPHY
-
-h1 {
-  @apply text-xl font-bold uppercase mb-4;
-}
-blockquote {
-  @apply inline text-green-400 text-4xl bg-yellow-300;
-  padding: 1px;
 }

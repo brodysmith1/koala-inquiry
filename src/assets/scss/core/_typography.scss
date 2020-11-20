@@ -32,6 +32,10 @@
   font-variation-settings: 'wght' 400;
 }
 
+.wght-650 {
+  font-variation-settings: 'wght' 650;
+}
+
 .wght-450 {
   font-variation-settings: 'wght' 450;
 }
@@ -40,10 +44,14 @@
   font-variation-settings: 'wght' 450;
 }
 
+h1 {
+  @apply text-xl font-bold uppercase mb-4;
+}
+
 blockquote {
-  font-family: 'PlayfairItalic', sans-serif;
-  font-variation-settings: 'wght' 500;
+  @apply inline text-green-400 text-4xl bg-yellow-300 playfair-italic;
   letter-spacing: 0.015em;
+  padding: 1px;
 }
 
 p:not(:last-child) {

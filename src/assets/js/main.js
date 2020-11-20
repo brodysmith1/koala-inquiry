@@ -35,7 +35,7 @@ const cream     = "#ece5d8",
 
 // STATE
 var x  = 0,
-    n  = 32,
+    n  = 33,
     i  = 0,
     bg         = green400,
     navActive  = false,
@@ -150,11 +150,11 @@ function update(p) {
 
   // Execute specific behaviour for targeted slides
   if (p == COVER) { offHome() }
-  else if ( p == TOURISM)  { document.querySelector('#obama').classList.toggle('hidden') }
+  //else if ( p == TOURISM)  { document.querySelector('#obama').classList.toggle('hidden') }
   else if ( p == CULTURE)  { document.querySelector('video').pause(); }
 
   if (i == COVER) { onHome(); }
-  else if (i == TOURISM)  { document.querySelector('#obama').classList.toggle('hidden') }
+  //else if (i == TOURISM)  { document.querySelector('#obama').classList.toggle('hidden') }
   else if (i == CULTURE)  { document.querySelector('video').play(); }
   else if (i == INDIG)    { bgi = black; }
   else if (i == LOCATION) { bgi = blue400; if(!mapNSWPlay){triggerMapNSW(); mapNSWPlay = true;}  }
