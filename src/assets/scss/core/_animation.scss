@@ -36,7 +36,7 @@
 }
 
 /*! purgecss start ignore */
-@for $i from 0 through 20 {
+@for $i from 0 through 10 {
   .delay-#{$i} {
     animation-delay: $i * 80ms;
     -webkit-animation-delay: $i * 80ms;
