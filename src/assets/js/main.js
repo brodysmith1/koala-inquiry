@@ -12,6 +12,8 @@ import { layoutSplit } from "./force.js";
 
 import "./graph.js"
 
+const start = new Date();
+
 // ENUMS
 const COVER = 0,
       LOCATION = 3,
@@ -51,7 +53,6 @@ const body      = document.querySelector('body'),
       pager     = document.querySelector('#pager'),
       recoms    = document.querySelectorAll('.recommendation')
 
-
 // Responsiveness
 var vw = document.querySelector('.slide').getBoundingClientRect().width;
 
@@ -63,6 +64,8 @@ window.onresize = onResize;                             // TODO: DEBOUNCE
 
 // Load
 function onLoad() {
+
+  document.fonts.ready.then( () => { const end = new Date(); console.log (`Fonts loaded in ${end-start}ms`) } )
 
   update(null);
   setNav();

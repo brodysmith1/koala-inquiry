@@ -10,6 +10,7 @@
   src:  url('/font/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
   font-weight: 400 900;
   font-style: italic;
+  font-display: block;
 }
 
 @font-face {
@@ -17,6 +18,7 @@
   src:  url('/font/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
   font-weight: 400 900;
   font-style: normal;
+  font-display: block;
 }
 
 .playfair {
