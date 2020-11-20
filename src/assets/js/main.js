@@ -106,14 +106,14 @@ function checkKey(e) {
     case 39: checkX(true); break;
     // L
     case 37: checkX(false); break;
-    // Home
-    case 35: jumpTo(n-1); break;
     // End
-    case 36: jumpTo(0); break;
+    case 35: jumpTo(n-1); break;
+    // Home
+    case 36: document.activeElement.tagName === "BODY" ? jumpTo(0) : ""; break;
     // Space
     case 32: if (i==CULTURE) togglePlay(); break;
     // Tab
-    case 9: e.preventDefault(); break;
+    case 9: i!=(n-1) ? e.preventDefault() : ""; break;
   }
 }
 

@@ -1,0 +1,29 @@
+extends ../partials/slide.pug
+
+block content
+  
+  h1 Get involved
+  
+  p A call to action will be here but is yet to be determined. What should it be? Perhaps a big button to redirect somewhere important. Perhaps an email form to send to key policy-makers? Perhaps both?
+  
+  form
+    .form-line.flex
+      label(for="firstname")
+      input(type="text" name="firstname" placeholder="First Name")
+      .px-2
+      label(for="surname") 
+      input(type="text" name="surname" placeholder="Last Name")
+    
+    .form-line
+      label(for="email")
+      input(type="email" name="email" placeholder="Email")
+    
+    .form-line
+      label(for="subject")
+      input(type="text" name="subject" placeholder="Subject")
+    
+    .form-line
+      label(for="subject")
+      textarea(rows="5" name="subject" placeholder="A really good email")
+    
+    .btn.btn-giant A big button
