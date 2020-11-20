@@ -20,6 +20,15 @@ html(lang='en-us' class='antialiased')
 		link(rel='stylesheet', href=assets["main.css"])
 		if(project.production)
 			script(defer src=assets["sw.js"])
+			
+		// Global site tag (gtag.js) - Google Analytics
+		script(async='' src='https://www.googletagmanager.com/gtag/js?id=G-19P7C3CY80')
+		script.
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'G-19P7C3CY80');
+
 
 	body.bg-green-400.text-white.overflow-hidden.h-screen
 		+nav
