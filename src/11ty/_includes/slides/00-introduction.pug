@@ -1,26 +1,27 @@
 extends ../partials/slide-wide.pug
 
 block content
-    
-  .text-white.relative
-    .text-center
-      h1.tracking-wide.playfair.wght-450.text-5xl.whitespace-no-wrap The Great Koala Debate
-      h1.tracking-wider.playfair-italic.wght-450.text-2xl.normal-case Lessons from the Parliamentary<br>Inquiry into Koala Populations
-    p.mx-24.text-justify From June 2019 to June 2020, a parliamentary inquiry was tasked with investigating the state of koala populations in NSW. This interactive is a guide into the inquiry and its strongest recommendation to ensure the future of koalas: the Great Koala National Park.
-    
-    .uppercase.text-base.text-center.py-6
-      | Use arrow keys to advance
-      .w-24.m-auto.my-4
-        svg(
-          xmlns="http://www.w3.org/2000/svg"
-          viewbox="0 0 88.5 57"
-        )
-          path.key(d="M25.5 56.5H.5v-25h25z")
-          path.fill-current(d="M6.5 44l6.4 3.7v-2.8h6.6v-1.8h-6.6v-2.8L6.5 44z")
-          path.key(d="M57 31.5v25H32v-25z")
-          path.fill-current(d="M44.5 50.5l3.7-6.4h-2.8v-6.6h-1.8v6.6h-2.8l3.7 6.4z")
-          path.key(d="M32 25.5V.5h25v25z")
-          path.fill-current(d="M44.5 6.5l-3.7 6.4h2.8v6.6h1.8v-6.6h2.8l-3.7-6.4zM63.5 31.5v25h25v-25zm12.1 17.1v-3.2H69v-2.8h6.6v-3.2l7.9 4.6z")
-        
-  .absolute.inset-x-0.text-white.uppercase.text-base.text-center.duration-500(style="bottom: 7.75rem;")
-    | Or jump to a section
+  
+  #title-slide  
+    .text-white.relative.fade-in
+      .text-center
+        h1.tracking-wide.playfair.wght-450.text-5xl.whitespace-no-wrap The Great Koala Debate
+        h1.tracking-wider.playfair-italic.wght-450.text-2xl.normal-case Lessons from the Parliamentary<br>Inquiry into Koala Populations
+      p.mx-24.text-justify From June 2019 to June 2020, a parliamentary inquiry was tasked with investigating the state of koala populations in NSW. This interactive is a guide into the inquiry and its strongest recommendation to ensure the future of koalas: the Great Koala National Park.
+      
+      .uppercase.text-base.text-center.py-6.fade-in.delay-2.opacity-0
+        | Use arrow keys to advance
+        .w-24.m-auto.my-4
+          svg(
+            xmlns="http://www.w3.org/2000/svg"
+            viewbox="0 0 88.5 57"
+          )
+            path.key(d="M25.5 56.5H.5v-25h25z")
+            path.fill-current(d="M6.5 44l6.4 3.7v-2.8h6.6v-1.8h-6.6v-2.8L6.5 44z")
+            path.key(d="M57 31.5v25H32v-25z")
+            path.fill-current(d="M44.5 50.5l3.7-6.4h-2.8v-6.6h-1.8v6.6h-2.8l3.7 6.4z")
+            path.key(d="M32 25.5V.5h25v25z")
+            path.fill-current(d="M44.5 6.5l-3.7 6.4h2.8v6.6h1.8v-6.6h2.8l-3.7-6.4zM63.5 31.5v25h25v-25zm12.1 17.1v-3.2H69v-2.8h6.6v-3.2l7.9 4.6z")
+          
+    .absolute.inset-x-0.text-white.uppercase.text-base.text-center.duration-500.fade-in.delay-4.opacity-0(style="bottom: 7.75rem;")
+      | Or jump to a section

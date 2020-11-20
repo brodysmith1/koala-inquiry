@@ -72,17 +72,3 @@ function dissolveDots(shrink) {
     .duration(1200)
     .style('opacity', () => shrink ? 0 : 1 )
 }
-
-
-// ---   1000 CUTS ANIMATION   --- //
-
-export function triggerForestCuts() {
-
-  let trees = d3.selectAll("#trees rect")
-  trees.style("opacity",1)
-  trees.transition()
-    .duration(500)
-    .delay( (d,i) => 1000 + 350*Math.floor(1 + i/5) + 350*Math.abs(i%10 - 5) )
-    .style('opacity',0)
-// Math.sqrt((i+15)%20) * 1500 * Math.max(0.5,Math.random())
-}

@@ -74,16 +74,6 @@ export const layoutSplit = (nodes, page) => {
 
 }
 
-function styleNodes(page) {
-
-  // Always
-
-  if (page == 1) {
-
-  }
-
-}
-
 function showText(i) {
   let t = document.querySelectorAll('.recommendation-text')
   t.forEach( (e,j) => e.style.opacity = i==j ? 1 : 0 )

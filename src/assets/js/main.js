@@ -1,15 +1,12 @@
 import VanillaTilt from "vanilla-tilt";
 
-import { triggerMapSLN } from "./mapping.js";
 import { loadMaps } from "./mapping.js";
+import { triggerMapSLN } from "./mapping.js";
 
 import { loadGraphEOC } from "./graph.js";
-import { triggerForestCuts } from "./graph.js";
 
 import { layoutGrid } from "./force.js";
 import { layoutSplit } from "./force.js";
-
-import "./graph.js"
 
 const start = new Date();
 
@@ -56,20 +53,25 @@ const body      = document.querySelector('body'),
 var vw = document.querySelector('.slide').getBoundingClientRect().width;
 
 // Event listeners
-document.addEventListener('DOMContentLoaded', onLoad);  // TODO: DEBOUNCE
+document.addEventListener('DOMContentLoaded', onDOMLoad);  // TODO: DEBOUNCE
 document.addEventListener('keydown', checkKey);         // TODO: DEBOUNCE
 window.onresize = onResize;                             // TODO: DEBOUNCE
 
+function onFontLoad() {
+  const end = new Date()
+  console.log(`Fonts loaded in ${end-start}ms`)
+  document.querySelector('#loader').style.opacity = 0;
+  setTimeout( () => update(null), 200 )
+}
 
 // Load
-function onLoad() {
+function onDOMLoad() {
 
-  document.fonts.ready.then( () => { const end = new Date(); console.log (`Fonts loaded in ${end-start}ms`) } )
+  document.fonts.ready.then(onFontLoad)
 
-  update(null);
-  setNav();
-  loadMaps();
-  loadGraphEOC();
+  setNav()
+  loadMaps()
+  loadGraphEOC()
 
   document.querySelector('#video-container').addEventListener( 'click', togglePlay );
   document.querySelector('#volume').addEventListener( 'click', toggleSound );
@@ -151,12 +153,11 @@ function update(p) {
   let bgi = green400
 
   // Execute specific behaviour for targeted slides
-  if (p == COVER) { offHome() }
-  //else if ( p == TOURISM)  { document.querySelector('#obama').classList.toggle('hidden') }
+  if (p == null) { document.querySelector('#title-slide').style.display = 'block' }
+  else if (p == COVER) { offHome() }
   else if ( p == CULTURE)  { document.querySelector('video').pause(); }
 
   if (i == COVER) { onHome(); }
-  //else if (i == TOURISM)  { document.querySelector('#obama').classList.toggle('hidden') }
   else if (i == CULTURE)  { document.querySelector('video').play(); }
   else if (i == INDIG)    { bgi = black; }
   else if (i == LOCATION) { bgi = blue400; }

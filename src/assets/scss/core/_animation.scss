@@ -1,5 +1,10 @@
 // ANIMATION ONLY CLASSES
 
+.animate-spin {
+  animation: spin 1.75s linear infinite reverse;
+  -webkit-animation: spin 1.75s linear infinite reverse;
+}
+
 .slide-up {
   animation: slide-up .5s .25s cubic-bezier(0.41, 0.46, 0.17, 2) 1 forwards;
   -webkit-animation: slide-up .5s .25s cubic-bezier(0.41, 0.46, 0.17, 2) 1 forwards;
@@ -52,6 +57,16 @@
 /*! purgecss end ignore */
 
 // KEYFRAMES
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 
 @keyframes ping {
   0% {

@@ -11,6 +11,11 @@
   border-bottom: 0.5px solid #b1aea8
 }
 
+#title-slide { display: none; }
+
+#loader {
+  @apply fixed h-screen w-screen z-50 bg-green-400 flex flex-col justify-center items-center pointer-events-none duration-500;
+}
 
 #nsw-instructions {
   @apply opacity-0 mt-12 text-xs text-gray-200;
