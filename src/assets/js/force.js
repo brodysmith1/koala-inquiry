@@ -45,12 +45,17 @@ export const layoutSplit = (nodes, page) => {
   if (page == 1) {
 
     frag.forEach( (r,i) => {
+      r.classList.remove('pointer-events-none');
       [t,x] = [100 * Math.floor(i/5)/7, 100 * (i%5) / 8]
       r.style = `top: ${t}%; left: ${x}%` })
 
     fire.forEach( (r,i) => {
+      r.classList.remove('pointer-events-none');
       [t,x] = [100 * Math.floor(i/2)/7, 100 - 100 * ((i+1)%2) / 8]
       r.style = `top: ${t}%; left: calc(${x}% - 48px)` })
+
+
+    soln[1].classList.remove('pointer-events-none')
 
   }
 
