@@ -38,7 +38,8 @@ var x  = 0,
     bg         = green400,
     navActive  = false,
     mapNSWPlay = false,
-    loaded     = false
+    loaded     = false,
+    timeout    = false
 
 // ELEMENTS
 const body      = document.querySelector('body'),
@@ -54,9 +55,9 @@ const body      = document.querySelector('body'),
 var vw = document.querySelector('.slide').getBoundingClientRect().width;
 
 // Event listeners
-document.addEventListener('DOMContentLoaded', onDOMLoad);  // TODO: DEBOUNCE
-document.addEventListener('keydown', checkKey);         // TODO: DEBOUNCE
-window.onresize = onResize;                             // TODO: DEBOUNCE
+document.addEventListener('DOMContentLoaded', onDOMLoad);
+document.addEventListener('keydown', checkKey);    // TODO: DEBOUNCE
+window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 250) };               // TODO: DEBOUNCE
 
 function onFontLoad() {
   if (loaded) { return }
@@ -67,7 +68,7 @@ function onFontLoad() {
   setTimeout( () => update(null), 200 )
 }
 
-// Load
+
 function onDOMLoad() {
 
   setTimeout(onFontLoad, 3500 ) // fallback if fonts don't load
@@ -104,6 +105,7 @@ function onResize(e) {
   vw = document.querySelector('.slide').getBoundingClientRect().width;
   x = - i * vw;
   translateX(slides, x);
+  console.log('Resized')
 }
 
 
