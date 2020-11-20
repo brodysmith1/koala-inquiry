@@ -16,6 +16,11 @@
   @apply opacity-0 mt-12 text-xs text-gray-200;
 }
 
+#occurence {
+  height: calc(100% + 2px);
+  transform-origin: center;
+}
+
 svg .key {
   fill: none;
   stroke: #fff;

@@ -176,7 +176,7 @@ function drawMapNSW(data) {
     .data(hubs.all.features)
     .join('path')
     .attr('d', d3.geoPath(projection))
-    .attr('class', 'hubs hubs-all stroke-current fill-current text-yellow-300 opacity-0');
+    .attr('class', 'hubs hubs-all stroke-current fill-current text-yellow-300');
 
   // CROWN HUBS
   svg.append('g')
@@ -223,6 +223,12 @@ function drawMapNSW(data) {
       .attr("text-anchor", "start")
       .text( (d) => "— " + d.properties.name );
 
+
+  // ADD CLICK LISTENERS
+  d3.selectAll(".map-p .cursor-pointer")
+    .style('transition', 'background-color 0.5s, color 0.5s')
+    .on('click', showData);
+
 }
 
 function loadMapSLN() {
@@ -246,6 +252,7 @@ function loadMapSLN() {
 
 }
 export function triggerMapSLN(view) {
+
   let svg     = d3.select("#soln-map svg")
   let paths   = svg.selectAll("g path")
   let labls   = svg.selectAll("text")
@@ -275,6 +282,7 @@ export function triggerMapSLN(view) {
       .attr('x', d => proj(d.geometry.coordinates)[0])
       .attr('y', d => proj(d.geometry.coordinates)[1])
   }
+
 }
 function drawMapSLN(data) {
 

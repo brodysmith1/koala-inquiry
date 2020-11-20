@@ -1,6 +1,5 @@
 import VanillaTilt from "vanilla-tilt";
 
-import { triggerMapNSW } from "./mapping.js";
 import { triggerMapSLN } from "./mapping.js";
 import { loadMaps } from "./mapping.js";
 
@@ -160,7 +159,7 @@ function update(p) {
   //else if (i == TOURISM)  { document.querySelector('#obama').classList.toggle('hidden') }
   else if (i == CULTURE)  { document.querySelector('video').play(); }
   else if (i == INDIG)    { bgi = black; }
-  else if (i == LOCATION) { bgi = blue400; if(!mapNSWPlay){triggerMapNSW(); mapNSWPlay = true;}  }
+  else if (i == LOCATION) { bgi = blue400; }
   else if (i == CUTS)     { triggerForestCuts(); }
   else if (i == RECOS)    { layoutGrid(recoms); }
   else if (i == RECOS+1)  { layoutSplit(recoms, 1); }
