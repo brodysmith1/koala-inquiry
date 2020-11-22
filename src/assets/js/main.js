@@ -6,6 +6,7 @@ import { triggerMapSLN } from "./mapping.js";
 import { loadGraphEOC } from "./graph.js";
 
 import { layoutGrid } from "./force.js";
+import { layoutSetup } from "./force.js";
 import { layoutSplit } from "./force.js";
 
 const start = new Date();
@@ -60,7 +61,6 @@ document.addEventListener('keydown', checkKey);    // TODO: DEBOUNCE
 window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 250) };               // TODO: DEBOUNCE
 
 function onFontLoad() {
-  console.log('Trying font load')
   if (loaded) { return }
   loaded = true
   const end = new Date()
@@ -78,24 +78,10 @@ function onDOMLoad() {
   setNav()
   loadMaps()
   loadGraphEOC()
+  layoutSetup()
 
   document.querySelector('#video-container').addEventListener( 'click', togglePlay );
   document.querySelector('#volume').addEventListener( 'click', toggleSound );
-  document.querySelectorAll('.recommendation').forEach( el =>
-    el.addEventListener( 'click', () => {
-      let tt = el.querySelector('.tooltip')
-      let toggle = el.classList.contains('active')
-      let active = el.parentElement.querySelector('.active')
-
-      if (active && !toggle) {
-        active.firstElementChild.classList.toggle('opacity-0')
-        active.classList.toggle('active')
-      }
-
-      el.classList.toggle('active')
-      tt.classList.toggle('opacity-0')
-      positionTT(tt)
-    }))
 
 }
 
@@ -106,7 +92,6 @@ function onResize(e) {
   vw = document.querySelector('.slide').getBoundingClientRect().width;
   x = - i * vw;
   translateX(slides, x);
-  console.log('Resized')
 }
 
 
@@ -265,10 +250,4 @@ function toggleClasses(el,classes) {
   for(var i=0; i < classes.length; i++) {
     el.classList.toggle(classes[i])
   }
-}
-function positionTT(tt){
-  let rec = tt.getBoundingClientRect()
-  let l = rec.left, t = rec.top
-  t < 0 ? tt.style.lineHeight = '1.25rem' : ""
-  t < 0 ? tt.style.fontSize = '.8rem' : ""
 }

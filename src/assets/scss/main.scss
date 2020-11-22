@@ -11,6 +11,8 @@
   border-bottom: 0.5px solid #b1aea8
 }
 
+.trans-y-0 {  }
+
 #title-slide { display: none; }
 
 #loader, #embargo, #mobile-wall {
@@ -21,7 +23,7 @@
 @media (max-width: 650px), (pointer: coarse) { #mobile-wall {display: flex;} }
 
 #nsw-instructions {
-  @apply opacity-0 mt-12 text-xs text-gray-200;
+  @apply opacity-50 mt-12 text-sm text-gray-200;
 }
 
 #occurence {
@@ -70,13 +72,19 @@ svg .key {
     @apply bg-green-400 text-white;
   }
 
+  &.active  .tooltip{
+    transform: translateY(0);
+  }
+
   .tooltip {
-    @apply absolute pointer-events-none leading-6 text-sm text-left font-normal duration-150 bg-white rounded-lg p-4;
+    @apply absolute pointer-events-none leading-6 text-sm text-left font-normal bg-white rounded-lg p-4;
     @apply text-green-400 border-2 border-green-400;
     width: 90vw;
     max-width: 350px;
     left: calc(-175px + 2rem);
     bottom: 110%;
+    transition: transform 0.4s, opacity 0.25s;
+    transform: translateY(1em);
   }
 
 }

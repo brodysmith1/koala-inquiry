@@ -1,3 +1,27 @@
+export const layoutSetup = () => {
+
+  document.querySelectorAll('.recommendation').forEach( el =>
+    el.addEventListener( 'click', e => {
+      let tt = el.querySelector('.tooltip')
+      let toggle = el.classList.contains('active')
+      let active = el.parentElement.querySelector('.active')
+
+      if (active && !toggle) {
+        active.firstElementChild.classList.toggle('opacity-0')
+        active.classList.toggle('active')
+      }
+
+      el.classList.toggle('active')
+      tt.classList.toggle('opacity-0')
+      positionTT(tt)
+
+      e.stopPropagation();
+    }))
+
+  document.querySelector("#recs").addEventListener('click', collapseAnnotations);
+
+}
+
 export const layoutGrid = (nodes) => {
 
   nodes.forEach( (r, i) => {
@@ -14,6 +38,7 @@ export const layoutGrid = (nodes) => {
       a.forEach( ai => ai.style.opacity = 0 )
 
   layoutMove(nodes[0], 0)
+  collapseAnnotations()
   showText(0)
 }
 
@@ -70,8 +95,17 @@ export const layoutSplit = (nodes, page) => {
   }
 
   layoutMove(nodes[0], page)
+  collapseAnnotations()
   showText(page)
 
+}
+
+function collapseAnnotations() {
+  let active = document.querySelector('#recs .active')
+  if (active) {
+    active.firstElementChild.classList.toggle('opacity-0')
+    active.classList.remove('active')
+  }
 }
 
 function showText(i) {
@@ -81,6 +115,18 @@ function showText(i) {
 
 function layoutMove(n,i) {
   let c = n.parentElement.parentElement
-  let x = i*document.querySelector('.slide').getBoundingClientRect().width
+  let x = i*c.offsetWidth;
   c.style.transform = `translateX(${x}px)`
+}
+
+function positionTT(tt) {
+  let rec = tt.getBoundingClientRect()
+  let l = rec.left, t = rec.top
+
+  console.log(t)
+
+  t < 0 ? tt.style.lineHeight = '1.25rem' : ""
+  t < 0 ? tt.style.fontSize = '.8rem' : ""
+
+  console.log(tt.getBoundingClientRect().top)
 }
