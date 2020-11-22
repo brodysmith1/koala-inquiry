@@ -15,23 +15,24 @@ import * as d3 from "d3";
 // Scaled extent = 140 x 150 = 21K pixels
 // Scaled occupancy remains as above
 
+var shrink = false;
 export function loadGraphEOC() {
 
-  let shrink = false;
 
   // ui elements
   let btn1 = d3.select("#radio-first");
   let btn2 = d3.select("#radio-second");
 
-  btn1.on('click', () => { shrink = !shrink; !shrink ? trigger(shrink) : "" });
-  btn2.on('click', () => { shrink = !shrink;  shrink ? trigger(shrink) : "" });
+  btn1.on('click', () =>  shrink ? trigger(false) : "" );
+  btn2.on('click', () => !shrink ? trigger(true)  : "" );
 
 }
 
-function trigger(shrink) {
-  shrinkDots(shrink);
-  shrinkRect(shrink);
-  dissolveDots(shrink);
+function trigger(s) {
+  shrink = s;
+  shrinkDots(s);
+  shrinkRect(s);
+  dissolveDots(s);
 }
 
 function shrinkDots(shrink) {
