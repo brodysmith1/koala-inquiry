@@ -78,10 +78,6 @@ function onDOMLoad() {
   document.querySelector('#video-container').addEventListener( 'click', togglePlay );
   document.querySelector('#volume').addEventListener( 'click', toggleSound );
 
-  // Touch listeners
-  // slides.addEventListener('touchstart', e => e.preventDefault() );
-  // slides.addEventListener('touchmove', e => e.preventDefault() );
-  // slides.addEventListener('touchend', e => e.preventDefault() );
 
   document.body.addEventListener('swipeleft',  e => checkX(true) );
   document.body.addEventListener('swiperight', e => checkX(false) );

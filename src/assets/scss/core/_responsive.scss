@@ -23,6 +23,13 @@
 
 }
 
+@media (max-height: 600px) {
+  .slide { overflow-y: scroll; height: 100vh; -ms-overflow-style: none; scrollbar-width: none; }
+  .slide::-webkit-scrollbar { display: none; }
+  //body { overflow-y: scroll; }
+
+}
+
 @media (max-width: 1280px) {
   #timeline-wrap { @apply mx-4; }
 }
