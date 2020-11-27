@@ -79,12 +79,12 @@ function onDOMLoad() {
   document.querySelector('#volume').addEventListener( 'click', toggleSound );
 
   // Touch listeners
-  slides.addEventListener('touchstart', e => e.preventDefault() );
-  slides.addEventListener('touchmove', e => e.preventDefault() );
-  slides.addEventListener('touchend', e => e.preventDefault() );
+  // slides.addEventListener('touchstart', e => e.preventDefault() );
+  // slides.addEventListener('touchmove', e => e.preventDefault() );
+  // slides.addEventListener('touchend', e => e.preventDefault() );
 
-  slides.addEventListener('swipeleft',  e => checkX(true) );
-  slides.addEventListener('swiperight', e => checkX(false) );
+  document.body.addEventListener('swipeleft',  e => checkX(true) );
+  document.body.addEventListener('swiperight', e => checkX(false) );
 }
 
 function onFontLoad() {

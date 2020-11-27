@@ -1,5 +1,7 @@
+html, body { @apply overflow-hidden h-screen w-screen; }
+
 body {
-  @apply bg-green-400 text-white overflow-hidden h-screen;
+  @apply bg-green-400 text-white;
   transition: background 500ms;
 }
 

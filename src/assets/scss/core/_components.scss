@@ -13,6 +13,7 @@
   &-wide { max-width: 56rem; }
 }
 .slides { @apply flex min-h-screen duration-500 ease-out text-lg }
+.slide  { @apply min-w-full min-h-screen flex flex-1 items-center justify-center m-auto relative; &-left { @apply justify-start } }
 .footnote { @apply absolute opacity-75; font-size: 0.7em; top: calc(100% + 2rem) }
 .text-long { @apply relative; }
 
