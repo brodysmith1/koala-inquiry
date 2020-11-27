@@ -13,7 +13,8 @@
   &-wide { max-width: 56rem; }
 }
 .slides { @apply flex min-h-screen duration-500 ease-out text-lg }
-
+.footnote { @apply absolute opacity-75; font-size: 0.7em; top: calc(100% + 2rem) }
+.text-long { @apply relative; }
 
 #nav {
   @apply fixed bottom-0 w-screen flex justify-around text-sm z-10;
@@ -68,7 +69,8 @@
 }
 
 .map-col  { @apply w-7/12 }
-.map-text { @apply w-5/12 my-auto pl-4 pr-8 }
+.map-text { @apply w-5/12 my-auto pl-4 pr-8 relative }
+.map-text.soln-map { @apply mr-20 pr-0 }
 #nsw-instructions { @apply opacity-50 text-base text-gray-200; }
 
 
@@ -95,23 +97,18 @@
   input:checked + label > .switch { transform: translateY(0px) }
 }
 
+
 .annotation {
   @apply absolute opacity-0 text-center text-white text-xs tracking-wide uppercase z-n1 text-green-200 duration-1000;
   width: 300px
 }
-
 .recommendation {
   @apply absolute rounded-full w-12 h-12 text-lg text-center ease-out font-bold cursor-pointer select-none;
   @apply bg-white text-green-400 border-2 border-white;
   line-height: 42px;
 
-  &.active {
-    @apply bg-green-400 text-white;
-  }
-
-  &.active  .tooltip{
-    transform: translateY(0);
-  }
+  &.active { @apply bg-green-400 text-white; }
+  &.active  .tooltip { transform: translateY(0); }
 
   .tooltip {
     @apply absolute pointer-events-none leading-6 text-sm text-left font-normal bg-white rounded-lg p-4;
@@ -125,3 +122,7 @@
   }
 
 }
+
+
+#nsw-map svg,
+#soln-map svg { @apply h-screen w-full; }

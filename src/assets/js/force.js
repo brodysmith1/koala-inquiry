@@ -26,7 +26,7 @@ export const layoutGrid = (nodes) => {
 
   nodes.forEach( (r, i) => {
     let t = 100 * Math.floor(i/7)/7
-    let l = 100 * (i%7) / 7
+    let l = 100 * ((i%7) / 7 + 1/21)
     r.style = `top: ${t}%; left: ${l}%`
   })
 

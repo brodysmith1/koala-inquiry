@@ -155,10 +155,7 @@ function drawMapNSW(data) {
   let projection = setProjection(extents.nsw)
 
   // Create svg canvas
-  var svg = d3.select("body #nsw-map")
-      .append("svg")
-      .attr("width", "100%")
-      .attr("height", "100vh")
+  var svg = d3.select("body #nsw-map svg")
       .attr("viewBox", [0,0,w,h])
       .attr("preserveAspectRatio", "xMinYMin");
 
@@ -315,10 +312,7 @@ function drawMapSLN(data) {
       texture.build = textures.lines().size(8).strokeWidth(1).orientation("3/8", "7/8").stroke("#909090")
 
   // Create svg canvas
-  var svg = d3.select("#soln-map")
-      .append("svg")
-      .attr("width", "100%")
-      .attr("height", "100vh")
+  var svg = d3.select("#soln-map svg")
       .attr("viewBox", [0,0,w,h])
       .attr("preserveAspectRatio", "xMinYMin")
       .call(texture.scrub)

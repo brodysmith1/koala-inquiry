@@ -3,20 +3,21 @@ extends ../partials/slide.pug
 block content
   .bg-image.bg-right-bottom.bg-cover(style=``)
   h1 Economic impact
-  p Organisations involved in timber production raised concerns in their submissions about the economic impact of establishing the Great Koala National Park. Their submissions cited two reports:
-  p 
-    span.font-medium 
-      | A Forest & Wood Products Australia (FWPA) 
-      +link('report', 'https://www.fwpa.com.au/images/resources/Amended_Final_report_C_native_forests_PNC285-1112.pdf')
-      |  on the cost of converting <em>all</em> state forests in the region to national parks.<br>
-    | FWPA estimated the cost of transition at $540M and the economic loss of retiring the regional timber industry at $3.36B.^
-  p 
-    span.font-medium
-      | An EY 
-      +link('report', 'https://www.parliament.nsw.gov.au/lcdocs/other/12376/Tabled%20Document-%20Document%20entitled%20-%20The%20economic%20impact%20of%20the%20cancellation%20of%20NSW%20North%20Coast%20Wood%20Supply%20Agreements.pdf')
-      |  for the Australian Forest Products Association (AFPA) on the cost of cancelling all Wood Supply Agreements (WSAs) in the region.<br>
-    | Most submissions highlighted this report's estimated annual <em>gross</em> economic loss of $757M and 1,871 job losses in NSW. But the actual estimated <em>value-added</em>* economic loss identified in the report was $292M in NSW.
-    
-  p.absolute.bottom-0.mb-16.text-sm.opacity-75(style="max-width: inherit")
-    span(style="white-space: nowrap") ^ Both estimates are <em>value-added</em> and calculated over a 65 year period at a discount rate of 7.5%.<br>
-    span(style="white-space: nowrap") * <em>Value-added</em> output is an industry's contribution to state product (i.e. gross output minus costs).
+  .text-long
+    p Organisations involved in timber production raised concerns in their submissions about the economic impact of establishing the Great Koala National Park. Their submissions cited two reports:
+    p 
+      span.font-medium 
+        | A Forest & Wood Products Australia (FWPA) 
+        +link('report', 'https://www.fwpa.com.au/images/resources/Amended_Final_report_C_native_forests_PNC285-1112.pdf')
+        |  on the cost of converting <em>all</em> state forests in the region to national parks.<br>
+      | FWPA estimated the cost of transition at $540M and the economic loss of retiring the regional timber industry at $3.36B.^
+    p 
+      span.font-medium
+        | An EY 
+        +link('report', 'https://www.parliament.nsw.gov.au/lcdocs/other/12376/Tabled%20Document-%20Document%20entitled%20-%20The%20economic%20impact%20of%20the%20cancellation%20of%20NSW%20North%20Coast%20Wood%20Supply%20Agreements.pdf')
+        |  for the Australian Forest Products Association (AFPA) on the cost of cancelling all Wood Supply Agreements (WSAs) in the region.<br>
+      | Most submissions highlighted this report's estimated annual <em>gross</em> economic loss of $757M and 1,871 job losses in NSW. But the actual estimated <em>value-added</em>* economic loss identified in the report was $292M in NSW.
+      
+    p.footnote(style="max-width: inherit")
+      span(style="white-space: nowrap") ^ Both estimates are <em>value-added</em> and calculated over a 65 year period at a discount rate of 7.5%.<br>
+      span(style="white-space: nowrap") * <em>Value-added</em> output is an industry's contribution to state product (i.e. gross output minus costs).
