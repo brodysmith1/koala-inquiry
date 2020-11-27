@@ -1,0 +1,127 @@
+#title-slide { display: none; }
+#loader, #embargo, #mobile-wall {
+  @apply fixed h-screen w-screen z-50 bg-green-400 flex flex-col justify-center items-center pointer-events-none duration-500;
+}
+#mobile-wall {display: none;}
+@media (max-width: 650px), (pointer: coarse) { #mobile-wall {display: flex;} }
+
+
+.content {
+  @apply px-6;
+  max-width: 44rem;
+
+  &-wide { max-width: 56rem; }
+}
+.slides { @apply flex min-h-screen duration-500 ease-out text-lg }
+
+
+#nav {
+  @apply fixed bottom-0 w-screen flex justify-around text-sm z-10;
+  height: 7rem;
+}
+#nav-line {
+  @apply absolute border-white w-screen duration-500 opacity-0;
+}
+#nav-label {
+  @apply absolute w-screen text-center duration-700 text-xs tracking-wide font-medium opacity-0;
+}
+#pager {
+  @apply absolute top-0 left-0 bg-green-200 duration-500 ease-out z-10;
+  height: 5px
+}
+#home-nav-label {
+  @apply absolute inset-x-0 text-white uppercase text-base text-center duration-500 fade-in delay-4 opacity-0;
+  bottom: 7.75rem;
+}
+.nav-item {
+  transition: margin-top ease-out 300ms, opacity ease-out 300ms;
+  @apply opacity-0 playfair-italic whitespace-no-wrap cursor-pointer z-10;
+}
+.nav-item:hover {
+  @apply text-green-200;
+  margin-top: -2px;
+  padding-bottom: 2px;
+  transition: margin-top ease-out 300ms, color 500ms;
+}
+
+
+#timeline-wrap {
+  @apply absolute inset-0 flex flex-col items-center justify-center mx-10;
+  top: 3rem;
+}
+#timeline {
+  &::after {
+    content: '';
+    bottom: 2.75rem;
+    width: 100%;
+    border-bottom: 0.5px solid;
+    @apply absolute border-white opacity-75;
+  }
+  .spacer::before {
+    content: '';
+    left: 50%;
+    width: 0;
+    height: 100%;
+    border-left: 0.5px solid;
+    @apply absolute border-white opacity-75;
+  }
+}
+
+.map-col  { @apply w-7/12 }
+.map-text { @apply w-5/12 my-auto pl-4 pr-8 }
+#nsw-instructions { @apply opacity-50 text-base text-gray-200; }
+
+
+#decline-graph-quote  { @apply mx-20 text-justify; }
+#decline-graph-legend { @apply absolute bottom-0 flex flex-col; left: calc(50% + 225px); }
+#occurence {
+  height: calc(100% + 2px);
+  transition-duration: 1.2s;
+  transition-timing-function: ease-in-out;
+  transform-origin: center;
+  transform: scaleX(1);
+  /* purgecss ignore */
+  &.shrink { transform: scaleX(0.7) }
+}
+#radio-ui {
+  @apply absolute bottom-0 text-center;
+  left: calc(50% - 310px);
+
+  label { @apply duration-500 rounded mx-2 px-4 py-2 cursor-pointer shadow-xl text-gray-400 bg-gray-200 select-none font-medium; }
+  label:hover { @apply shadow-xs; }
+
+  input:checked + label { @apply text-white; }
+  input + label > .switch { transform: translateY(-51px) }
+  input:checked + label > .switch { transform: translateY(0px) }
+}
+
+.annotation {
+  @apply absolute opacity-0 text-center text-white text-xs tracking-wide uppercase z-n1 text-green-200 duration-1000;
+  width: 300px
+}
+
+.recommendation {
+  @apply absolute rounded-full w-12 h-12 text-lg text-center ease-out font-bold cursor-pointer select-none;
+  @apply bg-white text-green-400 border-2 border-white;
+  line-height: 42px;
+
+  &.active {
+    @apply bg-green-400 text-white;
+  }
+
+  &.active  .tooltip{
+    transform: translateY(0);
+  }
+
+  .tooltip {
+    @apply absolute pointer-events-none leading-6 text-sm text-left font-normal bg-white rounded-lg p-4;
+    @apply text-green-400 border-2 border-green-400;
+    width: 90vw;
+    max-width: 350px;
+    left: calc(-175px + 2rem);
+    bottom: 110%;
+    transition: transform 0.4s, opacity 0.25s;
+    transform: translateY(1em);
+  }
+
+}

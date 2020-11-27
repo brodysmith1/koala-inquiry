@@ -1,6 +1,6 @@
 module.exports = {
-	author: "Pugsum",
-	url: "https://pugsum.netlify.com/",
+	author: "Koala Inquiry",
+	url: "https://koalas.fyi/",
 	metaTitle: "Koala Inquiry",
 	metaDescription:
 		"Koala Inquiry",

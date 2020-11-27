@@ -1,0 +1,22 @@
+@media (max-height: 800px) {
+
+  .content { max-width: 44rem; }
+
+  #nav { height: 3rem; }
+  #home-nav-label { bottom: 3.75rem; @apply text-sm; }
+
+  #decline-svg { height: 250px; width: 332px; }
+  #decline-graph-legend { left: calc(50% + 195px); }
+  #decline-graph-quote  { max-width: 625px; .text-lg { @apply text-base mx-0; } }
+  #radio-ui { left: calc(50% - 290px); }
+
+  .map-col  { @apply w-1/2 }
+  .map-text { @apply text-base pl-8 pr-0 }
+
+  .uc-label { @apply text-sm; }
+
+}
+
+@media (max-width: 1280px) {
+  #timeline-wrap { @apply mx-4; }
+}

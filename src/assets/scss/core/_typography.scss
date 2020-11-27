@@ -54,3 +54,8 @@ a {
     box-shadow: inset 0 -1.25em 0 0em #f9d165;
   }
 }
+
+.park-title {
+  @apply uppercase playfair pb-4 mb-4 text-xl tracking-wide;
+  border-bottom: 0.5px solid #b1aea8
+}
