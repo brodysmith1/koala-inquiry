@@ -1,3 +1,5 @@
+var SWIPE_THRESHOLD = 1
+
 import VanillaTilt from "vanilla-tilt";
 import Tocca from "tocca";
 
@@ -55,13 +57,13 @@ const body      = document.querySelector('body'),
       recoms    = document.querySelectorAll('.recommendation')
 
 // Misc
-var vw
-document.addEventListener('DOMContentLoaded', onDOMLoad);
+var vw, vh
+document.addEventListener('DOMContentLoaded', onDOMLoad)
 
 
 function onDOMLoad() {
 
-  vw = document.querySelector('.slide').getBoundingClientRect().width
+  vw = document.documentElement.clientWidth
 
   setTimeout(onFontLoad, 3000 ) // fallback if fonts don't load
   document.fonts.ready.then(onFontLoad)
@@ -97,9 +99,11 @@ function onFontLoad() {
 
 // Resize
 function onResize(e) {
-  vw = document.querySelector('.slide').getBoundingClientRect().width;
+  vw = document.documentElement.clientWidth;
+  vh = document.documentElement.clientHeight;
   x = - i * vw;
   translateX(slides, x);
+  console.log(vw, vh)
 }
 
 
