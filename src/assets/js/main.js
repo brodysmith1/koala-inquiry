@@ -1,4 +1,5 @@
 import VanillaTilt from "vanilla-tilt";
+import Tocca from "tocca";
 
 import { loadMaps } from "./mapping.js";
 import { triggerMapSLN } from "./mapping.js";
@@ -45,6 +46,7 @@ var x  = 0,
 // ELEMENTS
 const body      = document.querySelector('body'),
       nav       = document.querySelector('#nav'),
+      slides    = document.querySelector('.slides'),
       mapSLN    = document.querySelector('#soln-map'),
       navLine   = document.querySelector('#nav-line'),
       navItems  = document.querySelectorAll('.nav-item'),
@@ -52,13 +54,36 @@ const body      = document.querySelector('body'),
       pager     = document.querySelector('#pager'),
       recoms    = document.querySelectorAll('.recommendation')
 
-// Responsiveness
-var vw = document.querySelector('.slide').getBoundingClientRect().width;
-
-// Event listeners
+// Misc
+var vw
 document.addEventListener('DOMContentLoaded', onDOMLoad);
-document.addEventListener('keydown', checkKey);    // TODO: DEBOUNCE
-window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 250) };               // TODO: DEBOUNCE
+
+
+function onDOMLoad() {
+
+  vw = document.querySelector('.slide').getBoundingClientRect().width
+
+  setTimeout(onFontLoad, 3000 ) // fallback if fonts don't load
+  document.fonts.ready.then(onFontLoad)
+
+  setNav()
+  loadMaps()
+  loadGraphEOC()
+  layoutSetup()
+
+  document.addEventListener('keydown', checkKey);
+  window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 250) };
+  document.querySelector('#video-container').addEventListener( 'click', togglePlay );
+  document.querySelector('#volume').addEventListener( 'click', toggleSound );
+
+  // Touch listeners
+  slides.addEventListener('touchstart', e => e.preventDefault() );
+  slides.addEventListener('touchmove', e => e.preventDefault() );
+  slides.addEventListener('touchend', e => e.preventDefault() );
+
+  slides.addEventListener('swipeleft',  e => checkX(true) );
+  slides.addEventListener('swiperight', e => checkX(false) );
+}
 
 function onFontLoad() {
   if (loaded) { return }
@@ -70,25 +95,8 @@ function onFontLoad() {
 }
 
 
-function onDOMLoad() {
-
-  setTimeout(onFontLoad, 3000 ) // fallback if fonts don't load
-  document.fonts.ready.then(onFontLoad)
-
-  setNav()
-  loadMaps()
-  loadGraphEOC()
-  layoutSetup()
-
-  document.querySelector('#video-container').addEventListener( 'click', togglePlay );
-  document.querySelector('#volume').addEventListener( 'click', toggleSound );
-
-}
-
-
 // Resize
 function onResize(e) {
-  let slides = document.querySelector('.slides');
   vw = document.querySelector('.slide').getBoundingClientRect().width;
   x = - i * vw;
   translateX(slides, x);
@@ -117,7 +125,6 @@ function checkKey(e) {
 // Slide across
 function slide(fwd) {
   let p = i;
-  let slides = document.querySelector('.slides');
 
   x += fwd ? -vw : vw;
   i += fwd ? 1 : -1;
@@ -227,7 +234,6 @@ function offHome() {
 }
 function jumpTo(index) { // Jump to specific slide
   let p = i;
-  let slides = document.querySelector('.slides');
 
   i = index;
   x = - index * vw;
