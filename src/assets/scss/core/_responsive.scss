@@ -25,8 +25,7 @@
 
 @media (max-height: 600px) {
   .slide { overflow-y: scroll; height: 100vh; -ms-overflow-style: none; scrollbar-width: none; }
-  .slide::-webkit-scrollbar { display: none; }
-  //body { overflow-y: scroll; }
+  .slide::-webkit-scrollbar, .map-text::-webkit-scrollbar { display: none; }
   
   #nav, #home-nav-label, #home-arrow-keys { display: none }
   .content, .content-wide { @apply absolute w-full h-auto py-12 top-0; }
