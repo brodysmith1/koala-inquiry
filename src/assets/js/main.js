@@ -1,7 +1,4 @@
-var SWIPE_THRESHOLD = 1
-
 import VanillaTilt from "vanilla-tilt";
-import Tocca from "tocca";
 
 import { loadMaps } from "./mapping.js";
 import { triggerMapSLN } from "./mapping.js";
@@ -77,10 +74,6 @@ function onDOMLoad() {
   document.addEventListener('keydown', checkKey);
   document.querySelector('#video-container').addEventListener( 'click', togglePlay );
   document.querySelector('#volume').addEventListener( 'click', toggleSound );
-
-
-  document.body.addEventListener('swipeleft',  e => checkX(true) );
-  document.body.addEventListener('swiperight', e => checkX(false) );
   
   document.querySelectorAll('.btn.btn-next').forEach( b => b.addEventListener('click', () => checkX(true) ));
   document.querySelectorAll('.btn.btn-prev').forEach( b => b.addEventListener('click', () => checkX(false)));
