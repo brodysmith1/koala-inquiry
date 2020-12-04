@@ -79,8 +79,13 @@ function onDOMLoad() {
   document.querySelector('#volume').addEventListener( 'click', toggleSound );
 
 
-  document.body.addEventListener('swipeleft',  e => checkX(true) );
-  document.body.addEventListener('swiperight', e => checkX(false) );
+  // document.body.addEventListener('swipeleft',  e => checkX(true) );
+  // document.body.addEventListener('swiperight', e => checkX(false) );
+  
+  document.querySelectorAll('.btn.btn-next').forEach( b => b.addEventListener('click', () => checkX(true) ));
+  document.querySelectorAll('.btn.btn-prev').forEach( b => b.addEventListener('click', () => checkX(false)));
+  
+  
 }
 
 function onFontLoad() {

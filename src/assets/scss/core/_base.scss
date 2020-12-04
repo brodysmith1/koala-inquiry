@@ -38,14 +38,6 @@ svg .key {
   }
 }
 
-.btn.btn-giant {
-  @apply rounded shadow-xl text-2xl text-center bg-green-300 p-4 duration-300 cursor-pointer my-2 font-medium tracking-wide uppercase select-none;
-  &:hover {
-    @apply bg-green-200;
-    transform: translateY(-2px);
-  }
-}
-
 .bg-image {
   @apply absolute duration-500 w-screen h-screen z-n1 top-0 right-0 bg-no-repeat;
 }

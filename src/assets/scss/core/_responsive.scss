@@ -27,6 +27,10 @@
   .slide { overflow-y: scroll; height: 100vh; -ms-overflow-style: none; scrollbar-width: none; }
   .slide::-webkit-scrollbar { display: none; }
   //body { overflow-y: scroll; }
+  
+  #nav, #home-nav-label, #home-arrow-keys { display: none }
+  .content, .content-wide { @apply absolute w-full h-full pt-12; }
+  .mobile-footer { @apply block pt-6 }
 
 }
 

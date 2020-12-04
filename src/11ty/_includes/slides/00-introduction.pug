@@ -2,14 +2,14 @@ extends ../partials/slide-wide.pug
 
 block content
   
-  #title-slide  
+  #title-slide
     .text-white.relative.fade-in
       .text-center
         h1.tracking-wide.playfair.wght-450.text-5xl.whitespace-no-wrap The Great Koala Debate
         h1.tracking-wider.playfair-italic.wght-450.text-2xl.normal-case Lessons from the Parliamentary<br>Inquiry into Koala Populations
       p.mx-24.text-justify From June 2019 to June 2020, a parliamentary inquiry was tasked with investigating the state of koala populations in NSW. This interactive is a guide into the inquiry and its strongest recommendation to ensure the future of koalas: the Great Koala National Park.
       
-      .uc-label.uppercase.text-base.text-center.py-6.fade-in.delay-2.opacity-0
+      #home-arrow-keys.uc-label.uppercase.text-base.text-center.py-6.fade-in.delay-2.opacity-0
         | Use keyboard arrows to advance
         .w-24.m-auto.my-4
           svg(
@@ -23,5 +23,4 @@ block content
             path.key(d="M32 25.5V.5h25v25z")
             path.animate-ping.fill-current(d="M44.5 6.5l-3.7 6.4h2.8v6.6h1.8v-6.6h2.8l-3.7-6.4zM63.5 31.5v25h25v-25zm12.1 17.1v-3.2H69v-2.8h6.6v-3.2l7.9 4.6z")
           
-    #home-nav-label.uc-label
-      | Or jump to a section
+    #home-nav-label.uc-label Or jump to a section
