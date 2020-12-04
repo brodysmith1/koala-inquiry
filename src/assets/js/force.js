@@ -125,8 +125,10 @@ function positionTT(tt) {
 
   console.log(t)
 
-  t < 0 ? tt.style.lineHeight = '1.25rem' : ""
-  t < 0 ? tt.style.fontSize = '.8rem' : ""
+  // t < 0 ? tt.style.lineHeight = '1.25rem' : ""
+  // t < 0 ? tt.style.fontSize = '.8rem' : ""
+  if ( t < 0 ) { tt.style.bottom = "unset"; tt.style.top = "110%" }
+  tt.parentElement.parentElement.appendChild(tt.parentElement)
 
   console.log(tt.getBoundingClientRect().top)
 }
