@@ -29,8 +29,10 @@
   //body { overflow-y: scroll; }
   
   #nav, #home-nav-label, #home-arrow-keys { display: none }
-  .content, .content-wide { @apply absolute w-full h-full pt-12; }
-  .mobile-footer { @apply block pt-6 }
+  .content, .content-wide { @apply absolute w-full h-auto py-12 top-0; }
+  
+  .mobile-footer { @apply fixed bottom-0 w-full block z-50 }
+  .mobile-footer .btn { @apply px-4 py-2 }
 
 }
 

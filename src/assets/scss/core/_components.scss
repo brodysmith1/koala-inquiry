@@ -138,7 +138,7 @@
   }
 }
 
-.btn { @apply text-gray-200 text-base font-semibold text-center pb-4 uppercase tracking-wide; }
+.btn { @apply text-gray-200 text-lg font-semibold text-center pb-4 uppercase tracking-wide; }
 .content-wide .btn { @apply px-4; }
 #title-slide + .mobile-footer {
   animation: pulse 1s linear alternate infinite;
