@@ -57,15 +57,14 @@ const body      = document.querySelector('body'),
       recoms    = document.querySelectorAll('.recommendation')
 
 // Misc
-var vw, vh
+var vw = window.innerWidth, vh = window.innerHeight;
 document.addEventListener('DOMContentLoaded', onDOMLoad)
+window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 250) };
 
 
 function onDOMLoad() {
 
   // vw = Math.max(document.documentElement.clientWidth, document.documentElement.clientHeight) // Weird mobile debug
-  vw = window.innerWidth
-  window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 250) };
 
   setTimeout(onFontLoad, 3000 ) // fallback if fonts don't load
   document.fonts.ready.then(onFontLoad)
@@ -104,7 +103,6 @@ function onResize(e) {
   vh = document.documentElement.clientHeight;
   x = - i * vw;
   translateX(slides, x);
-  console.log(vw, vh)
 }
 
 
