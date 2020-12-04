@@ -14,7 +14,7 @@
   #soln-map svg { height: 115vh; transform: translate(-1rem, -2rem); }
 
   .map-text { @apply text-base pl-0 }
-  .map-text.soln-map { @apply pl-8 mr-8 }
+  // .map-text.soln-map { @apply pl-8 mr-8 w-1/2 }
 
   .uc-label { @apply text-sm; }
   .text-long { @apply text-base; }
@@ -34,7 +34,8 @@
   .mobile-footer { @apply fixed bottom-0 w-full block z-50 pointer-events-none }
   .mobile-footer .btn { @apply px-4 py-2 pointer-events-auto }
   
-  #timeline { @apply w-full; &::after{ @apply hidden; } }
+  #timeline-page { @apply relative h-screen }
+  #timeline { @apply w-full flex-col; &::after{ @apply hidden; } }
   #timeline-wrap { @apply flex-col-reverse }
   #timeline-wrap h1 { @apply pt-12 pb-4 }
   #timeline .node { @apply p-0 flex-row items-center }
@@ -43,6 +44,11 @@
   #timeline .node .text-center { @apply px-6 text-right; width: 85px; &:last-child { @apply text-left; width: 80%; } }
   #timeline .year-2018 { @apply flex; .inline-block { @apply pl-8 m-auto } }
   #timeline-bushfires { left: 85px; bottom: 7.75rem }
+  
+  
+  #nsw-map, #soln-map { max-height: 100vh; overflow-y: hidden;}
+  .map-text { max-height: 100vh; overflow-y: scroll; }
+  .map-text.soln-map { @apply mr-8 w-1/2 }
 
 }
 

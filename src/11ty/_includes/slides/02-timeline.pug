@@ -2,18 +2,18 @@ extends ../partials/slide.pug
 
 block content
   
-  .absolute.inset-0(class="sm:relative sm:h-screen")
+  #timeline-page.absolute.inset-0
   
     #timeline-wrap
           
-      #timeline.relative.flex.flex-col
+      #timeline.relative.flex.flex-row
       
         #timeline-bushfires.absolute.z-10.text-center.text-xs 
           span.px-6.py.bg-red-300.text-white.uppercase.font-medium.tracking-wide Bushfires
       
         - let start = 2016
         for f,i in new Array(5)
-          .node.flex.flex-1.flex-row-reverse.p-2
+          .node.flex.flex-1.flex-col-reverse.py-0.px-4
             .flex-none.tag.text-center: span.playfair-italic.relative.text-xl.mx-auto.opacity-75= start+i
             .spacer.relative.flex-1.my-2(style="min-height: 2rem;")
             .flex-none.text-sm.text-center
