@@ -25,11 +25,11 @@
 
 @media (max-height: 600px) {
   .slide { overflow-y: scroll; height: 100vh; -ms-overflow-style: none; scrollbar-width: none; }
-  .slide::-webkit-scrollbar, .map-text::-webkit-scrollbar { display: none; }
+  .slide::-webkit-scrollbar, .map-text::-webkit-scrollbar, #recs::-webkit-scrollbar { display: none; }
   
   .slide.mobile-overflow { overflow-y: visible; }
   .mobile-overflow .content,
-  .mobile-overflow .content-wide { overflow-y: scroll; min-height: 100vh}
+  .mobile-overflow .content-wide { overflow-y: visible; min-height: 100vh}
   
   #nav, #home-nav-label, #home-arrow-keys { display: none }
   .content, .content-wide { @apply absolute w-full h-auto py-12 top-0; }
@@ -47,6 +47,11 @@
   #timeline .node .text-center { @apply px-6 text-right; width: 85px; &:last-child { @apply text-left; width: 80%; } }
   #timeline .year-2018 { @apply flex; .inline-block { @apply pl-8 m-auto } }
   #timeline-bushfires { left: 85px; bottom: 7.75rem }
+  
+  #recs { top: -2rem; height: calc(100vh + 2rem); overflow-y: scroll; }
+  #recs-area { min-height: 420px; max-width: 460px; transform: scale(0.7) }
+  .recommendation-text:not(.final) { right: -1rem; left: 5rem }
+  .dash { transform: scale(0.5) translate(-0.75rem, 0) }
   
   
   #nsw-map, #soln-map { max-height: 100vh; overflow-y: hidden;}

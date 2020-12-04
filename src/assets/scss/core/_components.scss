@@ -101,6 +101,7 @@
 }
 
 
+#recs-area { max-width: 490px; max-height: 420px }
 .annotation {
   @apply absolute opacity-0 text-center text-white text-xs tracking-wide uppercase z-n1 text-green-200 duration-1000;
   width: 300px
