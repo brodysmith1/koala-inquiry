@@ -27,6 +27,10 @@
   .slide { overflow-y: scroll; height: 100vh; -ms-overflow-style: none; scrollbar-width: none; }
   .slide::-webkit-scrollbar, .map-text::-webkit-scrollbar { display: none; }
   
+  .slide.mobile-overflow { overflow-y: visible; }
+  .mobile-overflow .content,
+  .mobile-overflow .content-wide { overflow-y: scroll; min-height: 100vh}
+  
   #nav, #home-nav-label, #home-arrow-keys { display: none }
   .content, .content-wide { @apply absolute w-full h-auto py-12 top-0; }
   
