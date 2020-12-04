@@ -31,8 +31,18 @@
   #nav, #home-nav-label, #home-arrow-keys { display: none }
   .content, .content-wide { @apply absolute w-full h-auto py-12 top-0; }
   
-  .mobile-footer { @apply fixed bottom-0 w-full block z-50 }
-  .mobile-footer .btn { @apply px-4 py-2 }
+  .mobile-footer { @apply fixed bottom-0 w-full block z-50 pointer-events-none }
+  .mobile-footer .btn { @apply px-4 py-2 pointer-events-auto }
+  
+  #timeline { @apply w-full; &::after{ @apply hidden; } }
+  #timeline-wrap { @apply flex flex-col-reverse }
+  #timeline-wrap h1 { @apply pt-12 pb-4 }
+  #timeline .node { @apply p-0 flex-row items-center }
+  #timeline .node { &:last-child { @apply pt-6 mb-16 } .my-2 { @apply py-2 my-0 } .mb-2 { @apply py-3 mb-0 } }
+  #timeline .node .spacer { @apply h-full flex-none }
+  #timeline .node .text-center { @apply px-6 text-right; width: 85px; &:last-child { @apply text-left; width: 80%; } }
+  #timeline .year-2018 { @apply flex; .inline-block { @apply pl-8 m-auto } }
+  #timeline-bushfires { left: 85px; bottom: 7.75rem }
 
 }
 

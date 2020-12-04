@@ -2,21 +2,21 @@ extends ../partials/slide.pug
 
 block content
   
-  .absolute.inset-0
+  .absolute.inset-0(class="sm:relative sm:h-screen")
   
     #timeline-wrap
           
-      #timeline.relative.flex.flex-col(class="md:flex-row")
+      #timeline.relative.flex.flex-col
       
-        .absolute.z-10.text-center.text-xs(style="left: 72.5%; width: 15%; bottom: 2.25rem") 
+        #timeline-bushfires.absolute.z-10.text-center.text-xs 
           span.px-6.py.bg-red-300.text-white.uppercase.font-medium.tracking-wide Bushfires
       
         - let start = 2016
         for f,i in new Array(5)
-          .node.flex.flex-1.flex-row-reverse.p-2(class="sm:px-0 md:px-4 md:py-0 md:flex-col-reverse")
+          .node.flex.flex-1.flex-row-reverse.p-2
             .flex-none.tag.text-center: span.playfair-italic.relative.text-xl.mx-auto.opacity-75= start+i
             .spacer.relative.flex-1.my-2(style="min-height: 2rem;")
-            .flex-none.content.text-sm.text-center
+            .flex-none.text-sm.text-center
               case start+i
                 when 2016
                   .mb-2 NSW Chief Scientist releases a 
@@ -27,13 +27,14 @@ block content
                     span.italic Biodiversity Conservation Act 2016
                     |  introduces various land management and biodiversity reforms
                 when 2018
-                  .mb-2
+                  .mb-2.year-2018
                     .text-6xl.playfair(style="margin-top: -.5em")
                       sup.text-2xl $
                       | 44.7
                       sub.text-3xl M
-                    +link('Koala Strategy', 'https://www.environment.nsw.gov.au/topics/animals-and-plants/threatened-species/programs-legislation-and-framework/nsw-koala-strategy')
-                    |  launched by NSW Government
+                    .inline-block
+                      +link('Koala Strategy', 'https://www.environment.nsw.gov.au/topics/animals-and-plants/threatened-species/programs-legislation-and-framework/nsw-koala-strategy')
+                      |  launched by NSW Government
                 when 2019
                   .mb-2 NSW parliamentary inquiry into koala populations launched
                 when 2020
