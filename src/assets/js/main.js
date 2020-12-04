@@ -85,6 +85,8 @@ function onDOMLoad() {
   document.querySelectorAll('.btn.btn-next').forEach( b => b.addEventListener('click', () => checkX(true) ));
   document.querySelectorAll('.btn.btn-prev').forEach( b => b.addEventListener('click', () => checkX(false)));
   
+  console.log(window.getComputedStyle(document.querySelector("#timeline")))
+  
   
 }
 
