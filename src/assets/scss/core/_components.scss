@@ -3,7 +3,7 @@
   @apply fixed h-screen w-screen z-50 bg-green-400 flex flex-col justify-center items-center pointer-events-none duration-500;
 }
 #mobile-wall {display: none;}
-@media (max-width: 650px), (pointer: coarse) { #mobile-wall {display: flex;} }
+@media (orientation: portrait) { #mobile-wall {display: flex;} }
 
 
 .content {

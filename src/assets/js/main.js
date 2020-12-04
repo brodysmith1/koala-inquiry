@@ -61,10 +61,11 @@ window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 
 
 function onDOMLoad() {
 
-  // vw = Math.max(document.documentElement.clientWidth, document.documentElement.clientHeight) // Weird mobile debug
+  vw = document.documentElement.clientWidth,
+  vh = document.documentElement.clientHeight
 
+  vw < 600 ? document.fonts.ready.then(onFontLoad) : ""
   setTimeout(onFontLoad, 3000 ) // fallback if fonts don't load
-  document.fonts.ready.then(onFontLoad)
 
   setNav()
   loadMaps()
