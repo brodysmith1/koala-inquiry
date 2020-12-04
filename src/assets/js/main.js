@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', onDOMLoad)
 
 function onDOMLoad() {
 
-  vw = document.documentElement.clientWidth
+  vw = Math.max(document.documentElement.clientWidth, document.documentElement.clientHeight) // Weird mobile debug
   window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 250) };
 
   setTimeout(onFontLoad, 3000 ) // fallback if fonts don't load
