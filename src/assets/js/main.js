@@ -63,7 +63,8 @@ document.addEventListener('DOMContentLoaded', onDOMLoad)
 
 function onDOMLoad() {
 
-  vw = Math.max(document.documentElement.clientWidth, document.documentElement.clientHeight) // Weird mobile debug
+  // vw = Math.max(document.documentElement.clientWidth, document.documentElement.clientHeight) // Weird mobile debug
+  vw = window.innerWidth
   window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 250) };
 
   setTimeout(onFontLoad, 3000 ) // fallback if fonts don't load
@@ -84,9 +85,6 @@ function onDOMLoad() {
   
   document.querySelectorAll('.btn.btn-next').forEach( b => b.addEventListener('click', () => checkX(true) ));
   document.querySelectorAll('.btn.btn-prev').forEach( b => b.addEventListener('click', () => checkX(false)));
-  
-  console.log(window.getComputedStyle(document.querySelector("#timeline")))
-  
   
 }
 
@@ -167,7 +165,6 @@ function update(p) {
   else if (i == CULTURE)  { document.querySelector('video').play(); }
   else if (i == INDIG)    { bgi = black; }
   else if (i == LOCATION) { bgi = blue400; }
-  else if (i == CUTS)     { triggerForestCuts(); }
   else if (i == RECOS)    { layoutGrid(recoms); }
   else if (i == RECOS+1)  { layoutSplit(recoms, 1); }
   else if (i == RECOS+2)  { layoutSplit(recoms, 2); }

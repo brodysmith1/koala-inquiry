@@ -46,7 +46,7 @@
   
   
   #nsw-map, #soln-map { max-height: 100vh; overflow-y: hidden;}
-  .map-text { max-height: 100vh; overflow-y: scroll; }
+  .map-text { @apply py-12; max-height: 100vh; overflow-y: scroll; }
   .map-text.soln-map { @apply mr-8 w-1/2 }
 
 }
