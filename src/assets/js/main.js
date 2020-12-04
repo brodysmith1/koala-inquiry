@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', onDOMLoad)
 function onDOMLoad() {
 
   vw = document.documentElement.clientWidth
+  window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 250) };
 
   setTimeout(onFontLoad, 3000 ) // fallback if fonts don't load
   document.fonts.ready.then(onFontLoad)
@@ -74,13 +75,12 @@ function onDOMLoad() {
   layoutSetup()
 
   document.addEventListener('keydown', checkKey);
-  window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 250) };
   document.querySelector('#video-container').addEventListener( 'click', togglePlay );
   document.querySelector('#volume').addEventListener( 'click', toggleSound );
 
 
-  // document.body.addEventListener('swipeleft',  e => checkX(true) );
-  // document.body.addEventListener('swiperight', e => checkX(false) );
+  document.body.addEventListener('swipeleft',  e => checkX(true) );
+  document.body.addEventListener('swiperight', e => checkX(false) );
   
   document.querySelectorAll('.btn.btn-next').forEach( b => b.addEventListener('click', () => checkX(true) ));
   document.querySelectorAll('.btn.btn-prev').forEach( b => b.addEventListener('click', () => checkX(false)));
