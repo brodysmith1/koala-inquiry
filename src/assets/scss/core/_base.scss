@@ -40,6 +40,11 @@ svg .key {
 
 .bg-image {
   @apply absolute duration-500 w-screen h-screen z-n1 top-0 right-0 bg-no-repeat;
+  
+  &.bg-left-bottom {
+    left: 0;
+    right: auto;
+  }
 }
 
 .bg-image:not(.active) {
