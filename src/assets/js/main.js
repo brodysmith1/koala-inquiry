@@ -37,7 +37,6 @@ var x  = 0,
     n  = 33,
     i  = 0,
     bg         = green400,
-    navActive  = false,
     mapNSWPlay = false,
     loaded     = false,
     timeout    = false
@@ -47,7 +46,7 @@ const body      = document.querySelector('body'),
       nav       = document.querySelector('#nav'),
       slides    = document.querySelector('.slides'),
       mapSLN    = document.querySelector('#soln-map'),
-      navLine   = document.querySelector('#nav-line'),
+      navBtn    = document.querySelector('#nav-btn'),
       navItems  = document.querySelectorAll('.nav-item'),
       navLabel  = document.querySelector('#nav-label'),
       pager     = document.querySelector('#pager'),
@@ -65,19 +64,20 @@ function onDOMLoad() {
   vh = document.documentElement.clientHeight
 
   vw < 600 ? document.fonts.ready.then(onFontLoad) : ""
-  setTimeout(onFontLoad, 3000 ) // fallback if fonts don't load
+  setTimeout(onFontLoad, 300 ) // fallback if fonts don't load
 
   setNav()
   loadMaps()
   loadGraphEOC()
   layoutSetup()
-
-  document.addEventListener('keydown', checkKey);
-  document.querySelector('#video-container').addEventListener( 'click', togglePlay );
-  document.querySelector('#volume').addEventListener( 'click', toggleSound );
   
-  document.querySelectorAll('.btn.btn-next').forEach( b => b.addEventListener('click', () => checkX(true) ));
-  document.querySelectorAll('.btn.btn-prev').forEach( b => b.addEventListener('click', () => checkX(false)));
+  document.addEventListener('keydown', checkKey)
+  document.body.addEventListener('click', () => { nav.classList.remove('open'); navBtn.classList.remove('open'); })
+  document.querySelector('#video-container').addEventListener( 'click', togglePlay )
+  document.querySelector('#volume').addEventListener( 'click', toggleSound )
+  
+  document.querySelectorAll('.btn.btn-next').forEach( b => b.addEventListener('click', () => checkX(true) ))
+  document.querySelectorAll('.btn.btn-prev').forEach( b => b.addEventListener('click', () => checkX(false)))
   
 }
 
@@ -86,7 +86,7 @@ function onFontLoad() {
   loaded = true
   const end = new Date()
   console.log(`Fonts loaded in ${end-start}ms`)
-  document.querySelector('#loader').style.opacity = 0
+  // document.querySelector('#loader').style.opacity = 0
   setTimeout( () => update(null), 200 )
 }
 
@@ -150,11 +150,9 @@ function update(p) {
 
   // Execute specific behaviour for targeted slides
   if (p == null) { document.querySelector('#title-slide').style.display = 'block' }
-  else if (p == COVER) { offHome() }
   else if ( p == CULTURE)  { document.querySelector('video').pause(); }
 
-  if (i == COVER) { onHome(); }
-  else if (i == CULTURE)  { document.querySelector('video').play(); }
+  if (i == CULTURE)  { document.querySelector('video').play(); }
   else if (i == INDIG)    { bgi = black; }
   else if (i == LOCATION) { bgi = blue400; }
   else if (i == RECOS)    { layoutGrid(recoms); }
@@ -186,48 +184,17 @@ function toggleSound() {
 
 // Other events
 function setNav() {
-  nav.addEventListener('mouseenter', () => toggleNav(true)  )
-  nav.addEventListener('mouseleave', () => toggleNav(false) )
   navItems.forEach( el => el.addEventListener('click', () => jumpTo(+el.dataset.slide)) )
-}
-
-function toggleNav(show) {
-
-  if (show && !navActive) {
-    navActive = !navActive;
-    navLabel.style.opacity = 0;
-    navItems.forEach( el => {
-      el.style.opacity = 0;
-      el.style.animationDirection = 'normal';
-      restartAnimation(el, 'slide-up');
-    });
-  }
-  else if (!show && navActive && i != COVER) {
-    navActive = !navActive;
-    navLabel.style.opacity = 0.75;
-    navItems.forEach( el => {
-      el.style.opacity = 1;
-      el.style.animationDirection = 'reverse';
-      restartAnimation(el, 'slide-up');
-    });
-  }
-
+  navBtn.addEventListener('click', e => {
+    navBtn.classList.toggle('open')
+    nav.classList.toggle('open')
+    e.stopPropagation()
+  })
 }
 
 // Helpers
 function setBackground(b) { body.style.background = bg = b }
-function onHome() {
-  toggleNav(true)
-  nav.style.transform = ''
-  navLine.style.opacity = 0.5
-  navItems.forEach( e => e.classList.add('bg-green-400'))
-}
-function offHome() {
-  toggleNav(false)
-  navLine.style.opacity = 0
-  nav.style.transform = 'translateY(5rem)'
-  navItems.forEach( e => e.classList.remove('bg-green-400'))
-}
+
 function jumpTo(index) { // Jump to specific slide
   let p = i;
 

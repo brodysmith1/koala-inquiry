@@ -1,0 +1,55 @@
+mixin nav()
+	- let n = 32
+	- let delay = 0
+	- let START = 0
+	- let COUNT = 3
+	- let VALUE = 6
+	- let CAUSE = 10
+	- let POLCY = 13
+	- let REC0S = 16
+	- let PARKS = 19
+	- let HEROS = 21
+	- let VISON = 31
+
+	#pager
+		
+	svg#nav-btn(width="25px" height="25px" viewbox="0 0 7 6")
+		rect(height="1" width="7")
+		rect(y="2" height="1" width="7")
+		rect(y="4" height="1" width="7")
+		
+	#nav
+		.uppercase.text-xs Sections
+		hr.my-2
+			
+		ul
+			
+			each v, i in new Array(n)
+				case i
+					when START
+						- v = "Start"
+					when COUNT
+						- v = "Koalas in NSW"
+					when VALUE
+						- v = "Valuing Koalas"
+					when CAUSE
+						- v = "Causes of Decline"
+					when POLCY
+						- v = "Current Policy"
+					when REC0S
+						- v = "Recommendations"
+					when PARKS
+						- v = "Koala Parks"
+					when HEROS
+						- v = "Concerns"
+					when VISON
+						- v = "A Future Vision"
+					default
+						- v = ""
+		    
+				if v
+					li.nav-item.duration-100(
+							class=`delay-${delay}`
+							data-slide=i
+						)= v
+						- delay++

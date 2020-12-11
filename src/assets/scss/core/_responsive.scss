@@ -2,9 +2,6 @@
 
   .content { max-width: 44rem; }
 
-  #nav { height: 3rem; }
-  #home-nav-label { bottom: 3.75rem; @apply text-sm; }
-
   #decline-svg { height: 250px; width: 332px; }
   #decline-graph-legend { left: calc(50% + 195px); }
   #decline-graph-quote  { max-width: 625px; .text-lg { @apply text-base mx-0; } }
@@ -31,7 +28,7 @@
   .mobile-overflow .content,
   .mobile-overflow .content-wide { overflow-y: visible; min-height: 100vh}
   
-  #nav, #home-nav-label, #home-arrow-keys { display: none }
+  #home-nav-label, #home-arrow-keys { display: none }
   .content, .content-wide { @apply absolute w-full h-auto py-12 top-0; }
   
   .mobile-footer { @apply fixed bottom-0 w-full block z-50 pointer-events-none }
