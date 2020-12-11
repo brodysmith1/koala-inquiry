@@ -20,7 +20,7 @@
 
 
 #pager {
-  @apply absolute top-0 left-0 bg-green-200 duration-500 ease-out z-10;
+  @apply absolute top-0 left-0 bg-green-200 duration-500 ease-out z-20;
   height: 5px
 }
 
@@ -32,33 +32,36 @@
   overflow-y: scroll;
   
   &::-webkit-scrollbar { width: 0; }
-  
-  &.open {
-    transform: translateX(0px);
-   }
-  
+  &.open { transform: translateX(0px);}
   
   &-btn {
-    @apply fixed top-0 left-0 m-8 z-50 fill-current text-white cursor-pointer;
-    rect { @apply duration-300; transform-origin: left; }
-    &:hover { @apply text-green-200 }
+    @apply fixed top-0 left-0 z-50 cursor-pointer duration-300;
+    
+    svg { @apply fill-current text-white m-8 duration-300; }
+    &:hover svg{ @apply text-green-200 }
+    
+    rect { transition: transform 0.3s; transform-origin: left; }
   
     &.open {
-      @apply text-green-300;
-      &:hover { @apply text-green-200 }
+      svg { @apply text-green-300; }
+      svg:hover { @apply text-green-200 }
       rect:nth-child(1) { transform: rotate(45deg) translate(-1px,0); }
       rect:nth-child(2) { opacity: 0}
       rect:nth-child(3) { transform: rotate(-45deg) translate(-1px,0.9px); }
+      
+      #nav-btn-label { opacity: 0 }
     }
+    
+    &-label {
+      @apply absolute text-white text-base;
+      left: 5rem;
+      top: 3rem;      
+    }
+    
   }
   
 }
 
-#home-nav-label {
-  @apply absolute text-white text-base opacity-0;
-  left: 4.5rem;
-  top: 2.25rem;
-}
 .nav-item {
   @apply py-1 whitespace-no-wrap cursor-pointer z-10 duration-300;
 }

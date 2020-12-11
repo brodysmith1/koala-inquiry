@@ -13,6 +13,7 @@ const start = new Date();
 
 // ENUMS
 const COVER = 0,
+      ABOUT = 1,
       LOCATION = 3,
       TOURISM = 7,
       CULTURE = 8,
@@ -48,7 +49,7 @@ const body      = document.querySelector('body'),
       mapSLN    = document.querySelector('#soln-map'),
       navBtn    = document.querySelector('#nav-btn'),
       navItems  = document.querySelectorAll('.nav-item'),
-      navLabel  = document.querySelector('#nav-label'),
+      navLabel  = document.querySelector('#nav-btn-label'),
       pager     = document.querySelector('#pager'),
       recoms    = document.querySelectorAll('.recommendation')
 
@@ -150,11 +151,12 @@ function update(p) {
 
   // Execute specific behaviour for targeted slides
   if (p == null) { document.querySelector('#title-slide').style.display = 'block' }
-  else if ( p == CULTURE)  { document.querySelector('video').pause(); }
+  else if ( p == CULTURE) { document.querySelector('video').pause(); }
 
-  if (i == CULTURE)  { document.querySelector('video').play(); }
+  if (i == ABOUT) { navBtn.classList.remove('opacity-0') }
+  else if (i == LOCATION) { navLabel.classList.add('opacity-0'); bgi = blue400; }
+  else if (i == CULTURE)  { document.querySelector('video').play(); }
   else if (i == INDIG)    { bgi = black; }
-  else if (i == LOCATION) { bgi = blue400; }
   else if (i == RECOS)    { layoutGrid(recoms); }
   else if (i == RECOS+1)  { layoutSplit(recoms, 1); }
   else if (i == RECOS+2)  { layoutSplit(recoms, 2); }
@@ -184,7 +186,10 @@ function toggleSound() {
 
 // Other events
 function setNav() {
-  navItems.forEach( el => el.addEventListener('click', () => jumpTo(+el.dataset.slide)) )
+  
+  nav.addEventListener('click', e => e.stopPropagation())
+  navItems.forEach( el => el.addEventListener('click', e => jumpTo(+el.dataset.slide)))
+  
   navBtn.addEventListener('click', e => {
     navBtn.classList.toggle('open')
     nav.classList.toggle('open')
