@@ -7,9 +7,6 @@
   #decline-graph-quote  { max-width: 625px; .text-lg { @apply text-base mx-0; } }
   #radio-ui { left: calc(50% - 290px); }
 
-  #nsw-map svg  { height: 115vh; }
-  #soln-map svg { height: 115vh; transform: translate(-1rem, -2rem); }
-
   .map-text { @apply text-base pl-0 }
   // .map-text.soln-map { @apply pl-8 mr-8 w-1/2 }
 
@@ -17,6 +14,15 @@
   .text-long { @apply text-base; }
   .footnote { @apply mt-8; position: relative; font-size: 0.8em}
   .map-text.soln-map { @apply mr-20 pr-0 }
+
+}
+
+@media (max-height: 650px) {
+
+  #recs { top: -2rem; height: calc(100vh + 2rem); overflow-y: scroll; }
+  #recs-area { min-height: 420px; max-width: 460px; transform: scale(0.7) }
+  .recommendation-text:not(.final) { right: -1rem; left: 5rem }
+  .dash { transform: scale(0.5) translate(-0.75rem, 0) }
 
 }
 
@@ -37,17 +43,20 @@
   .content, .content-wide { @apply absolute w-full h-auto pt-12 pb-20 top-0; }
   .content { @apply pt-20 px-20 top-0; }
   
-  #recs { top: -2rem; height: calc(100vh + 2rem); overflow-y: scroll; }
-  #recs-area { min-height: 420px; max-width: 460px; transform: scale(0.7) }
-  .recommendation-text:not(.final) { right: -1rem; left: 5rem }
-  .dash { transform: scale(0.5) translate(-0.75rem, 0) }
-  
   #nsw-map, #soln-map { max-height: 100vh; overflow-y: hidden;}
   .map-text { @apply py-12; max-height: 100vh; overflow-y: scroll; }
-  .map-text.soln-map { @apply mr-8 w-1/2 }
-
+  .map-text.soln-map { @apply pl-6 mr-4 w-1/3 }
+  
 }
 
+@media (min-aspect-ratio: 16/10) {
+  
+  #nsw-map svg  { height: 115vh; }
+  #soln-map svg { height: 115vh; transform: translate(-1rem, -2rem); }
+  .map-text.soln-map { @apply mr-8 w-1/2 }
+  
+}
+  
 @media (pointer: coarse) {
   
   .mobile-footer { @apply fixed bottom-0 w-full block z-30 pointer-events-none }
