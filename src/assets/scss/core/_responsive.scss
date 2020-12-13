@@ -20,7 +20,7 @@
 
 }
 
-@media (max-height: 600px) {
+@media screen and (pointer: coarse) {
   .slide { overflow-y: scroll; height: 100vh; -ms-overflow-style: none; scrollbar-width: none; }
   .slide::-webkit-scrollbar, .map-text::-webkit-scrollbar, #recs::-webkit-scrollbar { display: none; }
   
