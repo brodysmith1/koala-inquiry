@@ -28,7 +28,8 @@
   .mobile-overflow .content,
   .mobile-overflow .content-wide { overflow-y: visible; min-height: 100vh}
   
-  #home-nav-label, #home-arrow-keys { display: none }
+  #home-nav-label, #home-arrow-keys, #nav-btn-label { display: none }
+  
   .content, .content-wide { @apply absolute w-full h-auto py-12 top-0; }
   
   .mobile-footer { @apply fixed bottom-0 w-full block z-50 pointer-events-none }
