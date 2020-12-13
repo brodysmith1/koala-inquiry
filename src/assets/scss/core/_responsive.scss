@@ -20,7 +20,8 @@
 
 }
 
-@media screen and (pointer: coarse) {
+@media (pointer: coarse), (max-height: 550px) {
+  
   .slide { overflow-y: scroll; height: 100vh; -ms-overflow-style: none; scrollbar-width: none; }
   .slide::-webkit-scrollbar, .map-text::-webkit-scrollbar, #recs::-webkit-scrollbar { display: none; }
   
@@ -32,10 +33,7 @@
   
   .content, .content-wide { @apply absolute w-full h-auto py-12 top-0; }
   
-  .mobile-footer { @apply fixed bottom-0 w-full block z-50 pointer-events-none }
-  .mobile-footer .btn { @apply px-4 py-2 pointer-events-auto }
-  
-  #timeline-page { @apply relative h-screen }
+  #timeline-page { @apply relative h-screen; height: 200vh }
   #timeline { @apply w-full flex-col; &::after{ @apply hidden; } }
   #timeline-wrap { @apply flex-col-reverse }
   #timeline-wrap h1 { @apply pt-12 pb-4 }
@@ -51,11 +49,17 @@
   .recommendation-text:not(.final) { right: -1rem; left: 5rem }
   .dash { transform: scale(0.5) translate(-0.75rem, 0) }
   
-  
   #nsw-map, #soln-map { max-height: 100vh; overflow-y: hidden;}
   .map-text { @apply py-12; max-height: 100vh; overflow-y: scroll; }
   .map-text.soln-map { @apply mr-8 w-1/2 }
 
+}
+
+@media (pointer: coarse) {
+  
+  .mobile-footer { @apply fixed bottom-0 w-full block z-50 pointer-events-none }
+  .mobile-footer .btn { @apply px-4 py-2 pointer-events-auto }
+  
 }
 
 @media (max-width: 1280px) {
