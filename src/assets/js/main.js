@@ -51,7 +51,9 @@ const body      = document.querySelector('body'),
       navItems  = document.querySelectorAll('.nav-item'),
       navLabel  = document.querySelector('#nav-btn-label'),
       pager     = document.querySelector('#pager'),
-      recoms    = document.querySelectorAll('.recommendation')
+      recoms    = document.querySelectorAll('.recommendation'),
+      mobPrev   = document.querySelector('.btn.btn-prev'),
+      mobNext   = document.querySelector('.btn.btn-next')
 
 // Misc
 var vw = window.innerWidth, vh = window.innerHeight;
@@ -151,9 +153,11 @@ function update(p) {
 
   // Execute specific behaviour for targeted slides
   if (p == null) { document.querySelector('#title-slide').style.display = 'block' }
+  else if ( p == COVER)   { mobPrev.classList.remove('opacity-0'); mobPrev.classList.add('opacity-50'); }
   else if ( p == CULTURE) { document.querySelector('video').pause(); }
 
   if (i == ABOUT) { navBtn.classList.remove('opacity-0') }
+  else if (i == COVER) { mobPrev.classList.add('opacity-0'); mobPrev.classList.remove('opacity-50'); }
   else if (i == LOCATION) { navLabel.classList.add('opacity-0'); bgi = blue400; }
   else if (i == CULTURE)  { document.querySelector('video').play(); }
   else if (i == INDIG)    { bgi = black; }

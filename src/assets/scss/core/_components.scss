@@ -157,21 +157,20 @@
 
 
 .btn.btn-giant {
-  @apply rounded shadow-xl text-2xl text-center bg-green-300 p-4 duration-300 cursor-pointer my-2 font-medium tracking-wide uppercase select-none;
+  @apply rounded shadow-xl text-2xl text-center bg-green-300 p-4 cursor-pointer my-2 font-medium tracking-wide uppercase select-none;
   &:hover {
     @apply bg-green-200;
     transform: translateY(-2px);
   }
 }
 
-.btn { @apply text-gray-200 text-3xl font-semibold text-center pb-4 uppercase tracking-wide; }
+.btn { @apply duration-300 text-gray-200 text-3xl font-semibold text-center pb-4 uppercase tracking-wide; }
 .content-wide .btn { @apply px-4; }
 .btn-next {
   animation: pulse 1s linear alternate infinite;
   -webkit-animation: pulse 1s linear alternate infinite;
   &::before { content: "Enter"; font-size: 0.5em}
  }
-.btn-prev { @apply opacity-50; }
 
 
 
