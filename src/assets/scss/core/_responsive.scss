@@ -29,7 +29,7 @@
   .mobile-overflow .content,
   .mobile-overflow .content-wide { overflow-y: visible; min-height: 100vh}
   
-  #nav ul { height: calc(100vh - 140px); overflow-y: scroll;}
+  #nav ul { height: calc(100vh - 155px); overflow-y: scroll;}
   #home-nav-label, #home-arrow-keys, #nav-btn-label { display: none }
   
   .content, .content-wide { @apply absolute w-full h-auto py-12 top-0; }
