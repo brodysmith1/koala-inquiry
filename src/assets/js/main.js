@@ -59,8 +59,8 @@ const body      = document.querySelector('body'),
 var vw, vh
 
 document.addEventListener('DOMContentLoaded', onDOMLoad)
+window.addEventListener('load', onWindowLoad)
 window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 250) };
-window.onload = () => { console.log(`Loaded in ${(new Date())-start}ms`);  };
 
 function onDOMLoad() {
   
@@ -84,6 +84,16 @@ function onDOMLoad() {
   document.querySelectorAll('.btn.btn-next').forEach( b => b.addEventListener('click', () => checkX(true) ))
   document.querySelectorAll('.btn.btn-prev').forEach( b => b.addEventListener('click', () => checkX(false)))
   
+}
+
+function onWindowLoad() {
+  console.log(`Loaded in ${(new Date())-start}ms`)
+  
+  let vid = document.querySelector('video'),
+      src = document.querySelector('video source')
+      
+  src.setAttribute('src', src.dataset.src)
+  vid.load()
 }
 
 function onFontLoad() {
