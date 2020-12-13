@@ -25,11 +25,11 @@
 }
 
 #nav {
-  @apply fixed top-0 left-0 min-h-screen text-base z-10 text-white duration-300 p-8 bg-white text-green-400 border-green-300 border-r-4 font-medium;
+  @apply fixed top-0 left-0 h-screen text-base z-10 text-white duration-300 p-8 bg-white text-green-400 border-green-300 border-r-4 font-medium;
   width: 240px;
   padding-top: 90px;
   transform: translateX(-240px);
-  overflow-y: scroll;
+  
   
   &::-webkit-scrollbar { width: 0; }
   &.open { transform: translateX(0px);}
