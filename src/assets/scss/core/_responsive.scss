@@ -47,6 +47,8 @@
   .map-text { @apply py-12; max-height: 100vh; overflow-y: scroll; }
   .map-text.soln-map { @apply pl-6 mr-4 w-1/3 }
   
+  .bg-image.small { top: auto; bottom: -3.5rem; }
+  
 }
 
 @media (min-aspect-ratio: 16/10) {
