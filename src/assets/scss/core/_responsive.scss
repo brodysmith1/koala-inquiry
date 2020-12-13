@@ -34,8 +34,8 @@
   #nav ul { height: calc(100vh - 155px); overflow-y: scroll;}
   #home-nav-label, #home-arrow-keys, #nav-btn-label { display: none }
   
-  .content, .content-wide { @apply absolute w-full h-auto py-12 top-0; }
-  .content { @apply pt-20 px-16 top-0; }
+  .content, .content-wide { @apply absolute w-full h-auto pt-12 pb-20 top-0; }
+  .content { @apply pt-20 px-20 top-0; }
   
   #recs { top: -2rem; height: calc(100vh + 2rem); overflow-y: scroll; }
   #recs-area { min-height: 420px; max-width: 460px; transform: scale(0.7) }
