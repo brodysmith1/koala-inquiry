@@ -30,6 +30,8 @@
   
   .slide { overflow-y: scroll; height: 100vh; -ms-overflow-style: none; scrollbar-width: none; }
   .slide::-webkit-scrollbar, .map-text::-webkit-scrollbar, #recs::-webkit-scrollbar, #nav ul::-webkit-scrollbar { display: none; }
+  html::-webkit-scrollbar-thumb { background-color: yellow; }
+  body::-webkit-scrollbar-thumb { background-color: blue; }
   
   .slide.mobile-overflow { overflow-y: visible; }
   .mobile-overflow .content,
