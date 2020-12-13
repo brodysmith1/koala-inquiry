@@ -31,7 +31,7 @@
   
   #title-slide h1:first-child { @apply whitespace-normal px-24; }
   
-  #nav ul { height: calc(100vh - 155px); overflow-y: scroll;}
+  #nav ul { height: calc(100vh - 155px); overflow-y: scroll; padding-bottom: 2rem; }
   #home-nav-label, #home-arrow-keys, #nav-btn-label { display: none }
   
   .content, .content-wide { @apply absolute w-full h-auto pt-12 pb-20 top-0; }
