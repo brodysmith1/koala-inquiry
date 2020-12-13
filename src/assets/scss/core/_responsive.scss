@@ -32,6 +32,8 @@
   .slide::-webkit-scrollbar, .map-text::-webkit-scrollbar, #recs::-webkit-scrollbar, #nav ul::-webkit-scrollbar { display: none; }
   html::-webkit-scrollbar-thumb { background-color: yellow; }
   body::-webkit-scrollbar-thumb { background-color: blue; }
+  .content::-webkit-scrollbar-thumb { background-color: blue; }
+  .content::-webkit-scrollbar { display: none; }
   
   .slide.mobile-overflow { overflow-y: visible; }
   .mobile-overflow .content,
