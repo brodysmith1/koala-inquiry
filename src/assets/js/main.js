@@ -92,11 +92,6 @@ function onWindowLoad() {
   setTimeout( () => update(null), 200 )
   document.querySelector('#loader').style.opacity = 0
   
-  let vid = document.querySelector('video'),
-      src = document.querySelector('video source')
-      
-      src.setAttribute('src', src.dataset.src)
-      vid.load()
 }
 
 // Resize
@@ -160,7 +155,7 @@ function update(p) {
 
   // Execute specific behaviour for targeted slides
   if (p == null) { document.querySelector('#title-slide').style.display = 'block' }
-  else if ( p == COVER)   { mobPrev.classList.remove('opacity-0'); mobNext.style.animation = 'none'; mobNext.firstChild.classList.add('hidden'); }
+  else if ( p == COVER)   { mobPrev.classList.remove('opacity-0'); mobNext.style.animation = 'none'; mobNext.firstChild.classList.add('hidden'); loadVideo(); }
   else if ( p == CULTURE) { document.querySelector('video').pause(); }
 
   if (i == ABOUT) { navBtn.classList.remove('opacity-0') }
@@ -215,6 +210,12 @@ function setViewport() {
   vw = document.documentElement.clientWidth
   vh = document.documentElement.clientHeight
   vw = Math.max(vw, vh); // Hacky debug for resize while loading on mobile..
+}
+function loadVideo() { 
+  let v = document.querySelector('video'),
+      s = document.querySelector('video source')
+  s.setAttribute('src', s.dataset.src)
+  v.load()
 }
 function jumpTo(index) { // Jump to specific slide
   let p = i;
