@@ -56,22 +56,19 @@ const body      = document.querySelector('body'),
       mobNext   = document.querySelector('.btn.btn-next')
 
 // Misc
-var vw = document.documentElement.clientWidth,
-    vh = document.documentElement.clientHeight
-
-vw = Math.max(vw, vh); // Hacky debug for resize while loading on mobile..
+var vw, vh
 
 document.addEventListener('DOMContentLoaded', onDOMLoad)
 window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 250) };
+window.onload = () => { console.log(`Loaded in ${(new Date())-start}ms`);  };
 
 function onDOMLoad() {
   
-  vw = document.documentElement.clientWidth,
+  vw = document.documentElement.clientWidth
   vh = document.documentElement.clientHeight
+  vw = Math.max(vw, vh); // Hacky debug for resize while loading on mobile..
   
-  console.log("vw: ",vw, "vh: ", vh)
-
-  vw < 600 ? document.fonts.ready.then(onFontLoad) : ""
+  document.fonts.ready.then(onFontLoad)
   setTimeout(onFontLoad, 300 ) // fallback if fonts don't load
 
   setNav()
@@ -87,8 +84,6 @@ function onDOMLoad() {
   document.querySelectorAll('.btn.btn-next').forEach( b => b.addEventListener('click', () => checkX(true) ))
   document.querySelectorAll('.btn.btn-prev').forEach( b => b.addEventListener('click', () => checkX(false)))
   
-  console.log(`DOM loaded in ${(new Date())-start}ms`)
-  
 }
 
 function onFontLoad() {
@@ -100,16 +95,13 @@ function onFontLoad() {
   setTimeout( () => update(null), 200 )
 }
 
-
 // Resize
 function onResize(e) {
   vw = document.documentElement.clientWidth
   vh = document.documentElement.clientHeight
   x = - i * vw
   translateX(slides, x)
-  console.log("vw: ",vw, "vh: ", vh)
 }
-
 
 // Check keypress
 function checkKey(e) {
