@@ -77,9 +77,21 @@ function onDOMLoad() {
   document.querySelector('#video-container').addEventListener( 'click', togglePlay )
   document.querySelector('#volume').addEventListener( 'click', toggleSound )
   
+  document.querySelector('#home-arrow-keys').addEventListener( 'click', keysAlert )
+  document.querySelector('.slide').addEventListener( 'wheel', keysAlert )
+  
   document.querySelectorAll('.btn.btn-next').forEach( b => b.addEventListener('click', () => checkX(true) ))
   document.querySelectorAll('.btn.btn-prev').forEach( b => b.addEventListener('click', () => checkX(false)))
   
+}
+
+function keysAlert() {
+  let k = document.querySelector('#home-arrow-keys .alert'),
+      p = k.parentElement.querySelector('path:last-child')
+      
+  k.innerHTML = 'Use the arrow buttons on your <b>keyboard</b> to progress'
+  k.style.transform = 'scale(1.1)'
+  restartAnimation(k, 'pulse-rapid-10')
 }
 
 function onWindowLoad() {

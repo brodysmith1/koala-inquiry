@@ -26,8 +26,13 @@
 }
 
 .flash-linear {
-  animation: flash 6s linear;
-  -webkit-animation: flash 6s linear;
+  animation: pulse 6s linear;
+  -webkit-animation: pulse 6s linear;
+}
+
+.pulse-rapid-10 {
+  animation: pulse 0.08s alternate 10;
+  -webkit-animation: pulse 0.08s alternate 10;
 }
 
 .animate-ping-once {
