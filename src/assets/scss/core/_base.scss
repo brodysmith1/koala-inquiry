@@ -1,4 +1,4 @@
-html, body { @apply overflow-hidden h-screen w-screen m-0; }
+html, body { @apply overflow-hidden h-screen w-screen m-0 relative; }
 
 body {
   @apply bg-green-400 text-white;
