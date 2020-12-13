@@ -1,6 +1,6 @@
 @media (max-height: 800px) {
 
-  .content { max-width: 44rem; }
+  .content-inner { max-width: 44rem; margin: auto; }
 
   #decline-svg { height: 250px; width: 332px; }
   #decline-graph-legend { left: calc(50% + 195px); }
@@ -29,7 +29,7 @@
   .mobile-overflow .content,
   .mobile-overflow .content-wide { overflow-y: visible; min-height: 100vh}
   
-  #title-slide h1:first-child { @apply whitespace-normal px-4; }
+  #title-slide h1:first-child { @apply whitespace-normal px-24; }
   
   #nav ul { height: calc(100vh - 155px); overflow-y: scroll;}
   #home-nav-label, #home-arrow-keys, #nav-btn-label { display: none }

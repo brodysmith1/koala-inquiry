@@ -8,9 +8,10 @@
 
 .content {
   @apply px-6;
-  max-width: 44rem;
+  
+  .content-inner { max-width: 44rem; margin: auto }
+  &-wide .content-inner { max-width: 56rem; margin: auto }
 
-  &-wide { max-width: 56rem; }
 }
 .slides { @apply flex min-h-screen duration-500 ease-out text-lg; }
 .slide  { @apply min-w-full min-h-screen flex flex-1 items-center justify-center m-auto relative; &-left { @apply justify-start } }
