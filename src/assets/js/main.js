@@ -64,12 +64,8 @@ window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 
 
 function onDOMLoad() {
   
-  vw = document.documentElement.clientWidth
-  vh = document.documentElement.clientHeight
-  vw = Math.max(vw, vh); // Hacky debug for resize while loading on mobile..
-  
-  document.fonts.ready.then(onFontLoad)
-  setTimeout(onFontLoad, 300 ) // fallback if fonts don't load
+  setViewport()
+  setTimeout(onWindowLoad, 3000 ) // fallback if fonts don't load
 
   setNav()
   loadMaps()
@@ -87,28 +83,25 @@ function onDOMLoad() {
 }
 
 function onWindowLoad() {
+  
+  if (loaded) {return}
+  loaded = true
   console.log(`Loaded in ${(new Date())-start}ms`)
+  
+  setViewport()
+  setTimeout( () => update(null), 200 )
+  document.querySelector('#loader').style.opacity = 0
   
   let vid = document.querySelector('video'),
       src = document.querySelector('video source')
       
-  src.setAttribute('src', src.dataset.src)
-  vid.load()
-}
-
-function onFontLoad() {
-  if (loaded) { return }
-  loaded = true
-  const end = new Date()
-  console.log(`Fonts loaded in ${end-start}ms`)
-  document.querySelector('#loader').style.opacity = 0
-  setTimeout( () => update(null), 200 )
+      src.setAttribute('src', src.dataset.src)
+      vid.load()
 }
 
 // Resize
 function onResize(e) {
-  vw = document.documentElement.clientWidth
-  vh = document.documentElement.clientHeight
+  setViewport()
   x = - i * vw
   translateX(slides, x)
 }
@@ -218,7 +211,11 @@ function setNav() {
 
 // Helpers
 function setBackground(b) { body.style.background = bg = b }
-
+function setViewport() { 
+  vw = document.documentElement.clientWidth
+  vh = document.documentElement.clientHeight
+  vw = Math.max(vw, vh); // Hacky debug for resize while loading on mobile..
+}
 function jumpTo(index) { // Jump to specific slide
   let p = i;
 
