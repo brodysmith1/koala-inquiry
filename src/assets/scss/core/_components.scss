@@ -169,7 +169,6 @@
 .btn-next {
   animation: pulse 1s linear alternate infinite;
   -webkit-animation: pulse 1s linear alternate infinite;
-  &::before { content: "Enter"; font-size: 0.5em}
  }
 
 

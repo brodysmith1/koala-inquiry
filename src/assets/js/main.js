@@ -53,7 +53,7 @@ const body      = document.querySelector('body'),
       pager     = document.querySelector('#pager'),
       recoms    = document.querySelectorAll('.recommendation'),
       mobPrev   = document.querySelector('.btn.btn-prev'),
-      mobNext   = document.querySelector('.btn.btn-next')
+      mobNext   = document.querySelector('.btn.btn-next .text-base')
 
 // Misc
 var vw = window.innerWidth, vh = window.innerHeight;
@@ -153,7 +153,7 @@ function update(p) {
 
   // Execute specific behaviour for targeted slides
   if (p == null) { document.querySelector('#title-slide').style.display = 'block' }
-  else if ( p == COVER)   { mobPrev.classList.remove('opacity-0'); mobPrev.classList.add('opacity-50'); }
+  else if ( p == COVER)   { mobPrev.classList.remove('opacity-0'); mobPrev.classList.add('opacity-50'); mobNext.classList.add('hidden'); }
   else if ( p == CULTURE) { document.querySelector('video').pause(); }
 
   if (i == ABOUT) { navBtn.classList.remove('opacity-0') }
