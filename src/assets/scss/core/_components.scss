@@ -25,7 +25,7 @@
 }
 
 #nav {
-  @apply fixed top-0 left-0 h-screen text-base z-10 text-white duration-300 p-8 bg-white text-green-400 border-green-300 border-r-4 font-medium;
+  @apply fixed top-0 left-0 h-screen text-base z-40 text-white duration-300 p-8 bg-white text-green-400 border-green-300 border-r-4 font-medium;
   width: 240px;
   padding-top: 90px;
   transform: translateX(-240px);
@@ -170,6 +170,7 @@
   animation: pulse 1s linear alternate infinite;
   -webkit-animation: pulse 1s linear alternate infinite;
  }
+.btn-prev { @apply text-gray-200; transform: scale(0.75); transform-origin: bottom left;  }
 
 
 

@@ -53,7 +53,7 @@ const body      = document.querySelector('body'),
       pager     = document.querySelector('#pager'),
       recoms    = document.querySelectorAll('.recommendation'),
       mobPrev   = document.querySelector('.btn.btn-prev'),
-      mobNext   = document.querySelector('.btn.btn-next .text-base')
+      mobNext   = document.querySelector('.btn.btn-next')
 
 // Misc
 var vw = window.innerWidth, vh = window.innerHeight;
@@ -153,11 +153,11 @@ function update(p) {
 
   // Execute specific behaviour for targeted slides
   if (p == null) { document.querySelector('#title-slide').style.display = 'block' }
-  else if ( p == COVER)   { mobPrev.classList.remove('opacity-0'); mobPrev.classList.add('opacity-50'); mobNext.classList.add('hidden'); }
+  else if ( p == COVER)   { mobPrev.classList.remove('opacity-0'); mobNext.style.animation = 'none'; mobNext.firstChild.classList.add('hidden'); }
   else if ( p == CULTURE) { document.querySelector('video').pause(); }
 
   if (i == ABOUT) { navBtn.classList.remove('opacity-0') }
-  else if (i == COVER) { mobPrev.classList.add('opacity-0'); mobPrev.classList.remove('opacity-50'); }
+  else if (i == COVER) { mobPrev.classList.add('opacity-0'); }
   else if (i == LOCATION) { navLabel.classList.add('opacity-0'); bgi = blue400; }
   else if (i == CULTURE)  { document.querySelector('video').play(); }
   else if (i == INDIG)    { bgi = black; }
@@ -166,6 +166,7 @@ function update(p) {
   else if (i == RECOS+2)  { layoutSplit(recoms, 2); }
   else if (i == SOLNS)    { mapSLN.style.transform = "translateX(0)"; triggerMapSLN('georges');   bgi=blue400; }
   else if (i == SOLNS+1)  { mapSLN.style.transform = `translateX(${vw}px`; triggerMapSLN('gknp'); bgi=blue400; }
+  else if (i == n)  { mobNext.classList.add('hidden'); }
 
   pager.style.width = `${(100*i/(n-1)).toFixed(0)}%`       // Update progress bar
   bg != bgi ? setBackground(bgi) : "";   // Update color scheme

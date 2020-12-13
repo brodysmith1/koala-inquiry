@@ -29,10 +29,13 @@
   .mobile-overflow .content,
   .mobile-overflow .content-wide { overflow-y: visible; min-height: 100vh}
   
+  #title-slide h1:first-child { @apply whitespace-normal px-4; }
+  
   #nav ul { height: calc(100vh - 155px); overflow-y: scroll;}
   #home-nav-label, #home-arrow-keys, #nav-btn-label { display: none }
   
   .content, .content-wide { @apply absolute w-full h-auto py-12 top-0; }
+  .content { @apply pt-20 px-16 top-0; }
   
   #recs { top: -2rem; height: calc(100vh + 2rem); overflow-y: scroll; }
   #recs-area { min-height: 420px; max-width: 460px; transform: scale(0.7) }
@@ -47,8 +50,8 @@
 
 @media (pointer: coarse) {
   
-  .mobile-footer { @apply fixed bottom-0 w-full block z-50 pointer-events-none }
-  .mobile-footer .btn { @apply px-4 py-2 pointer-events-auto }
+  .mobile-footer { @apply fixed bottom-0 w-full block z-30 pointer-events-none }
+  .mobile-footer .btn { @apply px-3 py-1 pointer-events-auto m-2 }
   
   #timeline-page { @apply relative h-screen; height: 500px }
   #timeline { @apply w-full flex-col; &::after{ @apply hidden; } }
@@ -59,7 +62,7 @@
   #timeline .node .spacer { @apply h-full flex-none; &::before { min-height: 6rem; opacity: 1; } }
   #timeline .node .text-center { @apply px-6 text-right; width: 85px; &:last-child { @apply text-left; width: 80%; } }
   #timeline .year-2018 { @apply flex; .inline-block { @apply pl-8 m-auto } }
-  #timeline-bushfires { left: 85px; bottom: 7.75rem }
+  #timeline-bushfires { left: 85px; bottom: 9.25rem }
   
 }
 
