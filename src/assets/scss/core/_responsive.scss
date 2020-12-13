@@ -62,7 +62,7 @@
   #timeline .node .spacer { @apply h-full flex-none; &::before { min-height: 6rem; opacity: 1; } }
   #timeline .node .text-center { @apply px-6 text-right; width: 85px; &:last-child { @apply text-left; width: 80%; } }
   #timeline .year-2018 { @apply flex; .inline-block { @apply pl-8 m-auto } }
-  #timeline-bushfires { left: 85px; bottom: 9.25rem }
+  #timeline-bushfires { left: 62px; bottom: calc(33% - 7px) }
   
 }
 

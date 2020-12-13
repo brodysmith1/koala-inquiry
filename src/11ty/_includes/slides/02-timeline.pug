@@ -7,16 +7,19 @@ block content
     #timeline-wrap
           
       #timeline.relative.flex.flex-row
-      
-        #timeline-bushfires.absolute.z-10.text-center.text-xs 
-          span.px-6.py.bg-red-300.text-white.uppercase.font-medium.tracking-wide Bushfires
+  
       
         - let start = 2016
         for f,i in new Array(5)
           .node.flex.flex-1.flex-col-reverse.py-0.px-4
+            
+            if start+i == 2019
+              #timeline-bushfires.absolute.z-10.text-center.text-xs 
+                span.px-6.py.bg-red-300.text-white.uppercase.font-medium.tracking-wide Bushfires
+                
             .flex-none.tag.text-center: span.playfair-italic.relative.text-xl.mx-auto.opacity-75= start+i
             .spacer.relative.flex-1.my-2
-            .flex-none.text-sm.text-center
+            .flex-none.text-sm.text-center.relative
               case start+i
                 when 2016
                   .mb-2 NSW Chief Scientist releases a 
