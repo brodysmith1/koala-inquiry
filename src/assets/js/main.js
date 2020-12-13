@@ -56,15 +56,21 @@ const body      = document.querySelector('body'),
       mobNext   = document.querySelector('.btn.btn-next')
 
 // Misc
-var vw = window.innerWidth, vh = window.innerHeight;
+// var vw = window.innerWidth, vh = window.innerHeight;
+var vw = document.documentElement.clientWidth,
+    vh = document.documentElement.clientHeight
+
 document.addEventListener('DOMContentLoaded', onDOMLoad)
 window.onresize = () => { clearTimeout(timeout); timeout = setTimeout(onResize, 250) };
 
-
 function onDOMLoad() {
+  
+  console.log("vw: ",vw, "vh: ", vh)
 
   vw = document.documentElement.clientWidth,
   vh = document.documentElement.clientHeight
+  
+  console.log("vw: ",vw, "vh: ", vh)
 
   vw < 600 ? document.fonts.ready.then(onFontLoad) : ""
   setTimeout(onFontLoad, 300 ) // fallback if fonts don't load
@@ -89,17 +95,18 @@ function onFontLoad() {
   loaded = true
   const end = new Date()
   console.log(`Fonts loaded in ${end-start}ms`)
-  // document.querySelector('#loader').style.opacity = 0
+  document.querySelector('#loader').style.opacity = 0
   setTimeout( () => update(null), 200 )
 }
 
 
 // Resize
 function onResize(e) {
-  vw = document.documentElement.clientWidth;
-  vh = document.documentElement.clientHeight;
-  x = - i * vw;
-  translateX(slides, x);
+  vw = document.documentElement.clientWidth
+  vh = document.documentElement.clientHeight
+  x = - i * vw
+  translateX(slides, x)
+  console.log("vw: ",vw, "vh: ", vh)
 }
 
 
@@ -110,6 +117,10 @@ function checkKey(e) {
     case 39: checkX(true); break;
     // L
     case 37: checkX(false); break;
+    // D
+    case 40: checkX(true); break;
+    // U
+    case 38: checkX(false); break;
     // End
     case 35: jumpTo(n-1); break;
     // Home
