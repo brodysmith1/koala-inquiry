@@ -35,7 +35,7 @@ const cream     = "#ece5d8",
 
 // STATE
 var x  = 0,
-    n  = 33,
+    n  = 31,
     i  = 0,
     bg         = green400,
     mapNSWPlay = false,

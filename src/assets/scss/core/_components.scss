@@ -102,7 +102,7 @@
 #nsw-instructions { @apply opacity-50 text-base text-gray-200; }
 
 
-#decline-graph-quote  { @apply mx-20 text-justify; }
+#decline-graph-quote  { @apply mx-auto text-center; max-width: 835px; }
 #decline-graph-legend { @apply absolute bottom-0 flex flex-col; left: calc(50% + 225px); }
 #occurence {
   height: calc(100% + 2px);
