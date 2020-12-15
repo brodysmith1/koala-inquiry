@@ -158,7 +158,8 @@
 
 
 .btn.btn-giant {
-  @apply rounded shadow-xl text-2xl text-center bg-green-300 p-4 cursor-pointer my-2 font-medium tracking-wide uppercase select-none;
+  @apply rounded shadow-xl text-xl text-center bg-green-300 p-6 cursor-pointer my-2 mx-auto w-auto font-semibold tracking-wide uppercase select-none;
+  &.yel { @apply bg-yellow-300 text-green-400 font-bold }
   &:hover {
     @apply bg-green-200;
     transform: translateY(-2px);

@@ -1,8 +1,16 @@
 extends ../partials/slide.pug
 
 block content
-  .bg-image.bg-center-center.bg-cover(style=`background-image: url(${imgpath}/gknp.png)`)
+  .bg-image.bg-center.bg-cover(style=`background-image: url(${imgpath}/gknp.png)`)
   
-  .absolute.w-screen.left-0.bottom-0.mb-40
+  
+  .modal.absolute.inset-0.duration-500.flex.flex-col.items-center.justify-center(
+    style="background: rgba(0,0,0,0.9)"
+  )
     .text-center: .inline-block.bg-yellow-300.text-green-400.pt-2.pb-1.px-6.text-sm.playfair.wght-650 WELCOME TO
     .text-center: blockquote.inline-block.px-6.py-2 The Great Koala National Park
+    .my-2
+    .btn.btn-giant(
+      style="padding: 1rem"
+      onclick="this.parentElement.classList.add('opacity-0','pointer-events-none')"
+    ) Enter →
