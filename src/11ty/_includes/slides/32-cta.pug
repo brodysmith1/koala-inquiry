@@ -8,27 +8,5 @@ block content
   
   .py-4
   
-  .btn.btn-giant SIGN THE PETITION IN 30 SECONDS
-  
-  
-  
-  //form
-    .form-line.flex
-      label(for="firstname")
-      input(type="text" name="firstname" placeholder="First Name")
-      .px-2
-      label(for="surname") 
-      input(type="text" name="surname" placeholder="Last Name")
-    
-    .form-line
-      label(for="email")
-      input(type="email" name="email" placeholder="Email")
-    
-    .form-line
-      label(for="subject")
-      input(type="text" name="subject" placeholder="Subject")
-    
-    .form-line
-      label(for="subject")
-      textarea(rows="3" name="subject" placeholder="A really good email")
-    
+  .btn.btn-giant.relative(onclick="this.firstElementChild.classList.toggle('open')") SIGN THE PETITION IN 30 SECONDS
+    #warning.slide-up Petition launching in mid-January!

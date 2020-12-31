@@ -4,6 +4,12 @@
 }
 #mobile-wall {display: none;}
 @media (orientation: portrait) { #mobile-wall {display: flex;} }
+#warning { 
+  @apply hidden absolute opacity-0 bg-white rounded-lg p-4 duration-500 text-sm text-black normal-case; 
+  left: calc(50% - 140px);
+  top: -2.5rem;
+  &.open { @apply block; }
+}
 
 
 .content {
@@ -137,17 +143,21 @@
   line-height: 42px;
 
   &.active { @apply bg-green-400 text-white; }
-  &.active  .tooltip { transform: translateY(0); }
+  &.active  .tooltip { transform: translateY(0); pointer-events: all; }
 
   .tooltip {
-    @apply absolute pointer-events-none leading-6 text-sm text-left font-normal bg-white rounded-lg p-4;
-    @apply text-green-400 border-2 border-green-400;
+    @apply absolute pointer-events-none cursor-default leading-6 text-sm text-left font-normal bg-white rounded-lg p-4;
+    @apply text-green-400 border-2 border-green-400 overflow-y-auto;
     width: 90vw;
     max-width: 350px;
+    max-height: 300px;
     left: calc(-175px + 2rem);
     bottom: 110%;
     transition: transform 0.4s, opacity 0.25s;
     transform: translateY(1em);
+    
+    &::-webkit-scrollbar { width: 0; }
+    
   }
 
 }

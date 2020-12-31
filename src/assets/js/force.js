@@ -61,7 +61,7 @@ export const layoutSplit = (nodes, page) => {
 
 
   fade.forEach( r => {r.style.opacity = 0; r.classList.add('pointer-events-none')} )
-  soln.forEach( (r,i) => r.style = `top: 80%; left: ${100*(i+2)/6}%; transform: scale(1.1); z-index: 10` )
+  soln.forEach( (r,i) => r.style = `top: 80%; left: ${100*(i+2)/6}%; transform: scale(1.1);` )
   a.forEach( ai => ai.style.opacity = 1)
 
   if (page == 1) {
@@ -123,12 +123,9 @@ function positionTT(tt) {
   let rec = tt.getBoundingClientRect()
   let l = rec.left, t = rec.top
 
-  console.log(t)
-
   // t < 0 ? tt.style.lineHeight = '1.25rem' : ""
   // t < 0 ? tt.style.fontSize = '.8rem' : ""
   if ( t < 0 ) { tt.style.bottom = "unset"; tt.style.top = "110%" }
   tt.parentElement.parentElement.appendChild(tt.parentElement)
 
-  console.log(tt.getBoundingClientRect().top)
 }
