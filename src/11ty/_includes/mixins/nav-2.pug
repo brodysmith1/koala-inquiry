@@ -11,7 +11,9 @@ mixin nav()
 	- let PARKS = 19
 	- let HEROS = 21
 	- let VISON = 28
-
+	- let CTA = 29
+	- let CREDITS = 30
+	
 	#pager
 		
 	#nav-btn.opacity-0
@@ -52,6 +54,10 @@ mixin nav()
 						- v = "Concerns"
 					when VISON
 						- v = "A Future Vision"
+					when CTA
+						- v = "Back the Park"
+					when CREDITS
+						- v = "Credits"						
 					default
 						- v = ""
 		    
