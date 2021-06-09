@@ -10,19 +10,25 @@ table {
 }
 
 td, th {
-  @apply p-2;
+  @apply py-4 px-5;
   border-bottom: 0.5px solid;
-}
-
-td {
-  @apply text-sm text-right;
-
-  &:first-child { @apply text-left font-bold }
 }
 
 th {
   @apply font-bold text-right text-base tracking-wide
 }
+
+td {
+  @apply text-sm text-right;
+
+  &:first-child { @apply text-left font-medium }
+  &:last-child { @apply border-l bg-green-300 }
+  h2 { @apply text-5xl }
+  h2 small { @apply text-3xl }
+  
+}
+
+ol { list-style-type: decimal; padding-left: 1.5rem; }
 
 svg .key {
   fill: none;
