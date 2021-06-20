@@ -1,5 +1,5 @@
 mixin nav()
-	- let n = 32
+	- let n = 30
 	- let delay = 0
 	- let START = 0
 	- let ABOUT = 1
@@ -10,9 +10,8 @@ mixin nav()
 	- let RECOS = 16
 	- let PARKS = 19
 	- let HEROS = 21
-	- let VISON = 28
-	- let CTA = 29
-	- let CREDITS = 30
+	- let VISION = 28
+	- let CREDITS = 29
 	
 	#pager
 		
@@ -52,12 +51,10 @@ mixin nav()
 						- v = "Koala Parks"
 					when HEROS
 						- v = "Concerns"
-					when VISON
-						- v = "A Future Vision"
-					when CTA
+					when VISION
 						- v = "Back the Park"
 					when CREDITS
-						- v = "Credits"						
+						- v = "Credits/Contact"						
 					default
 						- v = ""
 		    

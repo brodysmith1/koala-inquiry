@@ -1,16 +1,15 @@
 extends ../partials/slide.pug
 
 block content
+  
   .bg-image.bg-center.bg-cover(style=`background-image: url(${imgpath}/gknp.png)`)
   
-  
-  .modal.absolute.inset-0.duration-500.flex.flex-col.items-center.justify-center(
-    style="background: rgba(0,0,0,0.9)"
-  )
-    .text-center: .inline-block.bg-yellow-300.text-green-400.pt-2.pb-1.px-6.text-sm.playfair.wght-650 WELCOME TO
-    .text-center: blockquote.inline-block.px-6.py-2 The Great Koala National Park
-    .my-2
-    .btn.btn-giant(
-      style="padding: 1rem"
-      onclick="this.parentElement.classList.add('opacity-0','pointer-events-none')"
-    ) Enter →
+  .modal.absolute.inset-0.py-16.flex.flex-col.items-center.justify-between(style="background: transparent")
+    .flex.flex-col
+      .text-center: .inline-block.bg-yellow-300.text-green-400.pt-2.pb-1.px-6.text-sm.playfair.wght-650 WELCOME TO
+      .text-center: blockquote.inline-block.px-6.py-2 The Great Koala National Park
+    
+    .flex.flex-col.text-center.px-8.py-4(style="background: #2f493ddd")
+      a.btn.btn-giant.relative.block(target="_blank" href="https://www.gknp.org/petition") SIGN THE PETITION IN 30 SECONDS
+      p.text-base.font-medium.mb-4(style="max-width: 440px") A petition puts the Park in front of Parliament. With 20&thinsp;000 signatures, NSW Parliament will schedule the Great Koala National Park for debate in the Legislative Assembly.
+      
