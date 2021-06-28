@@ -1,7 +1,6 @@
 module.exports = {
-	author: "Koala Inquiry",
+	author: "Brody Smith",
 	url: "https://koalas.fyi/",
-	metaTitle: "Koala Inquiry",
-	metaDescription:
-		"Koala Inquiry",
+	metaTitle: "The Great Koala Debate",
+	metaDescription: "An interactive guide to the NSW parliamentary inquiry into koala populations."
 };
